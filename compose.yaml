@@ -79,6 +79,11 @@ services:
   # report beside results.json on the host.
   eval:
     <<: [*app, *llm]
+    environment:
+      # environment replaces the x-llm mapping wholesale, so restate it.
+      REWRITE_LOOPBACK_HOST: 'true'
+      # report.md / report.json must land on the host, like the deliverable.
+      REPORT_DIR: /app/out
     volumes:
       - ./src:/app/src
       - ./ai-engineer/data:/app/ai-engineer/data:ro

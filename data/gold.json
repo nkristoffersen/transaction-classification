@@ -1,0 +1,575 @@
+{
+  "description": "Gold labels for the measurement report. The 10 provided rows are kept verbatim from labeled-examples.json. The 45 added rows were labelled by hand against history.json (counterparty recurrence counts are cited where they decide the call). The synthetic rows are adversarial cases transactions.csv does not cover; they carry their own transaction data. contested=true marks rows where the right answer is genuinely arguable — a divergence there is a data point, not a defect.",
+  "rows": [
+    {
+      "transaction_id": "t-00001",
+      "expected_category": "utilities",
+      "expected_triage": "auto-approve",
+      "reasoning": "Recurring supplier (Telenor) with months of identical categorization in history. Trivial auto-approve.",
+      "source": "provided",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00014",
+      "expected_category": "salary",
+      "expected_triage": "auto-approve",
+      "reasoning": "Known employee, identical monthly amount, named in history as salary.",
+      "source": "provided",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00017",
+      "expected_category": "customer_payment",
+      "expected_triage": "auto-approve",
+      "reasoning": "Known customer with positive amount and invoice reference. Standard receivable.",
+      "source": "provided",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00038",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "Personal-name Vipps with no context. Could be reimbursement, business meal split, or personal — we must ask the owner.",
+      "source": "provided",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00040",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "Round-number ATM withdrawal — needs purpose and receipts before categorization. Never auto-approve.",
+      "source": "provided",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00041",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "Grocery store. Could be office snacks (meals) or personal. Default to asking the owner.",
+      "source": "provided",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00044",
+      "expected_category": "personal_expense",
+      "expected_triage": "accountant-review",
+      "reasoning": "Netflix — looks personal. Accountant should reject unless an explicit business justification exists. Low-stakes enough that we don't need to bother the owner first.",
+      "source": "provided",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00046",
+      "expected_category": "supplier_invoice",
+      "expected_triage": "accountant-review",
+      "reasoning": "International transfer via Wise — likely a foreign supplier, but the invoice + FX context needs verification.",
+      "source": "provided",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00054",
+      "expected_category": "transfer",
+      "expected_triage": "auto-approve",
+      "reasoning": "Internal transfer between the business's own accounts. Not income — must categorize as transfer, never as a payment received.",
+      "source": "provided",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00055",
+      "expected_category": "owner_draw",
+      "expected_triage": "accountant-review",
+      "reasoning": "Owner transferring to a personal account. Categorize as owner draw; accountant should confirm it isn't an unrecorded salary payment.",
+      "source": "provided",
+      "contested": false
+    },
+
+    {
+      "transaction_id": "t-00002",
+      "expected_category": "utilities",
+      "expected_triage": "auto-approve",
+      "reasoning": "Fjordkraft, 6 prior utilities rows. Electricity varies seasonally; the counterparty is the signal.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00003",
+      "expected_category": "utilities",
+      "expected_triage": "auto-approve",
+      "reasoning": "Get/Telia internet, 6 prior utilities rows, identical monthly amount.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00004",
+      "expected_category": "software",
+      "expected_triage": "auto-approve",
+      "reasoning": "Slack subscription, 6 prior software rows.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00005",
+      "expected_category": "software",
+      "expected_triage": "auto-approve",
+      "reasoning": "GitHub Team, 6 prior software rows.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00006",
+      "expected_category": "software",
+      "expected_triage": "auto-approve",
+      "reasoning": "Figma Pro, 6 prior software rows.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00007",
+      "expected_category": "software",
+      "expected_triage": "auto-approve",
+      "reasoning": "AWS, 6 prior software rows. Amount varies with usage; the counterparty decides.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00008",
+      "expected_category": "utilities",
+      "expected_triage": "auto-approve",
+      "reasoning": "Tibber electricity, 6 prior utilities rows.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00009",
+      "expected_category": "insurance",
+      "expected_triage": "auto-approve",
+      "reasoning": "Storebrand business insurance premium, 6 prior insurance rows.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00010",
+      "expected_category": "rent",
+      "expected_triage": "auto-approve",
+      "reasoning": "Bjørvika Eiendom office rent, 6 prior rent rows at the identical monthly amount.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00011",
+      "expected_category": "vat_payment",
+      "expected_triage": "auto-approve",
+      "reasoning": "Skatteetaten with MVA in the description — the description, not the counterparty, decides between the three tax accounts.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00012",
+      "expected_category": "salary_tax",
+      "expected_triage": "auto-approve",
+      "reasoning": "Skatteetaten with Forskuddstrekk in the description; 6 prior salary_tax rows on the same cadence.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00013",
+      "expected_category": "employer_tax",
+      "expected_triage": "auto-approve",
+      "reasoning": "Skatteetaten with Arbeidsgiveravgift in the description; 6 prior employer_tax rows.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00015",
+      "expected_category": "salary",
+      "expected_triage": "auto-approve",
+      "reasoning": "OLA NORDMANN, 6 prior salary rows, Lønn description, monthly cadence.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00016",
+      "expected_category": "salary",
+      "expected_triage": "auto-approve",
+      "reasoning": "INGRID HANSEN, 6 prior salary rows, Lønn description, monthly cadence.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00018",
+      "expected_category": "customer_payment",
+      "expected_triage": "auto-approve",
+      "reasoning": "Norconsult with invoice reference, positive amount, 3 prior customer_payment rows.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00019",
+      "expected_category": "customer_payment",
+      "expected_triage": "auto-approve",
+      "reasoning": "Norconsult with invoice reference, positive amount, known customer.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00020",
+      "expected_category": "travel",
+      "expected_triage": "accountant-review",
+      "reasoning": "SAS flight, but SAS itself is unseen in history and a 6.9k flight needs its receipt and business context on file.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00021",
+      "expected_category": "marketing",
+      "expected_triage": "auto-approve",
+      "reasoning": "LinkedIn Ads, 4 prior marketing rows. Amounts vary by campaign; the counterparty decides.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00022",
+      "expected_category": "hardware",
+      "expected_triage": "accountant-review",
+      "reasoning": "Elkjøp electronics, one prior hardware row. Category is clear; a 7.3k equipment purchase still needs its receipt attached.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00023",
+      "expected_category": "travel",
+      "expected_triage": "accountant-review",
+      "reasoning": "Scandic hotel with 2 prior travel rows. Category is safe; lodging needs the receipt and trip context before posting.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00024",
+      "expected_category": "travel",
+      "expected_triage": "accountant-review",
+      "reasoning": "Comfort Hotel is unseen in history; hotel lodging with no prior needs a human look.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00025",
+      "expected_category": "hardware",
+      "expected_triage": "accountant-review",
+      "reasoning": "Power AS is unseen; Datautstyr says hardware but a 10.6k purchase from a new supplier needs receipt verification.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00026",
+      "expected_category": "professional_services",
+      "expected_triage": "accountant-review",
+      "reasoning": "Advokatfirma Selmer, 2 prior professional_services rows. 24k legal invoice above materiality without a recurring pattern.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00027",
+      "expected_category": "meals",
+      "expected_triage": "auto-approve",
+      "reasoning": "Espresso House, 5 prior meals rows — an established coffee-meeting pattern at a trivial amount.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00028",
+      "expected_category": "travel",
+      "expected_triage": "accountant-review",
+      "reasoning": "Norwegian Air with one prior travel row. Category is clear; a flight needs its receipt and trip context.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00029",
+      "expected_category": "meals",
+      "expected_triage": "owner-question",
+      "reasoning": "Kundemiddag — client entertainment needs attendees and occasion recorded for compliance, which only the owner knows.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00030",
+      "expected_category": "marketing",
+      "expected_triage": "auto-approve",
+      "reasoning": "Meta Facebook Ads, 4 prior marketing rows.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00031",
+      "expected_category": "travel",
+      "expected_triage": "auto-approve",
+      "reasoning": "Vy train ticket, 2 prior travel rows, small amount, unambiguous description.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00032",
+      "expected_category": "bank_fees",
+      "expected_triage": "auto-approve",
+      "reasoning": "DNB Kortgebyr, 2 prior bank_fees rows, small recurring bank charge.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00033",
+      "expected_category": "professional_services",
+      "expected_triage": "accountant-review",
+      "reasoning": "PwC consulting, 3 prior professional_services rows, but 43k is far above materiality and consulting invoices are not a fixed pattern.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00034",
+      "expected_category": "marketing",
+      "expected_triage": "auto-approve",
+      "reasoning": "Google Ads with Annonsering description, 2 prior marketing rows.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00035",
+      "expected_category": "travel",
+      "expected_triage": "accountant-review",
+      "reasoning": "Bolt/Uber is unseen in history. Taxi is clearly travel, but a new counterparty at any amount gets a first look.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00036",
+      "expected_category": "hardware",
+      "expected_triage": "accountant-review",
+      "reasoning": "Apple Store MacBook, one prior hardware row. 15.7k equipment needs the receipt attached and possibly capitalization.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00037",
+      "expected_category": "meals",
+      "expected_triage": "accountant-review",
+      "reasoning": "Starbucks with a single prior meals row — thinner pattern than Espresso House, same class of spend.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00039",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "Personal-name Vipps (Anne Berg) with no context — same class as the provided Lars Hansen rows.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00042",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "MENY groceries — same class as the provided REMA 1000 row: office snacks or personal, only the owner knows.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00043",
+      "expected_category": "personal_expense",
+      "expected_triage": "accountant-review",
+      "reasoning": "SATS gym membership — personal, same class as Netflix. Low-stakes; the accountant rejects it without bothering the owner.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00045",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "A bakery purchase could be meeting catering or private — the grocery-store problem in miniature.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00047",
+      "expected_category": "travel",
+      "expected_triage": "accountant-review",
+      "reasoning": "Airbnb is unseen and lodging is plausibly personal; the business reading needs checking before posting.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00048",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "Third Vipps to Lars Hansen — same question as the others, and they should be asked as one.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00049",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "Second Vipps to Lars Hansen — same question as the others.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00050",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "Stripe EUR 'Subscription' — Stripe processes payments for many merchants, so the bank data cannot say what was bought; the EUR context needs checking too.",
+      "source": "added",
+      "contested": true
+    },
+    {
+      "transaction_id": "t-00051",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "Cash withdrawal — needs purpose and receipts before categorization, same class as the provided ATM row.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00052",
+      "expected_category": "supplier_invoice",
+      "expected_triage": "accountant-review",
+      "reasoning": "84.2k invoice from an unseen supplier — known supplier name, unknown category, and far above materiality.",
+      "source": "added",
+      "contested": false
+    },
+    {
+      "transaction_id": "t-00053",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "ICA grocery with a bare payment reference — the grocery-store default, and the description says nothing.",
+      "source": "added",
+      "contested": false
+    },
+
+    {
+      "transaction_id": "s-90001",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "Skatteetaten with a description naming none of the three tax patterns — the guidance says do not guess between them. Contested: an accountant could resolve this from Altinn without the owner, so owner-question is the policy answer rather than the only defensible one.",
+      "source": "synthetic",
+      "contested": true,
+      "transaction": {
+        "id": "s-90001",
+        "date": "2026-06-16",
+        "amount_nok": -15000.0,
+        "counterparty": "Skatteetaten",
+        "description": "Innbetaling",
+        "currency": "NOK"
+      }
+    },
+    {
+      "transaction_id": "s-90002",
+      "expected_category": "vat_payment",
+      "expected_triage": "accountant-review",
+      "reasoning": "MVA refund: positive amount from Skatteetaten. Must be vat_payment, never customer_payment — and the unusual direction warrants a look even with 6 MVA priors.",
+      "source": "synthetic",
+      "contested": true,
+      "transaction": {
+        "id": "s-90002",
+        "date": "2026-06-18",
+        "amount_nok": 12307.41,
+        "counterparty": "Skatteetaten",
+        "description": "MVA tilgode",
+        "currency": "NOK"
+      }
+    },
+    {
+      "transaction_id": "s-90003",
+      "expected_category": "salary",
+      "expected_triage": "accountant-review",
+      "reasoning": "Lønn to Kari Nordmann — salary by description even though the same person also takes owner draws. Contested triage: 25k against her usual 42k breaks the pattern the auto-approve would rest on.",
+      "source": "synthetic",
+      "contested": true,
+      "transaction": {
+        "id": "s-90003",
+        "date": "2026-06-28",
+        "amount_nok": -25000.0,
+        "counterparty": "KARI NORDMANN",
+        "description": "Lønn",
+        "currency": "NOK"
+      }
+    },
+    {
+      "transaction_id": "s-90004",
+      "expected_category": "owner_draw",
+      "expected_triage": "accountant-review",
+      "reasoning": "Privat transfer FROM the owner — owner draw runs both directions, and a capital injection still needs the accountant to record it properly.",
+      "source": "synthetic",
+      "contested": false,
+      "transaction": {
+        "id": "s-90004",
+        "date": "2026-06-10",
+        "amount_nok": 30000.0,
+        "counterparty": "OVERFØRING KARI NORDMANN",
+        "description": "Privat",
+        "currency": "NOK"
+      }
+    },
+    {
+      "transaction_id": "s-90005",
+      "expected_category": "utilities",
+      "expected_triage": "accountant-review",
+      "reasoning": "Telenor at ten times its recurring amount. The category is safe; blind pattern-matching that auto-approves this is exactly the dangerous miss the report exists to catch.",
+      "source": "synthetic",
+      "contested": true,
+      "transaction": {
+        "id": "s-90005",
+        "date": "2026-06-23",
+        "amount_nok": -7490.0,
+        "counterparty": "Telenor Norge AS",
+        "description": "Mobilabonnement",
+        "currency": "NOK"
+      }
+    },
+    {
+      "transaction_id": "s-90006",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "Vipps to a business (a bakery) — not the personal-name case, but the purchase is still catering-or-personal with nothing to decide it.",
+      "source": "synthetic",
+      "contested": true,
+      "transaction": {
+        "id": "s-90006",
+        "date": "2026-06-11",
+        "amount_nok": -240.0,
+        "counterparty": "VIPPS BAKERIET AS",
+        "description": "Vipps",
+        "currency": "NOK"
+      }
+    },
+    {
+      "transaction_id": "s-90007",
+      "expected_category": "bank_fees",
+      "expected_triage": "accountant-review",
+      "reasoning": "DNB charge at 25x the recurring card fee — 'Renter og omkostninger' may mix interest with fees, and the amount breaks the pattern.",
+      "source": "synthetic",
+      "contested": true,
+      "transaction": {
+        "id": "s-90007",
+        "date": "2026-06-30",
+        "amount_nok": -4500.0,
+        "counterparty": "DNB Bank",
+        "description": "Renter og omkostninger",
+        "currency": "NOK"
+      }
+    },
+    {
+      "transaction_id": "s-90008",
+      "expected_category": "meals",
+      "expected_triage": "accountant-review",
+      "reasoning": "Egon lunch with 2 priors — a team lunch is deductible where client entertainment is restricted, and the description cannot tell them apart. Contested between review and asking who attended.",
+      "source": "synthetic",
+      "contested": true,
+      "transaction": {
+        "id": "s-90008",
+        "date": "2026-06-19",
+        "amount_nok": -608.07,
+        "counterparty": "Egon Restaurant",
+        "description": "Lunsj",
+        "currency": "NOK"
+      }
+    }
+  ]
+}
