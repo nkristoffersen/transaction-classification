@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T19:32:16.154Z",
+  "generated_at": "2026-08-19T20:15:49.571Z",
   "model": "qwen/qwen3.5-9b",
   "transactions_classified": 63,
   "failures": 0,
@@ -284,8 +284,12 @@
     "tokens_in": 579290,
     "tokens_out": 21145,
     "estimated_cost_usd": null,
-    "latency_p50_ms": 61174,
-    "latency_p95_ms": 103886
+    "latency_p50_ms": 56317,
+    "latency_p95_ms": 80803
   },
-  "determinism": null
+  "determinism": {
+    "runs": 2,
+    "category_agreement": 1,
+    "triage_agreement": 1
+  }
 }

@@ -1,6 +1,6 @@
 # Measurement report
 
-- generated: 2026-08-19T19:32:16.154Z
+- generated: 2026-08-19T20:15:49.571Z
 - model: qwen/qwen3.5-9b
 - transactions classified: 63, failures: 0
 
@@ -97,8 +97,8 @@ Confusion pairs that actually occurred:
 
 - tokens: 579290 in / 21145 out
 - estimated cost: n/a (set EVAL_PRICE_IN / EVAL_PRICE_OUT, USD per 1M tokens)
-- latency per transaction: p50 61174ms, p95 103886ms
+- latency per transaction: p50 56317ms, p95 80803ms
 
 ## Determinism
 
-- not measured this run (set EVAL_REPEAT=2)
+- across 2 identical runs: category agreement 100%, triage agreement 100%

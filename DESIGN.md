@@ -298,7 +298,11 @@ cost completely different things:
    checks, and every drafted question printed in full for a human to read.
 8. **Tool health** — calls per transaction, `tool_call_missing` count, repair rounds.
 9. **Cost and latency** — tokens in/out, $/run at a configured rate, p50/p95 per transaction.
-10. **Determinism** — a repeat run, reporting category/triage agreement.
+10. **Determinism** — a repeat run, reporting category/triage agreement. Measured
+    (`EVAL_REPEAT=2`, qwen3.5-9b on LM Studio, temperature 0, seed 7): **100% category and 100%
+    triage agreement** across two identical 63-transaction runs — the "same transaction scored
+    differently on different days" failure is precluded at this configuration, at the known cost
+    of running below the vendor's recommended sampling temperature.
 
 Every rate splits by gold source (`provided` 10 / `added` / synthetic), so hand-written labels
 cannot flatter the system.
