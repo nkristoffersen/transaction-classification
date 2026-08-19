@@ -107,6 +107,18 @@ itself, injects it as a tool result, marks the row `tool_call_missing`, and forc
 accountant-review. The run degrades measurably instead of failing, and the report counts how often
 this happened — the number that says whether the tool design survives this model.
 
+**Measured, and the design changed because of it.** The first smoke against LM Studio
+(qwen3.5-9b) produced **zero tool calls in the whole batch** — every row went through the injected
+fallback and was floored at accountant-review. The cause was not the model's willingness but the
+wire: `response_format` was attached from turn one, the server compiles that schema to a decoding
+grammar, and a grammar that only admits the classification object makes a tool call literally
+unemittable. The fix is protocol, not prompt: **the constraint is deferred until the tool phase is
+over** — tool-phase turns go unconstrained (the schema still travels in the message for them), and
+the answer turn is grammar-locked. Re-measured on the same smoke: 3 of 3 transactions called the
+tool unprompted, 0 fallbacks, and the two recurring rows moved from accountant-review to their
+correct auto-approve. `llm.test.ts` pins the contract — no `response_format` on a tool-phase
+request, `strict: true` on the answer turn.
+
 **What the tool deliberately is not.** Not a category-lookup: the 22 accounts total ~600 tokens and
 are already the schema's enum with their guidance in `.describe()` — retrieval over something fully
 present returns what the model can see anyway, and it would put a second copy of the category

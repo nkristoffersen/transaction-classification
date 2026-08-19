@@ -256,6 +256,7 @@ export class ClassifierClient {
   async #call<T>(
     request: StructuredRequest<T>,
     messages: ModelMessage[],
+    constrain: boolean,
     signal: AbortSignal | undefined,
   ): Promise<{
     text: string;
@@ -277,14 +278,24 @@ export class ClassifierClient {
       maxRetries: 0,
       abortSignal: signal === undefined ? timeout : AbortSignal.any([signal, timeout]),
       ...(tools === undefined ? {} : { tools }),
-      providerOptions: {
-        [PROVIDER_NAME]: {
-          response_format: this.responseFormatFor(
-            request.schema,
-            request.schemaName,
-          ) as unknown as JSONValue,
-        },
-      },
+      // Constrained decoding compiles the schema to a grammar the reply MUST
+      // match — which makes a tool call literally unemittable. Measured on LM
+      // Studio: with response_format attached from turn one, qwen3.5-9b never
+      // called the tool once in a whole batch. So the constraint is deferred:
+      // tool-phase turns go unconstrained (the schema still travels in the
+      // prompt for those), and the answer turn is grammar-locked.
+      ...(constrain
+        ? {
+            providerOptions: {
+              [PROVIDER_NAME]: {
+                response_format: this.responseFormatFor(
+                  request.schema,
+                  request.schemaName,
+                ) as unknown as JSONValue,
+              },
+            },
+          }
+        : {}),
     });
 
     return {
@@ -436,7 +447,10 @@ export class ClassifierClient {
     // The cap plus a margin bounds the loop even against a model that keeps
     // calling after being told to stop.
     for (let turn = 0; turn <= this.#env.MAX_TOOL_CALLS + 1; turn++) {
-      const result = await this.#call(request, messages, signal);
+      // Only constrain once the tool phase is over: no tools offered, or at
+      // least one lookup already on the record (called or injected).
+      const constrain = request.tools.length === 0 || toolCalls.length > 0;
+      const result = await this.#call(request, messages, constrain, signal);
       onUsage(result);
 
       if (result.toolCalls.length === 0) return result.text;

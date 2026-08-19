@@ -264,17 +264,22 @@ describe('generateStructured', () => {
     expect(result.toolCalls).toHaveLength(1);
     expect(result.toolCalls[0]?.result?.match_count).toBeGreaterThanOrEqual(3);
 
-    // What actually landed on the wire.
+    // What actually landed on the wire. The tool-phase turn must NOT carry
+    // response_format: a decoding grammar makes a tool call unemittable —
+    // measured on LM Studio, where an always-on grammar produced zero tool
+    // calls across a whole batch. The constraint belongs to the answer turn.
     const first = stub.requests[0];
     expect(first?.tools?.[0]?.function.name).toBe('search_history');
-    expect(first?.response_format?.type).toBe('json_schema');
-    expect(first?.response_format?.json_schema?.strict).toBe(true);
+    expect(first?.response_format).toBeUndefined();
     expect(first?.temperature).toBe(0);
     expect(first?.seed).toBe(7);
 
-    // The second turn carries the executed tool result back to the model.
+    // The second turn carries the executed tool result back, and is the one
+    // that gets grammar-locked to the schema.
     const second = stub.requests[1];
     expect(second?.messages.some((message) => message.role === 'tool')).toBe(true);
+    expect(second?.response_format?.type).toBe('json_schema');
+    expect(second?.response_format?.json_schema?.strict).toBe(true);
     expect(result.tokensIn).toBeGreaterThan(0);
   });
 
