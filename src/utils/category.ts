@@ -31,6 +31,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'salary_tax',
@@ -45,6 +46,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'employer_tax',
@@ -57,6 +59,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'vat_payment',
@@ -69,6 +72,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'either',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'rent',
@@ -81,6 +85,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'utilities',
@@ -93,6 +98,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'software',
@@ -107,6 +113,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'hardware',
@@ -119,6 +126,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'travel',
@@ -132,6 +140,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'meals',
@@ -146,6 +155,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'office_supplies',
@@ -158,6 +168,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'marketing',
@@ -170,6 +181,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'professional_services',
@@ -182,6 +194,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'bank_fees',
@@ -194,6 +207,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'insurance',
@@ -207,6 +221,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'supplier_invoice',
@@ -222,6 +237,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: true,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'customer_payment',
@@ -235,6 +251,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_in',
     neverAutoApprove: false,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'owner_draw',
@@ -248,6 +265,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'either',
     neverAutoApprove: true,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'loan_transfer',
@@ -260,6 +278,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'either',
     neverAutoApprove: true,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'transfer',
@@ -273,6 +292,9 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'either',
     neverAutoApprove: false,
     alwaysAsk: false,
+    // Internal transfers have no history by nature; when the description says
+    // Egen konto and every other gate passes, that emptiness is not doubt.
+    historyExempt: true,
   },
   {
     label: 'personal_expense',
@@ -286,6 +308,7 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'money_out',
     neverAutoApprove: true,
     alwaysAsk: false,
+    historyExempt: false,
   },
   {
     label: 'uncertain',
@@ -301,5 +324,6 @@ export const ACCOUNT_GUIDANCE = [
     sign: 'either',
     neverAutoApprove: true,
     alwaysAsk: true,
+    historyExempt: false,
   },
 ] as const satisfies readonly AccountEntry[];

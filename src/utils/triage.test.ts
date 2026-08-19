@@ -49,6 +49,26 @@ describe('decideTriage', () => {
     expect(decision.rules).toEqual([]);
   });
 
+  // The provided gold label for t-00054: an internal transfer with a clean
+  // description auto-approves even though transfers have no history by nature.
+  it('waives the history gate for history-exempt accounts (transfer)', () => {
+    const decision = decideTriage(
+      inputs({
+        classification: {
+          category_code: 'transfer',
+          history_support: 'NONE',
+          history_evidence: 'no prior transactions, as expected for internal transfers',
+        },
+        transaction: {
+          amount_nok: 50_000,
+          counterparty: 'OVERF\u00d8RING FRA KONTO 1234.56.78901',
+          description: 'Egen konto',
+        },
+      }),
+    );
+    expect(decision.triage).toBe('auto-approve');
+  });
+
   it('sends uncertain to the owner — the chart pairs them explicitly', () => {
     const decision = decideTriage(
       inputs({

@@ -50,9 +50,11 @@ export const ClassificationSchema = z.strictObject({
     .nullable()
     .describe('What remains unresolved after your analysis, or null if nothing does.'),
   confidence: ConfidenceSchema.describe(prose`
-      How solid this classification is. HIGH only when history and description agree and nothing
-      is missing. Never HIGH with category uncertain — an uncertain category is by definition not
-      a confident one.
+      How solid this classification is. HIGH when history and description agree and nothing is
+      missing — and thin history that is unanimous still counts: one or two priors in a single
+      category with an unambiguous description is HIGH, not MEDIUM. Reserve MEDIUM for a real
+      unresolved tension and LOW for guesswork. Never HIGH with category uncertain — an uncertain
+      category is by definition not a confident one.
     `),
 });
 export type Classification = z.infer<typeof ClassificationSchema>;

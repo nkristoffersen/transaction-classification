@@ -44,7 +44,7 @@ export const decideTriage = (inputs: TriageInputs): TriageDecision => {
   const blocking = signals.filter(({ entry }) => entry.blocksAutoApprove);
   const gates: { passed: boolean; whenFailed: string }[] = [
     {
-      passed: history.supportsAutoApprove,
+      passed: history.supportsAutoApprove || account.historyExempt,
       whenFailed: `history support ${history.label} does not carry auto-approve`,
     },
     {
@@ -116,7 +116,10 @@ export const decideTriage = (inputs: TriageInputs): TriageDecision => {
   }
   if (
     Math.abs(transaction.amount_nok) >= inputs.materiality_nok &&
-    classification.history_support !== 'EXACT_RECURRING'
+    classification.history_support !== 'EXACT_RECURRING' &&
+    // Materiality asks for a recurring pattern an internal transfer can never
+    // have — the exemption that waives the history gate waives this too.
+    !account.historyExempt
   ) {
     apply(
       'MATERIALITY',
@@ -161,7 +164,7 @@ export const explainTriage = (materialityNok: number): string => {
   const lines: string[] = [];
 
   lines.push('Base decision (all gates must pass for auto-approve):');
-  lines.push('  history_support carries auto-approve');
+  lines.push('  history_support carries auto-approve (waived for history-exempt accounts)');
   lines.push('  no signal blocks auto-approve');
   lines.push('  missing_information = NONE');
   lines.push('  confidence = HIGH');
@@ -193,10 +196,11 @@ export const explainTriage = (materialityNok: number): string => {
 
   lines.push('Account policy (from category.ts):');
   for (const entry of ACCOUNT_GUIDANCE) {
-    if (!entry.neverAutoApprove && !entry.alwaysAsk) continue;
+    if (!entry.neverAutoApprove && !entry.alwaysAsk && !entry.historyExempt) continue;
     const flags = [
       entry.neverAutoApprove ? 'never-auto-approve' : '',
       entry.alwaysAsk ? 'always-ask-owner' : '',
+      entry.historyExempt ? 'history-exempt' : '',
     ]
       .filter((flag) => flag !== '')
       .join(', ');
@@ -213,7 +217,7 @@ export const explainTriage = (materialityNok: number): string => {
   lines.push('  4 ACCOUNT_NEVER_AUTO      -> at least accountant-review');
   lines.push(
     `  5 MATERIALITY             -> at least accountant-review   (|amount| >= ${materialityNok} NOK` +
-      ' without EXACT_RECURRING)',
+      ' without EXACT_RECURRING; waived for history-exempt accounts)',
   );
   lines.push(
     '  6 AMOUNT_OUTSIDE_PATTERN  -> at least accountant-review   (|amount| > 2x largest own-history amount)',

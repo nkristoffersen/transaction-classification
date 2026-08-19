@@ -48,6 +48,13 @@ describe('ACCOUNT_GUIDANCE', () => {
     ]);
   });
 
+  it('exempts exactly the no-history-by-nature accounts from the history gate', () => {
+    const exempt = ACCOUNT_GUIDANCE.filter((entry) => entry.historyExempt).map(
+      (entry) => entry.label,
+    );
+    expect(exempt).toEqual(['transfer']);
+  });
+
   it('knows which accounts are money in, and which go both ways', () => {
     expect(accountFor('customer_payment').sign).toBe('money_in');
     // VAT refunds arrive as positive amounts, so vat_payment must be `either`.

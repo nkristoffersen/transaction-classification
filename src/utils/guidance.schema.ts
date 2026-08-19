@@ -43,6 +43,13 @@ export const AccountEntrySchema = GuidanceEntrySchema.extend({
   neverAutoApprove: z.boolean(),
   /** This account always goes to the owner (the chart pairs it explicitly). */
   alwaysAsk: z.boolean(),
+  /**
+   * The auto-approve gate normally requires recurring history, but some
+   * accounts have no history BY NATURE (internal transfers) and are safe to
+   * post when everything else is clean. Exempts the history gate only —
+   * every other gate and override still applies.
+   */
+  historyExempt: z.boolean(),
 });
 export type AccountEntry = z.infer<typeof AccountEntrySchema>;
 

@@ -167,6 +167,38 @@ describe('checkClassification', () => {
     expect(issues.some((entry) => entry.path === 'history_support')).toBe(true);
   });
 
+  // Measured: seven rows paired a confident category with UNKNOWABLE clarity
+  // and were routed to the owner an accountant never needed.
+  it('flags a specific category claiming the purpose was unknowable', () => {
+    const issues = checkClassification(
+      classification({
+        category_code: 'personal_expense',
+        history_support: 'NONE',
+        history_evidence: 'no prior transactions',
+        purpose_clarity: 'UNKNOWABLE_FROM_BANK_DATA',
+        confidence: 'MEDIUM',
+      }),
+      transaction({ counterparty: 'NETFLIX', description: 'Subscription' }),
+      [call(searchResult({ match_count: 0, match_quality: 'none', category_distribution: [] }))],
+    );
+    expect(issues.some((entry) => entry.path === 'purpose_clarity')).toBe(true);
+  });
+
+  it('accepts UNKNOWABLE clarity when the category is uncertain', () => {
+    const issues = checkClassification(
+      classification({
+        category_code: 'uncertain',
+        history_support: 'NONE',
+        history_evidence: 'no prior transactions',
+        purpose_clarity: 'UNKNOWABLE_FROM_BANK_DATA',
+        confidence: 'LOW',
+      }),
+      transaction({ counterparty: 'VIPPS LARS HANSEN', description: 'Vipps' }),
+      [call(searchResult({ match_count: 0, match_quality: 'none', category_distribution: [] }))],
+    );
+    expect(issues).toEqual([]);
+  });
+
   it('flags uncertain paired with HIGH confidence', () => {
     const issues = checkClassification(
       classification({ category_code: 'uncertain', history_support: 'NONE' }),

@@ -182,6 +182,28 @@ export const checkClassification = (
     );
   }
 
+  // Choosing a specific account is itself the claim that the purpose WAS
+  // inferable from bank data — UNKNOWABLE_FROM_BANK_DATA belongs to rows
+  // whose account only the owner can name, which is what `uncertain` is for.
+  // Measured: seven rows (Netflix among them) paired a confident category
+  // with UNKNOWABLE and were routed to the owner an accountant never needed.
+  if (
+    value.purpose_clarity === 'UNKNOWABLE_FROM_BANK_DATA' &&
+    value.category_code !== 'uncertain'
+  ) {
+    issues.push(
+      issue(
+        'purpose_clarity',
+        prose`
+          You chose ${value.category_code}, which means the purpose was inferable from the bank
+          data after all. UNKNOWABLE_FROM_BANK_DATA is only for rows where no category can be
+          chosen without the owner. Either downgrade the clarity (AMBIGUOUS_BETWEEN_ACCOUNTS or
+          better), or change the category to uncertain.
+        `,
+      ),
+    );
+  }
+
   // The chart of accounts pairs uncertain with asking the owner; a confident
   // uncertainty is a contradiction in terms.
   if (value.category_code === 'uncertain' && value.confidence === 'HIGH') {
