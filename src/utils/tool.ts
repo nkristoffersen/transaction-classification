@@ -1,7 +1,21 @@
+import { z } from 'zod';
 import { searchHistory } from './history.ts';
 import { type HistoryIndex } from './history.schema.ts';
-import { SearchHistoryArgsSchema, type ToolCallRecord } from './tool.schema.ts';
+import { type ToolDefinition } from './llm.schema.ts';
+import {
+  SEARCH_HISTORY_DESCRIPTION,
+  SEARCH_HISTORY_TOOL_NAME,
+  SearchHistoryArgsSchema,
+  type ToolCallRecord,
+} from './tool.schema.ts';
 import { formatZodError } from './zod.ts';
+
+/** The tool as advertised to the model — schema and guard from one declaration. */
+export const searchHistoryToolDefinition = (): ToolDefinition => ({
+  name: SEARCH_HISTORY_TOOL_NAME,
+  description: SEARCH_HISTORY_DESCRIPTION,
+  input_schema: z.toJSONSchema(SearchHistoryArgsSchema, { io: 'input' }),
+});
 
 /**
  * Executes one model-authored search_history call.

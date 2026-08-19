@@ -38,6 +38,9 @@ export const normaliseCounterparty = (name: string): string =>
 export const isCashWithdrawal = (transaction: Transaction): boolean =>
   /minibank/i.test(transaction.counterparty) || /kontantuttak/i.test(transaction.description);
 
-/** A Vipps payment to a named person rather than a business. */
+/**
+ * A Vipps payment to a named person rather than a business — two name tokens
+ * after VIPPS ("VIPPS LARS HANSEN"), so "Vipps AS" itself does not match.
+ */
 export const isPersonalVipps = (transaction: Transaction): boolean =>
-  /^vipps\s+\p{L}+/iu.test(transaction.counterparty);
+  /^vipps\s+\p{L}+\s+\p{L}+/iu.test(transaction.counterparty);

@@ -9,6 +9,7 @@ import {
   type ToolSet,
 } from 'ai';
 import { zodResponseFormat } from 'openai/helpers/zod';
+import { type z } from 'zod';
 import { type Env } from './env.schema.ts';
 import { shouldRenderSchemaInPrompt } from './env.ts';
 import { type StructuredRequest, type StructuredResult } from './llm.schema.ts';
@@ -226,15 +227,15 @@ export class ClassifierClient {
     return this.#includeSchemaInPrompt;
   }
 
-  /** The strict response_format payload for a request, built by the openai helper. */
-  responseFormatFor<T>(request: StructuredRequest<T>): ReturnType<typeof zodResponseFormat> {
-    return zodResponseFormat(request.schema, request.schemaName);
+  /** The strict response_format payload, built by the openai helper. */
+  responseFormatFor(schema: z.ZodType, name: string): ReturnType<typeof zodResponseFormat> {
+    return zodResponseFormat(schema, name);
   }
 
   /** The wire schema rendered for the message body, when the endpoint needs it. */
-  renderedSchemaFor<T>(request: StructuredRequest<T>): string | null {
+  renderedSchemaFor(schema: z.ZodType, name: string): string | null {
     if (!this.#includeSchemaInPrompt) return null;
-    return JSON.stringify(this.responseFormatFor(request).json_schema.schema, null, 2);
+    return JSON.stringify(this.responseFormatFor(schema, name).json_schema.schema, null, 2);
   }
 
   #toolSetFor<T>(request: StructuredRequest<T>): ToolSet | undefined {
@@ -278,7 +279,10 @@ export class ClassifierClient {
       ...(tools === undefined ? {} : { tools }),
       providerOptions: {
         [PROVIDER_NAME]: {
-          response_format: this.responseFormatFor(request) as unknown as JSONValue,
+          response_format: this.responseFormatFor(
+            request.schema,
+            request.schemaName,
+          ) as unknown as JSONValue,
         },
       },
     });
@@ -288,7 +292,9 @@ export class ClassifierClient {
       toolCalls: result.toolCalls.map((call) => ({
         toolCallId: call.toolCallId,
         toolName: call.toolName,
-        input: call.input,
+        // The SDK types a schema-driven tool's input as `any`; nothing here
+        // may treat it as more than unknown until a zod parse says otherwise.
+        input: call.input as unknown,
       })),
       responseMessages: result.response.messages,
       tokensIn: result.usage.inputTokens ?? 0,
@@ -441,10 +447,12 @@ export class ClassifierClient {
       for (const call of result.toolCalls) {
         const executed = toolCalls.filter((record) => !record.injected).length;
         if (executed >= this.#env.MAX_TOOL_CALLS || request.executeTool === undefined) {
-          messages.push(toolResultMessage(call, {
-            type: 'error-text',
-            value: 'Tool budget exhausted. Answer now with the evidence you already have.',
-          }));
+          messages.push(
+            toolResultMessage(call, {
+              type: 'error-text',
+              value: 'Tool budget exhausted. Answer now with the evidence you already have.',
+            }),
+          );
           continue;
         }
 

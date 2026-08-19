@@ -18,7 +18,10 @@
  * gives "One sentence that wraps across source lines.\n\n<table>".
  */
 
-const PARAGRAPH_BREAK = ' ';
+// A sentinel that cannot occur in source text, written as an escape so it
+// survives copy-paste — a paragraph break is first parked on it, then turned
+// back into a blank line after single newlines have been collapsed to spaces.
+const PARAGRAPH_BREAK = '\u0001';
 
 const collapse = (chunk: string): string =>
   chunk
