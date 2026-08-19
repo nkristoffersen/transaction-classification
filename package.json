@@ -20,6 +20,7 @@
   "dependencies": {
     "@ai-sdk/openai-compatible": "3.0.23",
     "ai": "7.0.52",
+    "openai": "7.4.0",
     "zod": "4.4.3"
   },
   "devDependencies": {

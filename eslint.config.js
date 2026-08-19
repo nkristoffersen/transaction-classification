@@ -18,6 +18,10 @@ export default tseslint.config(
       },
     },
     rules: {
+      // One function style: arrows assigned to consts. `func-style` bans
+      // declarations; `prefer-arrow-callback` covers the inline case.
+      'func-style': ['error', 'expression'],
+      'prefer-arrow-callback': 'error',
       // verbatimModuleSyntax is on, so type-only imports must be marked as
       // such or they survive type stripping and fail at runtime.
       '@typescript-eslint/consistent-type-imports': [

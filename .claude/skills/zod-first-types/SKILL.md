@@ -54,20 +54,21 @@ checked:
 
 ## Where schemas live
 
-`src/utils/transaction.schema.ts` is the schema module. Every exported data shape and
-its inferred type are declared and exported there; the other modules import from it.
+**Every `type` and `interface` declaration lives in a `*.schema.ts` file — no
+exceptions, including the carve-outs below.** Logic modules (`x.ts`) import their
+types from their schema twin (`x.schema.ts`); they never declare their own.
 
-| File | Role | Owns schemas? |
-| --- | --- | --- |
-| `src/utils/transaction.schema.ts` | shapes + inferred types | yes — all of them |
-| `src/utils/transaction.ts` | pipeline logic, LLM call, tool | no |
-| `src/utils/transaction.eval.ts` | scoring, summary report | no |
-| `src/utils/transaction.test.ts` | tests | no |
-| `src/app.ts` | entry point, env, artifact write | no |
+Schema modules are split **by boundary**, one `x.ts` / `x.schema.ts` / `x.test.ts`
+family per concern (`category.schema.ts`, `history.schema.ts`, `llm.schema.ts`,
+`env.schema.ts`, …). A domain-free utility with a single alias still gets its twin
+(`csv.schema.ts` holding `CsvRow`). What is forbidden is splitting into "the types
+file vs. the schemas file" — a `types.ts` beside a `schemas.ts` is the drift this
+rule exists to prevent.
 
-If the file grows past comfortable reading, split by boundary
-(`transaction.schema.ts`, `llm.schema.ts`, `eval.schema.ts`) — never by "the types
-file vs. the schemas file". That split is the thing this rule exists to prevent.
+Watch the import direction inside a family: a data-table module (`category.ts`)
+must not import from its own schema twin, because the twin imports the table to
+derive the enum. Shared entry shapes live in a file both can import
+(`guidance.schema.ts`); lookups that need the derived type live in the twin.
 
 ## Parse at every boundary — and only at boundaries
 
@@ -206,7 +207,9 @@ export interface ClassifyBatchOptions {
 ```
 
 Add a one-line comment naming which carve-out applies. An interface with no such
-comment is treated as a violation in review.
+comment is treated as a violation in review. A carve-out changes *how* the shape is
+declared, never *where*: carve-out interfaces live in the `*.schema.ts` file
+alongside everything else.
 
 ## Composing schemas
 
@@ -234,11 +237,15 @@ the eval scores against a definition the system no longer produces.
 ## Checking
 
 ```sh
-grep -rn --include='*.ts' -E "^(export )?(interface|type) " src | grep -vE "z\.infer|typeof "
+# Any type/interface declared outside a *.schema.ts file is a violation, full stop.
+grep -rn --include='*.ts' --exclude='*.schema.ts' -E "^(export )?(interface|type) " src
+
+# Inside schema files, non-derived declarations need a carve-out comment.
+grep -rn --include='*.schema.ts' -E "^(export )?(interface|type) " src | grep -vE "z\.infer|typeof "
 ```
 
-Every surviving line needs a carve-out comment. Then run the project's typecheck and
-lint (once `package.json` exists, `npm run typecheck && npm run lint`).
+The first grep must come back empty. Every surviving line of the second needs a
+carve-out comment. Then `./lint.sh`.
 
 ## What this rule does not mean
 

@@ -209,6 +209,14 @@ besides env), the three JSON inputs, the LLM response *inside* the repair loop, 
 `process.env` at startup, and the output artifact before write. `z.strictObject` everywhere — a
 plain `z.object` silently strips the invented key that is the evidence the contract was ignored.
 
+Two SDKs appear in the manifest, each doing one job. The `ai` package (+
+`@ai-sdk/openai-compatible`) is **transport**: it builds the HTTP call to whatever endpoint is
+configured and normalises provider errors; its own structured-output machinery is unused. The
+`openai` package is a **schema utility**: `zodResponseFormat` converts the zod schema — descriptions
+included — into the strict `response_format` payload, replacing a hand-rolled JSON Schema walker.
+The parts the brief actually grades — the tool loop, extraction, validation, cross-checks and the
+repair loop — are owned in `llm.ts`, and neither SDK decides anything on their behalf.
+
 **Malformed response** — reasoning traces stripped first, then JSON extracted from fenced or
 embedded text, then re-ask. **Structural violation** — the zod issues rendered into a follow-up turn
 beside the rejected output. **Valid-but-incorrect** — consistency cross-checks, the reason the
