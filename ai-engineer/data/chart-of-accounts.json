@@ -1,0 +1,26 @@
+{
+  "accounts": [
+    { "code": "salary", "name": "Salary", "description": "Wages paid to employees, including the owner if on payroll." },
+    { "code": "salary_tax", "name": "Salary withholding tax", "description": "Forskuddstrekk paid to Skatteetaten on behalf of employees." },
+    { "code": "employer_tax", "name": "Employer's contribution", "description": "Arbeidsgiveravgift paid to Skatteetaten." },
+    { "code": "vat_payment", "name": "VAT payment", "description": "Merverdiavgift (MVA) paid to or refunded from Skatteetaten." },
+    { "code": "rent", "name": "Office rent", "description": "Rent for office or workspace." },
+    { "code": "utilities", "name": "Utilities", "description": "Electricity, internet, mobile, water." },
+    { "code": "software", "name": "Software & SaaS", "description": "Subscriptions to software tools (e.g. Figma, Slack, AWS, GitHub)." },
+    { "code": "hardware", "name": "Hardware & equipment", "description": "Computers, monitors, phones, office equipment." },
+    { "code": "travel", "name": "Travel & lodging", "description": "Flights, trains, hotels, taxis on business trips." },
+    { "code": "meals", "name": "Meals & entertainment", "description": "Client dinners, team lunches, coffee meetings." },
+    { "code": "office_supplies", "name": "Office supplies", "description": "Stationery, pens, printer ink, kitchen supplies." },
+    { "code": "marketing", "name": "Marketing & advertising", "description": "Ads, sponsorships, promotional materials, events." },
+    { "code": "professional_services", "name": "Professional services", "description": "Lawyers, accountants, consultants, freelancers (with invoice)." },
+    { "code": "bank_fees", "name": "Bank fees & interest", "description": "Account fees, card fees, interest charges." },
+    { "code": "insurance", "name": "Insurance", "description": "Business insurance premiums." },
+    { "code": "supplier_invoice", "name": "Supplier invoice (uncategorized)", "description": "Generic supplier payment — use when the supplier is known but category isn't clear yet." },
+    { "code": "customer_payment", "name": "Customer payment received", "description": "Incoming payment from a customer for an invoice." },
+    { "code": "owner_draw", "name": "Owner draw / capital", "description": "Money moved between the business and the owner personally (not salary)." },
+    { "code": "loan_transfer", "name": "Loan / financing", "description": "Loan disbursement or repayment, including credit lines." },
+    { "code": "transfer", "name": "Internal transfer", "description": "Money moved between the business's own accounts. Not income or expense." },
+    { "code": "personal_expense", "name": "Personal expense (to flag)", "description": "Looks personal, not business. Use only if you're confident." },
+    { "code": "uncertain", "name": "Uncertain", "description": "You couldn't confidently assign a category. Always pair with owner-question triage." }
+  ]
+}

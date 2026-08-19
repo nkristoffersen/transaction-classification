@@ -1,0 +1,12 @@
+# Candidate solution artifacts — they shouldn't accidentally commit these
+node_modules/
+.env
+.env.local
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+dist/
+.next/
+.svelte-kit/
+build/

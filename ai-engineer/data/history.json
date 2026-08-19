@@ -1,0 +1,1352 @@
+[
+  {
+    "id": "h-00143",
+    "date": "2025-01-02",
+    "amount_nok": -25505.2,
+    "counterparty": "Apple Store",
+    "description": "MacBook",
+    "currency": "NOK",
+    "category": "hardware"
+  },
+  {
+    "id": "h-00135",
+    "date": "2025-01-03",
+    "amount_nok": -11366.76,
+    "counterparty": "LinkedIn Corporation",
+    "description": "LinkedIn Ads",
+    "currency": "NOK",
+    "category": "marketing"
+  },
+  {
+    "id": "h-00130",
+    "date": "2025-01-13",
+    "amount_nok": -3693.36,
+    "counterparty": "Scandic Hotels",
+    "description": "Hotellovernatting",
+    "currency": "NOK",
+    "category": "travel"
+  },
+  {
+    "id": "h-00138",
+    "date": "2025-01-13",
+    "amount_nok": -608.07,
+    "counterparty": "Egon Restaurant",
+    "description": "Lunsj",
+    "currency": "NOK",
+    "category": "meals"
+  },
+  {
+    "id": "h-00148",
+    "date": "2025-01-20",
+    "amount_nok": -21771.24,
+    "counterparty": "PwC Norge",
+    "description": "Konsulent",
+    "currency": "NOK",
+    "category": "professional_services"
+  },
+  {
+    "id": "h-00122",
+    "date": "2025-01-28",
+    "amount_nok": -814.6,
+    "counterparty": "Vy Tog AS",
+    "description": "Togbillett",
+    "currency": "NOK",
+    "category": "travel"
+  },
+  {
+    "id": "h-00119",
+    "date": "2025-02-11",
+    "amount_nok": -292.83,
+    "counterparty": "Clas Ohlson",
+    "description": "Kontor",
+    "currency": "NOK",
+    "category": "office_supplies"
+  },
+  {
+    "id": "h-00147",
+    "date": "2025-02-19",
+    "amount_nok": -591.75,
+    "counterparty": "Egon Restaurant",
+    "description": "Lunsj",
+    "currency": "NOK",
+    "category": "meals"
+  },
+  {
+    "id": "h-00146",
+    "date": "2025-02-22",
+    "amount_nok": -57643.68,
+    "counterparty": "PwC Norge",
+    "description": "Konsulent",
+    "currency": "NOK",
+    "category": "professional_services"
+  },
+  {
+    "id": "h-00145",
+    "date": "2025-02-28",
+    "amount_nok": -2630.85,
+    "counterparty": "Meta Platforms Inc",
+    "description": "Facebook Ads",
+    "currency": "NOK",
+    "category": "marketing"
+  },
+  {
+    "id": "h-00132",
+    "date": "2025-03-14",
+    "amount_nok": -83.14,
+    "counterparty": "Espresso House",
+    "description": "Kaffe",
+    "currency": "NOK",
+    "category": "meals"
+  },
+  {
+    "id": "h-00136",
+    "date": "2025-03-14",
+    "amount_nok": -576.24,
+    "counterparty": "Clas Ohlson",
+    "description": "Kontor",
+    "currency": "NOK",
+    "category": "office_supplies"
+  },
+  {
+    "id": "h-00131",
+    "date": "2025-04-07",
+    "amount_nok": -2294.54,
+    "counterparty": "Scandic Hotels",
+    "description": "Hotellovernatting",
+    "currency": "NOK",
+    "category": "travel"
+  },
+  {
+    "id": "h-00123",
+    "date": "2025-04-09",
+    "amount_nok": -6351.13,
+    "counterparty": "Meta Platforms Inc",
+    "description": "Facebook Ads",
+    "currency": "NOK",
+    "category": "marketing"
+  },
+  {
+    "id": "h-00120",
+    "date": "2025-04-19",
+    "amount_nok": -5293.87,
+    "counterparty": "LinkedIn Corporation",
+    "description": "LinkedIn Ads",
+    "currency": "NOK",
+    "category": "marketing"
+  },
+  {
+    "id": "h-00133",
+    "date": "2025-04-28",
+    "amount_nok": -184.49,
+    "counterparty": "Espresso House",
+    "description": "Kaffe",
+    "currency": "NOK",
+    "category": "meals"
+  },
+  {
+    "id": "h-00141",
+    "date": "2025-05-07",
+    "amount_nok": -1173.09,
+    "counterparty": "Kolonial.no",
+    "description": "Kontorrekvisita",
+    "currency": "NOK",
+    "category": "office_supplies"
+  },
+  {
+    "id": "h-00139",
+    "date": "2025-05-14",
+    "amount_nok": -153.43,
+    "counterparty": "Espresso House",
+    "description": "Kaffe",
+    "currency": "NOK",
+    "category": "meals"
+  },
+  {
+    "id": "h-00150",
+    "date": "2025-06-30",
+    "amount_nok": -3207.9,
+    "counterparty": "Meta Platforms Inc",
+    "description": "Facebook Ads",
+    "currency": "NOK",
+    "category": "marketing"
+  },
+  {
+    "id": "h-00009",
+    "date": "2025-07-03",
+    "amount_nok": -2400.0,
+    "counterparty": "Storebrand Forsikring",
+    "description": "Bedriftsforsikring",
+    "currency": "NOK",
+    "category": "insurance"
+  },
+  {
+    "id": "h-00012",
+    "date": "2025-07-03",
+    "amount_nok": -20903.23,
+    "counterparty": "Skatteetaten",
+    "description": "Forskuddstrekk",
+    "currency": "NOK",
+    "category": "salary_tax"
+  },
+  {
+    "id": "h-00002",
+    "date": "2025-07-04",
+    "amount_nok": -1863.76,
+    "counterparty": "Fjordkraft AS",
+    "description": "Strøm",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00006",
+    "date": "2025-07-05",
+    "amount_nok": -180.0,
+    "counterparty": "Figma Inc",
+    "description": "Figma Pro",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00097",
+    "date": "2025-07-05",
+    "amount_nok": 46852.47,
+    "counterparty": "Sparebank 1 SR-Bank",
+    "description": "Faktura 21915",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00015",
+    "date": "2025-07-07",
+    "amount_nok": -38500.0,
+    "counterparty": "OLA NORDMANN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00126",
+    "date": "2025-07-07",
+    "amount_nok": -3871.48,
+    "counterparty": "Google Ads",
+    "description": "Annonsering",
+    "currency": "NOK",
+    "category": "marketing"
+  },
+  {
+    "id": "h-00004",
+    "date": "2025-07-08",
+    "amount_nok": -820.0,
+    "counterparty": "Slack Technologies",
+    "description": "Subscription",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00005",
+    "date": "2025-07-08",
+    "amount_nok": -440.0,
+    "counterparty": "GitHub Inc",
+    "description": "GitHub Team",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00003",
+    "date": "2025-07-09",
+    "amount_nok": -699.0,
+    "counterparty": "Get / Telia Norge AS",
+    "description": "Internett",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00127",
+    "date": "2025-07-12",
+    "amount_nok": -89.0,
+    "counterparty": "DNB Bank",
+    "description": "Månedsgebyr",
+    "currency": "NOK",
+    "category": "bank_fees"
+  },
+  {
+    "id": "h-00011",
+    "date": "2025-07-14",
+    "amount_nok": -13048.83,
+    "counterparty": "Skatteetaten",
+    "description": "MVA innbetaling",
+    "currency": "NOK",
+    "category": "vat_payment"
+  },
+  {
+    "id": "h-00128",
+    "date": "2025-07-15",
+    "amount_nok": -216.17,
+    "counterparty": "Starbucks",
+    "description": "Kaffe",
+    "currency": "NOK",
+    "category": "meals"
+  },
+  {
+    "id": "h-00013",
+    "date": "2025-07-17",
+    "amount_nok": -16826.24,
+    "counterparty": "Skatteetaten",
+    "description": "Arbeidsgiveravgift",
+    "currency": "NOK",
+    "category": "employer_tax"
+  },
+  {
+    "id": "h-00014",
+    "date": "2025-07-18",
+    "amount_nok": -42000.0,
+    "counterparty": "KARI NORDMANN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00010",
+    "date": "2025-07-19",
+    "amount_nok": -18500.0,
+    "counterparty": "Bjørvika Eiendom AS",
+    "description": "Husleie kontor",
+    "currency": "NOK",
+    "category": "rent"
+  },
+  {
+    "id": "h-00001",
+    "date": "2025-07-21",
+    "amount_nok": -749.0,
+    "counterparty": "Telenor Norge AS",
+    "description": "Mobilabonnement",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00117",
+    "date": "2025-07-22",
+    "amount_nok": -15137.61,
+    "counterparty": "Elkjøp",
+    "description": "Elektronikk",
+    "currency": "NOK",
+    "category": "hardware"
+  },
+  {
+    "id": "h-00016",
+    "date": "2025-07-23",
+    "amount_nok": -46000.0,
+    "counterparty": "INGRID HANSEN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00007",
+    "date": "2025-07-24",
+    "amount_nok": -1604.88,
+    "counterparty": "Amazon Web Services",
+    "description": "AWS",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00008",
+    "date": "2025-07-24",
+    "amount_nok": -1813.74,
+    "counterparty": "Tibber AS",
+    "description": "Strøm",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00099",
+    "date": "2025-07-26",
+    "amount_nok": 53177.8,
+    "counterparty": "Sparebank 1 SR-Bank",
+    "description": "Faktura 88172",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00098",
+    "date": "2025-07-28",
+    "amount_nok": 53223.68,
+    "counterparty": "Equinor ASA",
+    "description": "Faktura 92240",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00137",
+    "date": "2025-07-29",
+    "amount_nok": -390.43,
+    "counterparty": "Kolonial.no",
+    "description": "Kontorrekvisita",
+    "currency": "NOK",
+    "category": "office_supplies"
+  },
+  {
+    "id": "h-00115",
+    "date": "2025-07-31",
+    "amount_nok": -27742.72,
+    "counterparty": "PwC Norge",
+    "description": "Konsulent",
+    "currency": "NOK",
+    "category": "professional_services"
+  },
+  {
+    "id": "h-00031",
+    "date": "2025-08-04",
+    "amount_nok": -38500.0,
+    "counterparty": "OLA NORDMANN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00028",
+    "date": "2025-08-07",
+    "amount_nok": -40844.75,
+    "counterparty": "Skatteetaten",
+    "description": "Forskuddstrekk",
+    "currency": "NOK",
+    "category": "salary_tax"
+  },
+  {
+    "id": "h-00019",
+    "date": "2025-08-08",
+    "amount_nok": -699.0,
+    "counterparty": "Get / Telia Norge AS",
+    "description": "Internett",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00022",
+    "date": "2025-08-09",
+    "amount_nok": -180.0,
+    "counterparty": "Figma Inc",
+    "description": "Figma Pro",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00101",
+    "date": "2025-08-09",
+    "amount_nok": 88987.74,
+    "counterparty": "Schibsted ASA",
+    "description": "Faktura 11504",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00027",
+    "date": "2025-08-11",
+    "amount_nok": -21169.75,
+    "counterparty": "Skatteetaten",
+    "description": "MVA innbetaling",
+    "currency": "NOK",
+    "category": "vat_payment"
+  },
+  {
+    "id": "h-00029",
+    "date": "2025-08-11",
+    "amount_nok": -10328.73,
+    "counterparty": "Skatteetaten",
+    "description": "Arbeidsgiveravgift",
+    "currency": "NOK",
+    "category": "employer_tax"
+  },
+  {
+    "id": "h-00032",
+    "date": "2025-08-12",
+    "amount_nok": -46000.0,
+    "counterparty": "INGRID HANSEN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00030",
+    "date": "2025-08-13",
+    "amount_nok": -42000.0,
+    "counterparty": "KARI NORDMANN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00100",
+    "date": "2025-08-13",
+    "amount_nok": 41534.21,
+    "counterparty": "Bouvet Norge AS",
+    "description": "Faktura 71348",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00026",
+    "date": "2025-08-14",
+    "amount_nok": -18500.0,
+    "counterparty": "Bjørvika Eiendom AS",
+    "description": "Husleie kontor",
+    "currency": "NOK",
+    "category": "rent"
+  },
+  {
+    "id": "h-00020",
+    "date": "2025-08-15",
+    "amount_nok": -820.0,
+    "counterparty": "Slack Technologies",
+    "description": "Subscription",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00021",
+    "date": "2025-08-19",
+    "amount_nok": -440.0,
+    "counterparty": "GitHub Inc",
+    "description": "GitHub Team",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00017",
+    "date": "2025-08-21",
+    "amount_nok": -749.0,
+    "counterparty": "Telenor Norge AS",
+    "description": "Mobilabonnement",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00018",
+    "date": "2025-08-23",
+    "amount_nok": -2149.72,
+    "counterparty": "Fjordkraft AS",
+    "description": "Strøm",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00025",
+    "date": "2025-08-23",
+    "amount_nok": -2400.0,
+    "counterparty": "Storebrand Forsikring",
+    "description": "Bedriftsforsikring",
+    "currency": "NOK",
+    "category": "insurance"
+  },
+  {
+    "id": "h-00024",
+    "date": "2025-08-25",
+    "amount_nok": -1744.66,
+    "counterparty": "Tibber AS",
+    "description": "Strøm",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00023",
+    "date": "2025-08-26",
+    "amount_nok": -4334.71,
+    "counterparty": "Amazon Web Services",
+    "description": "AWS",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00104",
+    "date": "2025-09-01",
+    "amount_nok": 47261.05,
+    "counterparty": "Bouvet Norge AS",
+    "description": "Faktura 44522",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00036",
+    "date": "2025-09-02",
+    "amount_nok": -820.0,
+    "counterparty": "Slack Technologies",
+    "description": "Subscription",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00047",
+    "date": "2025-09-02",
+    "amount_nok": -38500.0,
+    "counterparty": "OLA NORDMANN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00046",
+    "date": "2025-09-03",
+    "amount_nok": -42000.0,
+    "counterparty": "KARI NORDMANN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00103",
+    "date": "2025-09-04",
+    "amount_nok": 25044.0,
+    "counterparty": "Norconsult AS",
+    "description": "Faktura 30730",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00134",
+    "date": "2025-09-04",
+    "amount_nok": -64.93,
+    "counterparty": "Espresso House",
+    "description": "Kaffe",
+    "currency": "NOK",
+    "category": "meals"
+  },
+  {
+    "id": "h-00124",
+    "date": "2025-09-05",
+    "amount_nok": -962.08,
+    "counterparty": "Kolonial.no",
+    "description": "Kontorrekvisita",
+    "currency": "NOK",
+    "category": "office_supplies"
+  },
+  {
+    "id": "h-00114",
+    "date": "2025-09-06",
+    "amount_nok": -6534.88,
+    "counterparty": "Google Ads",
+    "description": "Annonsering",
+    "currency": "NOK",
+    "category": "marketing"
+  },
+  {
+    "id": "h-00144",
+    "date": "2025-09-06",
+    "amount_nok": -1637.97,
+    "counterparty": "Meta Platforms Inc",
+    "description": "Facebook Ads",
+    "currency": "NOK",
+    "category": "marketing"
+  },
+  {
+    "id": "h-00042",
+    "date": "2025-09-10",
+    "amount_nok": -18500.0,
+    "counterparty": "Bjørvika Eiendom AS",
+    "description": "Husleie kontor",
+    "currency": "NOK",
+    "category": "rent"
+  },
+  {
+    "id": "h-00034",
+    "date": "2025-09-12",
+    "amount_nok": -2182.05,
+    "counterparty": "Fjordkraft AS",
+    "description": "Strøm",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00038",
+    "date": "2025-09-15",
+    "amount_nok": -180.0,
+    "counterparty": "Figma Inc",
+    "description": "Figma Pro",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00118",
+    "date": "2025-09-15",
+    "amount_nok": -74.58,
+    "counterparty": "Espresso House",
+    "description": "Kaffe",
+    "currency": "NOK",
+    "category": "meals"
+  },
+  {
+    "id": "h-00039",
+    "date": "2025-09-18",
+    "amount_nok": -1684.38,
+    "counterparty": "Amazon Web Services",
+    "description": "AWS",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00041",
+    "date": "2025-09-18",
+    "amount_nok": -2400.0,
+    "counterparty": "Storebrand Forsikring",
+    "description": "Bedriftsforsikring",
+    "currency": "NOK",
+    "category": "insurance"
+  },
+  {
+    "id": "h-00045",
+    "date": "2025-09-19",
+    "amount_nok": -11499.75,
+    "counterparty": "Skatteetaten",
+    "description": "Arbeidsgiveravgift",
+    "currency": "NOK",
+    "category": "employer_tax"
+  },
+  {
+    "id": "h-00048",
+    "date": "2025-09-22",
+    "amount_nok": -46000.0,
+    "counterparty": "INGRID HANSEN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00102",
+    "date": "2025-09-22",
+    "amount_nok": 111359.13,
+    "counterparty": "Equinor ASA",
+    "description": "Faktura 44973",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00037",
+    "date": "2025-09-24",
+    "amount_nok": -440.0,
+    "counterparty": "GitHub Inc",
+    "description": "GitHub Team",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00105",
+    "date": "2025-09-25",
+    "amount_nok": 61252.82,
+    "counterparty": "Schibsted ASA",
+    "description": "Faktura 23947",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00035",
+    "date": "2025-09-26",
+    "amount_nok": -699.0,
+    "counterparty": "Get / Telia Norge AS",
+    "description": "Internett",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00043",
+    "date": "2025-09-27",
+    "amount_nok": -32745.11,
+    "counterparty": "Skatteetaten",
+    "description": "MVA innbetaling",
+    "currency": "NOK",
+    "category": "vat_payment"
+  },
+  {
+    "id": "h-00033",
+    "date": "2025-09-28",
+    "amount_nok": -749.0,
+    "counterparty": "Telenor Norge AS",
+    "description": "Mobilabonnement",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00044",
+    "date": "2025-09-29",
+    "amount_nok": -38266.09,
+    "counterparty": "Skatteetaten",
+    "description": "Forskuddstrekk",
+    "currency": "NOK",
+    "category": "salary_tax"
+  },
+  {
+    "id": "h-00040",
+    "date": "2025-09-30",
+    "amount_nok": -1402.83,
+    "counterparty": "Tibber AS",
+    "description": "Strøm",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00051",
+    "date": "2025-10-03",
+    "amount_nok": -699.0,
+    "counterparty": "Get / Telia Norge AS",
+    "description": "Internett",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00062",
+    "date": "2025-10-03",
+    "amount_nok": -42000.0,
+    "counterparty": "KARI NORDMANN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00055",
+    "date": "2025-10-04",
+    "amount_nok": -2593.25,
+    "counterparty": "Amazon Web Services",
+    "description": "AWS",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00107",
+    "date": "2025-10-05",
+    "amount_nok": 41834.81,
+    "counterparty": "Sparebank 1 SR-Bank",
+    "description": "Faktura 31174",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00058",
+    "date": "2025-10-06",
+    "amount_nok": -18500.0,
+    "counterparty": "Bjørvika Eiendom AS",
+    "description": "Husleie kontor",
+    "currency": "NOK",
+    "category": "rent"
+  },
+  {
+    "id": "h-00049",
+    "date": "2025-10-08",
+    "amount_nok": -749.0,
+    "counterparty": "Telenor Norge AS",
+    "description": "Mobilabonnement",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00053",
+    "date": "2025-10-08",
+    "amount_nok": -440.0,
+    "counterparty": "GitHub Inc",
+    "description": "GitHub Team",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00057",
+    "date": "2025-10-12",
+    "amount_nok": -2400.0,
+    "counterparty": "Storebrand Forsikring",
+    "description": "Bedriftsforsikring",
+    "currency": "NOK",
+    "category": "insurance"
+  },
+  {
+    "id": "h-00059",
+    "date": "2025-10-12",
+    "amount_nok": -23723.93,
+    "counterparty": "Skatteetaten",
+    "description": "MVA innbetaling",
+    "currency": "NOK",
+    "category": "vat_payment"
+  },
+  {
+    "id": "h-00056",
+    "date": "2025-10-15",
+    "amount_nok": -1608.55,
+    "counterparty": "Tibber AS",
+    "description": "Strøm",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00125",
+    "date": "2025-10-16",
+    "amount_nok": -20747.9,
+    "counterparty": "Advokatfirma Selmer",
+    "description": "Advokattjenester",
+    "currency": "NOK",
+    "category": "professional_services"
+  },
+  {
+    "id": "h-00149",
+    "date": "2025-10-19",
+    "amount_nok": -89.0,
+    "counterparty": "DNB Bank",
+    "description": "Månedsgebyr",
+    "currency": "NOK",
+    "category": "bank_fees"
+  },
+  {
+    "id": "h-00063",
+    "date": "2025-10-20",
+    "amount_nok": -38500.0,
+    "counterparty": "OLA NORDMANN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00109",
+    "date": "2025-10-20",
+    "amount_nok": 69311.7,
+    "counterparty": "Equinor ASA",
+    "description": "Faktura 12552",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00064",
+    "date": "2025-10-21",
+    "amount_nok": -46000.0,
+    "counterparty": "INGRID HANSEN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00060",
+    "date": "2025-10-22",
+    "amount_nok": -22208.4,
+    "counterparty": "Skatteetaten",
+    "description": "Forskuddstrekk",
+    "currency": "NOK",
+    "category": "salary_tax"
+  },
+  {
+    "id": "h-00050",
+    "date": "2025-10-25",
+    "amount_nok": -2009.16,
+    "counterparty": "Fjordkraft AS",
+    "description": "Strøm",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00106",
+    "date": "2025-10-27",
+    "amount_nok": 33334.79,
+    "counterparty": "Norconsult AS",
+    "description": "Faktura 89818",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00052",
+    "date": "2025-10-28",
+    "amount_nok": -820.0,
+    "counterparty": "Slack Technologies",
+    "description": "Subscription",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00054",
+    "date": "2025-10-28",
+    "amount_nok": -180.0,
+    "counterparty": "Figma Inc",
+    "description": "Figma Pro",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00061",
+    "date": "2025-10-30",
+    "amount_nok": -17886.12,
+    "counterparty": "Skatteetaten",
+    "description": "Arbeidsgiveravgift",
+    "currency": "NOK",
+    "category": "employer_tax"
+  },
+  {
+    "id": "h-00108",
+    "date": "2025-10-31",
+    "amount_nok": 82251.93,
+    "counterparty": "Schibsted ASA",
+    "description": "Faktura 79514",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00111",
+    "date": "2025-11-02",
+    "amount_nok": 36912.25,
+    "counterparty": "Sparebank 1 SR-Bank",
+    "description": "Faktura 84364",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00079",
+    "date": "2025-11-03",
+    "amount_nok": -38500.0,
+    "counterparty": "OLA NORDMANN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00065",
+    "date": "2025-11-06",
+    "amount_nok": -749.0,
+    "counterparty": "Telenor Norge AS",
+    "description": "Mobilabonnement",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00067",
+    "date": "2025-11-06",
+    "amount_nok": -699.0,
+    "counterparty": "Get / Telia Norge AS",
+    "description": "Internett",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00080",
+    "date": "2025-11-07",
+    "amount_nok": -46000.0,
+    "counterparty": "INGRID HANSEN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00076",
+    "date": "2025-11-08",
+    "amount_nok": -37188.67,
+    "counterparty": "Skatteetaten",
+    "description": "Forskuddstrekk",
+    "currency": "NOK",
+    "category": "salary_tax"
+  },
+  {
+    "id": "h-00070",
+    "date": "2025-11-09",
+    "amount_nok": -180.0,
+    "counterparty": "Figma Inc",
+    "description": "Figma Pro",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00078",
+    "date": "2025-11-09",
+    "amount_nok": -42000.0,
+    "counterparty": "KARI NORDMANN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00073",
+    "date": "2025-11-11",
+    "amount_nok": -2400.0,
+    "counterparty": "Storebrand Forsikring",
+    "description": "Bedriftsforsikring",
+    "currency": "NOK",
+    "category": "insurance"
+  },
+  {
+    "id": "h-00069",
+    "date": "2025-11-13",
+    "amount_nok": -440.0,
+    "counterparty": "GitHub Inc",
+    "description": "GitHub Team",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00068",
+    "date": "2025-11-15",
+    "amount_nok": -820.0,
+    "counterparty": "Slack Technologies",
+    "description": "Subscription",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00066",
+    "date": "2025-11-18",
+    "amount_nok": -2251.02,
+    "counterparty": "Fjordkraft AS",
+    "description": "Strøm",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00072",
+    "date": "2025-11-18",
+    "amount_nok": -1275.69,
+    "counterparty": "Tibber AS",
+    "description": "Strøm",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00129",
+    "date": "2025-11-21",
+    "amount_nok": -5344.58,
+    "counterparty": "Norwegian Air Shuttle",
+    "description": "Flyreise",
+    "currency": "NOK",
+    "category": "travel"
+  },
+  {
+    "id": "h-00140",
+    "date": "2025-11-23",
+    "amount_nok": -7585.37,
+    "counterparty": "LinkedIn Corporation",
+    "description": "LinkedIn Ads",
+    "currency": "NOK",
+    "category": "marketing"
+  },
+  {
+    "id": "h-00075",
+    "date": "2025-11-25",
+    "amount_nok": -37608.0,
+    "counterparty": "Skatteetaten",
+    "description": "MVA innbetaling",
+    "currency": "NOK",
+    "category": "vat_payment"
+  },
+  {
+    "id": "h-00077",
+    "date": "2025-11-26",
+    "amount_nok": -13100.89,
+    "counterparty": "Skatteetaten",
+    "description": "Arbeidsgiveravgift",
+    "currency": "NOK",
+    "category": "employer_tax"
+  },
+  {
+    "id": "h-00074",
+    "date": "2025-11-27",
+    "amount_nok": -18500.0,
+    "counterparty": "Bjørvika Eiendom AS",
+    "description": "Husleie kontor",
+    "currency": "NOK",
+    "category": "rent"
+  },
+  {
+    "id": "h-00110",
+    "date": "2025-11-29",
+    "amount_nok": 41647.71,
+    "counterparty": "Norconsult AS",
+    "description": "Faktura 50306",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00071",
+    "date": "2025-11-30",
+    "amount_nok": -3518.4,
+    "counterparty": "Amazon Web Services",
+    "description": "AWS",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00089",
+    "date": "2025-12-05",
+    "amount_nok": -2400.0,
+    "counterparty": "Storebrand Forsikring",
+    "description": "Bedriftsforsikring",
+    "currency": "NOK",
+    "category": "insurance"
+  },
+  {
+    "id": "h-00091",
+    "date": "2025-12-05",
+    "amount_nok": -20138.71,
+    "counterparty": "Skatteetaten",
+    "description": "MVA innbetaling",
+    "currency": "NOK",
+    "category": "vat_payment"
+  },
+  {
+    "id": "h-00085",
+    "date": "2025-12-07",
+    "amount_nok": -440.0,
+    "counterparty": "GitHub Inc",
+    "description": "GitHub Team",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00090",
+    "date": "2025-12-09",
+    "amount_nok": -18500.0,
+    "counterparty": "Bjørvika Eiendom AS",
+    "description": "Husleie kontor",
+    "currency": "NOK",
+    "category": "rent"
+  },
+  {
+    "id": "h-00084",
+    "date": "2025-12-11",
+    "amount_nok": -820.0,
+    "counterparty": "Slack Technologies",
+    "description": "Subscription",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00096",
+    "date": "2025-12-13",
+    "amount_nok": -46000.0,
+    "counterparty": "INGRID HANSEN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00087",
+    "date": "2025-12-16",
+    "amount_nok": -2648.45,
+    "counterparty": "Amazon Web Services",
+    "description": "AWS",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00092",
+    "date": "2025-12-18",
+    "amount_nok": -29552.39,
+    "counterparty": "Skatteetaten",
+    "description": "Forskuddstrekk",
+    "currency": "NOK",
+    "category": "salary_tax"
+  },
+  {
+    "id": "h-00142",
+    "date": "2025-12-18",
+    "amount_nok": -14194.47,
+    "counterparty": "Advokatfirma Selmer",
+    "description": "Advokattjenester",
+    "currency": "NOK",
+    "category": "professional_services"
+  },
+  {
+    "id": "h-00095",
+    "date": "2025-12-19",
+    "amount_nok": -38500.0,
+    "counterparty": "OLA NORDMANN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00086",
+    "date": "2025-12-21",
+    "amount_nok": -180.0,
+    "counterparty": "Figma Inc",
+    "description": "Figma Pro",
+    "currency": "NOK",
+    "category": "software"
+  },
+  {
+    "id": "h-00121",
+    "date": "2025-12-21",
+    "amount_nok": -621.8,
+    "counterparty": "Vy Tog AS",
+    "description": "Togbillett",
+    "currency": "NOK",
+    "category": "travel"
+  },
+  {
+    "id": "h-00083",
+    "date": "2025-12-23",
+    "amount_nok": -699.0,
+    "counterparty": "Get / Telia Norge AS",
+    "description": "Internett",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00116",
+    "date": "2025-12-23",
+    "amount_nok": -5129.9,
+    "counterparty": "LinkedIn Corporation",
+    "description": "LinkedIn Ads",
+    "currency": "NOK",
+    "category": "marketing"
+  },
+  {
+    "id": "h-00093",
+    "date": "2025-12-24",
+    "amount_nok": -16599.62,
+    "counterparty": "Skatteetaten",
+    "description": "Arbeidsgiveravgift",
+    "currency": "NOK",
+    "category": "employer_tax"
+  },
+  {
+    "id": "h-00112",
+    "date": "2025-12-24",
+    "amount_nok": 81449.28,
+    "counterparty": "Equinor ASA",
+    "description": "Faktura 19071",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00113",
+    "date": "2025-12-25",
+    "amount_nok": 59401.62,
+    "counterparty": "Schibsted ASA",
+    "description": "Faktura 96474",
+    "currency": "NOK",
+    "category": "customer_payment"
+  },
+  {
+    "id": "h-00094",
+    "date": "2025-12-29",
+    "amount_nok": -42000.0,
+    "counterparty": "KARI NORDMANN",
+    "description": "Lønn",
+    "currency": "NOK",
+    "category": "salary"
+  },
+  {
+    "id": "h-00081",
+    "date": "2025-12-30",
+    "amount_nok": -749.0,
+    "counterparty": "Telenor Norge AS",
+    "description": "Mobilabonnement",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00088",
+    "date": "2025-12-30",
+    "amount_nok": -1614.28,
+    "counterparty": "Tibber AS",
+    "description": "Strøm",
+    "currency": "NOK",
+    "category": "utilities"
+  },
+  {
+    "id": "h-00082",
+    "date": "2025-12-31",
+    "amount_nok": -2161.95,
+    "counterparty": "Fjordkraft AS",
+    "description": "Strøm",
+    "currency": "NOK",
+    "category": "utilities"
+  }
+]

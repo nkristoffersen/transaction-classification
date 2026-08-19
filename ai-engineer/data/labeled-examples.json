@@ -1,0 +1,71 @@
+{
+  "description": "10 transactions from transactions.csv that we've labeled with what a skilled accountant would have done — the category, the triage decision, and the reasoning. Use them however you find useful. We think it's worth extending this set with cases you find interesting.",
+  "fields": {
+    "transaction_id": "Matches the id column in transactions.csv",
+    "expected_category": "The category we'd expect from chart-of-accounts.json",
+    "expected_triage": "One of: auto-approve | accountant-review | owner-question",
+    "reasoning": "Why a skilled accountant would make this call"
+  },
+  "rows": [
+    {
+      "transaction_id": "t-00001",
+      "expected_category": "utilities",
+      "expected_triage": "auto-approve",
+      "reasoning": "Recurring supplier (Telenor) with months of identical categorization in history. Trivial auto-approve."
+    },
+    {
+      "transaction_id": "t-00014",
+      "expected_category": "salary",
+      "expected_triage": "auto-approve",
+      "reasoning": "Known employee, identical monthly amount, named in history as salary."
+    },
+    {
+      "transaction_id": "t-00017",
+      "expected_category": "customer_payment",
+      "expected_triage": "auto-approve",
+      "reasoning": "Known customer with positive amount and invoice reference. Standard receivable."
+    },
+    {
+      "transaction_id": "t-00038",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "Personal-name Vipps with no context. Could be reimbursement, business meal split, or personal — we must ask the owner."
+    },
+    {
+      "transaction_id": "t-00040",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "Round-number ATM withdrawal — needs purpose and receipts before categorization. Never auto-approve."
+    },
+    {
+      "transaction_id": "t-00041",
+      "expected_category": "uncertain",
+      "expected_triage": "owner-question",
+      "reasoning": "Grocery store. Could be office snacks (meals) or personal. Default to asking the owner."
+    },
+    {
+      "transaction_id": "t-00044",
+      "expected_category": "personal_expense",
+      "expected_triage": "accountant-review",
+      "reasoning": "Netflix — looks personal. Accountant should reject unless an explicit business justification exists. Low-stakes enough that we don't need to bother the owner first."
+    },
+    {
+      "transaction_id": "t-00046",
+      "expected_category": "supplier_invoice",
+      "expected_triage": "accountant-review",
+      "reasoning": "International transfer via Wise — likely a foreign supplier, but the invoice + FX context needs verification."
+    },
+    {
+      "transaction_id": "t-00054",
+      "expected_category": "transfer",
+      "expected_triage": "auto-approve",
+      "reasoning": "Internal transfer between the business's own accounts. Not income — must categorize as transfer, never as a payment received."
+    },
+    {
+      "transaction_id": "t-00055",
+      "expected_category": "owner_draw",
+      "expected_triage": "accountant-review",
+      "reasoning": "Owner transferring to a personal account. Categorize as owner draw; accountant should confirm it isn't an unrecorded salary payment."
+    }
+  ]
+}
