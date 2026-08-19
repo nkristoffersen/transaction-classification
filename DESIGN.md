@@ -307,6 +307,17 @@ cost completely different things:
 Every rate splits by gold source (`provided` 10 / `added` / synthetic), so hand-written labels
 cannot flatter the system.
 
+**Measured across two configurations, the automation dial is visible.** The first measured build
+ran at 37% automation with 91% auto-approve precision and 8 rows needlessly routed to the owner.
+Acting on that report (the unknowable-clarity contradiction, history-exempt transfers, and
+confidence guidance that lets unanimous-but-thin history reach HIGH) moved it to 43% automation,
+halved the wasted owner questions, and took triage agreement on the provided labels from 70% to
+90% — at the cost of precision falling to 85% as two contested rows (a one-prior flight, a
+two-prior lunch) crossed into auto-approve. Every dangerous miss in both configurations is a
+gold-contested row; the uncontested budget stayed at zero throughout. Which side of that dial to
+run on is an accountant's call, not an engineering one — the report exists so they can make it
+with numbers.
+
 ## Carried over from ticket-classification / deliberately dropped
 
 **Carried:** the guidance-table→enum pattern with `analysisInstruction`; zod-first types with parse

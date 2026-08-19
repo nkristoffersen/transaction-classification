@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T19:11:00.508Z",
+  "generated_at": "2026-08-19T21:29:00.353Z",
   "model": "qwen/qwen3.5-9b",
   "transactions_classified": 55,
   "results": [
@@ -14,8 +14,8 @@
       "category_name": "Hardware & equipment",
       "triage": "accountant-review",
       "triage_reason": "history support NONE does not carry auto-approve",
-      "confidence": "LOW",
-      "reasoning": "The search for the counterparty 'Power AS' returned no prior transactions. Without any history to establish a pattern, and with the description 'Datautstyr' (Data equipment) being generic enough to potentially fit either hardware or office supplies, there is no historical evidence to disambiguate the category. Since there is no history, I cannot infer a category pattern. The description 'Datautstyr' strongly suggests hardware/equipment, but without a prior transaction to confirm this vendor's standard categorization, I cannot be certain it is not a one-off purchase of office supplies or something else. Therefore, the classification relies solely on the semantic meaning of the description, which points to hardware, but the lack of historical precedent makes the support weak.",
+      "confidence": "HIGH",
+      "reasoning": "The search for 'Power AS' returned zero matches, meaning there is no historical pattern to reference. The description 'Datautstyr' (Data equipment) strongly suggests a purchase of hardware or IT equipment. Since there is no history to contradict this or suggest a different category (like a recurring software subscription), the description is the primary indicator. Power AS is a known electronics retailer in Norway, which reinforces the hardware classification.",
       "question_group": null
     },
     {
@@ -25,12 +25,12 @@
       "counterparty": "NORDIC FACADE SOLUTIONS AS",
       "description": "Faktura 2026-1142",
       "currency": "NOK",
-      "category": "supplier_invoice",
-      "category_name": "Supplier invoice (uncategorized)",
+      "category": "uncertain",
+      "category_name": "Uncertain",
       "triage": "owner-question",
-      "triage_reason": "Only the owner can resolve purpose_clarity=UNKNOWABLE_FROM_BANK_DATA.",
+      "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The search for the counterparty 'NORDIC FACADE SOLUTIONS AS' returned zero matches. Since there is no history to establish a pattern or category for this specific supplier, and the description 'Faktura 2026-1142' is generic (only an invoice number without a specific service description like 'Bygging' or 'Reinhold'), we cannot infer a category based on past behavior. The transaction is a payment to a supplier, but without prior context or a more specific description, the exact nature of the goods or services is unknown from bank data alone.",
+      "reasoning": "The search for the counterparty 'NORDIC FACADE SOLUTIONS AS' returned zero matches, meaning there is no historical pattern to rely on. The description 'Faktura 2026-1142' is generic and does not specify the service type (e.g., facade construction, maintenance, or cleaning). Since the counterparty is a new supplier with no history and the description lacks specific keywords to map to a known category (like 'Bygging' for construction or 'Reinhold' for cleaning), the bank data alone cannot determine if this is a construction expense, maintenance, or another service. While 'supplier_invoice' is a plausible holding category, the specific business purpose is unknown, making the classification ambiguous between potential expense categories or uncertain.",
       "question_group": "q-fallback-001"
     },
     {
@@ -45,8 +45,8 @@
       "triage": "owner-question",
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The search for the exact counterparty 'VIPPS LANSEN' returned zero results. The 6 matches found are for 'INGRID HANSEN', which is a different person (different first name). While 'Lars Hansen' and 'Ingrid Hansen' share the last name, they are distinct individuals. The history shows a recurring salary payment to Ingrid Hansen, but provides no evidence for any transaction to Lars Hansen. Since there is no history for this specific counterparty and no clearly similar counterparty (a different person with the same last name is not a 'similar merchant' in the accounting sense), there is no historical evidence to support a category.",
-      "question_group": "q-001"
+      "reasoning": "The exact counterparty 'VIPPS LARS HANSEN' has no history in the system. The search returned matches for 'INGRID HANSEN' (a different person) with description 'Lønn', but the tool explicitly states this is not this counterparty's own history, only comparable-merchant evidence. Since there is no history for this specific person and the description is just 'Vipps' (generic), we cannot infer a category pattern. The transaction is a payment out (-2345.78) to a personal name via Vipps. Without a description like 'Lønn' or 'Privat' and without history to establish a pattern, we cannot confidently assign it to salary or owner_draw. It is likely a personal expense (e.g., a personal transfer via Vipps) but bank data alone cannot confirm the purpose or business nature.",
+      "question_group": "q-fallback-002"
     },
     {
       "id": "t-00010",
@@ -60,7 +60,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The counterparty 'Bjørvika Eiendom AS' appears 6 times in history, all with the description 'Husleie kontor' and a fixed amount of -18500 NOK, consistently categorized as 'rent'. The current transaction matches this pattern exactly in counterparty, description, and amount. The name 'Eiendom' (property) in the counterparty name combined with 'Husleie' (rent) in the description strongly indicates office rent. The regular cadence confirms this is a recurring expense.",
+      "reasoning": "The history search shows 6 prior transactions with the exact same counterparty (Bjørvika Eiendom AS), description ('Husleie kontor'), and amount (-18500 NOK), all categorized as 'rent'. The current transaction matches this pattern exactly in counterparty, description, and amount. The counterparty name contains 'Eiendom' (property), which strongly supports the 'rent' category. The description 'Husleie kontor' (office rent) is unambiguous. This is a clear, recurring pattern.",
       "question_group": null
     },
     {
@@ -75,7 +75,7 @@
       "triage": "accountant-review",
       "triage_reason": "confidence is MEDIUM",
       "confidence": "MEDIUM",
-      "reasoning": "The counterparty 'Scandic Hotels' has appeared twice in history, both times with the description 'Hotellovernatting' and consistently categorized as 'travel'. The current transaction matches this exact counterparty and description. Although the amounts vary, this is typical for hotel stays depending on dates and room types. The pattern is consistent enough to support the 'travel' category, but since there are only two prior transactions, it does not meet the threshold for EXACT_RECURRING (which requires at least three).",
+      "reasoning": "The counterparty 'Scandic Hotels' appears twice in history, both times categorized as 'travel' with the description 'Hotellovernatting'. The current transaction matches this counterparty and description exactly. However, since there are only two prior transactions (not three), this does not meet the threshold for EXACT_RECURRING. The pattern is consistent enough to classify as travel, but the evidence is thin (only two priors).",
       "question_group": null
     },
     {
@@ -87,10 +87,10 @@
       "currency": "NOK",
       "category": "salary_tax",
       "category_name": "Salary withholding tax",
-      "triage": "auto-approve",
-      "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
+      "triage": "accountant-review",
+      "triage_reason": "history support CATEGORY_PATTERN_ONLY does not carry auto-approve",
       "confidence": "HIGH",
-      "reasoning": "The counterparty Skatteetaten has a clear recurring pattern of three distinct tax types (salary_tax, vat_payment, employer_tax) appearing with roughly equal frequency. However, the description 'Forskuddstrekk' is explicitly defined in the chart of accounts as the keyword for salary_tax. Since the description matches the pattern for salary_tax exactly (as seen in the 3 matching history rows), this transaction is classified as salary_tax despite the counterparty having multiple categories.",
+      "reasoning": "The counterparty 'Skatteetaten' has a history of transactions in three distinct categories (salary_tax, vat_payment, employer_tax), so it is not an exact recurring pattern for a single category. However, the description 'Forskuddstrekk' is a specific keyword that maps unambiguously to the 'salary_tax' category according to the chart of accounts instructions ('When to use: Skatteetaten is three different accounts and the counterparty cannot tell them apart — only the description can. Use this one when the description says Forskuddstrekk or skattetrekk'). The amount (-41958.27) falls within the historical range for this counterparty (-40844.75 to -10328.73), further supporting the classification.",
       "question_group": null
     },
     {
@@ -105,7 +105,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The counterparty 'Meta Platforms Inc' has a clear, consistent history of 4 transactions, all categorized as 'marketing' with the description 'Facebook Ads'. This current transaction matches the counterparty and description exactly, fitting the established pattern of recurring ad spend.",
+      "reasoning": "The counterparty 'Meta Platforms Inc' has appeared 4 times in history, all categorized as 'marketing' with the description 'Facebook Ads'. This transaction matches the counterparty and description exactly, fitting the established recurring pattern for Facebook ad spend. The varying amounts are consistent with the historical range and the nature of ad spend.",
       "question_group": null
     },
     {
@@ -120,7 +120,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The history search shows 6 prior transactions with the exact same counterparty ('GitHub Inc'), description ('GitHub Team'), and amount (-440 NOK). All 6 are categorized as 'software'. This current transaction matches the counterparty, description, and amount exactly, fitting the established recurring pattern perfectly. GitHub is a well-known SaaS provider, confirming the 'software' category.",
+      "reasoning": "The history search shows 6 prior transactions to 'GitHub Inc', all with the exact same description 'GitHub Team' and amount -440 NOK, consistently categorized as 'software'. The current transaction matches this pattern exactly in counterparty, description, and amount. GitHub is a well-known software/SaaS provider, and the description 'GitHub Team' refers to a team subscription, which is a standard software expense. The evidence is strong and unambiguous.",
       "question_group": null
     },
     {
@@ -135,7 +135,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The history search shows that the counterparty INGRID HANSEN has a consistent, recurring pattern of transactions. All 6 prior transactions are for the exact same amount (-46000 NOK), have the exact same description ('Lønn'), and are categorized as 'salary'. The current transaction matches this pattern perfectly in amount, description, and counterparty. This is a clear, established recurring payroll payment.",
+      "reasoning": "The history search shows that INGRID HANSEN has been paid exactly 46,000 NOK with the description 'Lønn' on six separate occasions in the past year. The current transaction matches this pattern exactly in counterparty, description, and amount. This establishes a clear, recurring payroll pattern for this individual.",
       "question_group": null
     },
     {
@@ -148,9 +148,9 @@
       "category": "professional_services",
       "category_name": "Professional services",
       "triage": "accountant-review",
-      "triage_reason": "confidence is MEDIUM",
-      "confidence": "MEDIUM",
-      "reasoning": "The counterparty 'Advokatfirma Selmer' appears twice in history, both times with the description 'Advokattjenester' and categorized as 'professional_services'. The current transaction matches this pattern exactly in counterparty and description, and the amount (-24008.04) falls within the historical range (-20747.9 to -14194.47). Since there are only two prior transactions, this does not meet the threshold for EXACT_RECURRING (which requires at least three), so the support level is downgraded to EXACT_ONE_OFF.",
+      "triage_reason": "|-24008.04| NOK meets the 20000 NOK materiality threshold without an exact recurring history.",
+      "confidence": "HIGH",
+      "reasoning": "The counterparty 'Advokatfirma Selmer' has appeared twice in history, and both times the transaction was categorized as 'professional_services' with the description 'Advokattjenester'. The current transaction matches this description and counterparty exactly. Although the amounts differ and the timing is irregular, the consistent description and counterparty mapping to the same category provides strong evidence for 'professional_services'. Since there are only two prior transactions, it does not meet the threshold for EXACT_RECURRING (which requires at least three), so the support level is downgraded to EXACT_ONE_OFF.",
       "question_group": null
     },
     {
@@ -165,7 +165,7 @@
       "triage": "accountant-review",
       "triage_reason": "confidence is MEDIUM",
       "confidence": "MEDIUM",
-      "reasoning": "The counterparty 'DNB Bank' has appeared twice in history, both times categorized as 'bank_fees' (descriptions: 'Månedsgebyr'). While the description on the current transaction ('Kortgebyr') differs from the historical descriptions, both represent fees charged by the bank. Since there are only two prior transactions (not three), the pattern does not meet the threshold for 'EXACT_RECURRING'. However, the consistent categorization of this counterparty as 'bank_fees' provides sufficient evidence to classify the current transaction as 'bank_fees' with 'EXACT_ONE_OFF' support, as the counterparty's established pattern is clear.",
+      "reasoning": "The counterparty 'DNB Bank' has appeared twice in history, both times categorized as 'bank_fees' (descriptions: 'Månedsgebyr'). While the description on the current transaction ('Kortgebyr') differs from the historical descriptions, both represent standard bank charges. Since there are only two prior transactions (not the required three for EXACT_RECURRING), the support level is downgraded to EXACT_ONE_OFF. The category remains 'bank_fees' because the counterparty is consistently used for bank-related charges.",
       "question_group": null
     },
     {
@@ -180,8 +180,8 @@
       "triage": "owner-question",
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The search history returned no prior transactions for the counterparty 'Bolt / Uber'. Without any historical pattern to establish a category, I cannot infer a recurring business expense or a specific supplier category. The description 'Taxi' is generic and could refer to either a business travel expense or a personal ride. Since there is no history to disambiguate and no other similar counterparty (like a specific hotel or airline) to serve as a proxy, the classification must be based on the description alone, which is weak. The amount is small (-248.12 NOK), which is plausible for a taxi, but the lack of context makes it impossible to rule out a personal expense with certainty.",
-      "question_group": "q-002"
+      "reasoning": "The search history returned no prior transactions for the counterparty 'Bolt / Uber'. Without any historical pattern to establish a category, and given that the description is simply 'Taxi' (which is generic and could theoretically be for business or personal use, though ride-hailing is common for business travel), there is no evidence to confidently assign a category. While 'travel' is a plausible category for a taxi, the lack of history and the generic description make it impossible to rule out personal use with certainty based on bank data alone.",
+      "question_group": "q-001"
     },
     {
       "id": "t-00049",
@@ -195,8 +195,8 @@
       "triage": "owner-question",
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The exact counterparty 'VIPPS LARS HANSEN' has no history in the system. The search returned matches for 'INGRID HANSEN' (a different person) with description 'Lønn', which is not applicable here. The description is simply 'Vipps' with no additional keywords like 'Lønn' or 'Privat'. Without a history pattern for this specific person and with a generic description, we cannot determine if this is salary, owner draw, or a personal expense. The amount is small (-1240 NOK), which is typical for personal transfers or small business payments, but the lack of context makes it ambiguous.",
-      "question_group": "q-001"
+      "reasoning": "The exact counterparty 'VIPPS LARS HANSEN' has no history in the system. The search returned matches for 'INGRID HANSEN' (a different person) with description 'Lønn', but the tool explicitly states this is not this counterparty's own history, only comparable-merchant evidence. Since there is no history for this specific counterparty and no other similar counterparty with a clear business pattern (like a known employee receiving salary), we cannot infer the category from history. The description 'Vipps' is generic and does not specify 'Lønn' or 'Privat'. The amount is small (-1240 NOK), which could be a personal transfer or a small business payment, but without history or a clear description keyword, we cannot distinguish. This is a case where bank data alone is insufficient.",
+      "question_group": "q-fallback-002"
     },
     {
       "id": "t-00053",
@@ -210,8 +210,8 @@
       "triage": "owner-question",
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The search history returned no prior transactions for the counterparty 'ICA NÆR'. Without any historical pattern to establish a category, and given that 'ICA NÆR' is a grocery store (a merchant that serves both business and personal needs), there is no evidence to classify this transaction. The description 'REF 81234' is generic and provides no context. Therefore, the classification cannot be determined from bank data alone.",
-      "question_group": "q-003"
+      "reasoning": "The search for the counterparty 'ICA NÆR' returned no prior transactions. Without any history to establish a pattern, and given that 'ICA NÆR' is a grocery store (not a typical recurring business vendor for a small business unless it's a specific catering pattern not yet established), the transaction cannot be confidently categorized based on history alone. The description 'REF 81234' is generic and does not indicate a specific business purpose (like 'Lunsj' or 'Kundemiddal'). While it could be a business meal or office supplies, it could also be a personal grocery purchase. Since there is no history to resolve this ambiguity and the description is non-specific, the classification must be uncertain.",
+      "question_group": "q-fallback-003"
     },
     {
       "id": "t-00013",
@@ -222,10 +222,10 @@
       "currency": "NOK",
       "category": "employer_tax",
       "category_name": "Employer's contribution",
-      "triage": "auto-approve",
-      "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
+      "triage": "accountant-review",
+      "triage_reason": "history support CATEGORY_PATTERN_ONLY does not carry auto-approve",
       "confidence": "HIGH",
-      "reasoning": "The counterparty Skatteetaten has a clear, established pattern in history where the description 'Arbeidsgiveravgift' is consistently categorized as employer_tax. The current transaction has the exact same description ('Arbeidsgiveravgift') and counterparty, fitting the existing pattern perfectly. The amount (-9952.39) falls within the historical range for this specific description type (min: -40844.75, max: -10328.73). Since the description is unambiguous and history confirms the mapping, this is a strong classification.",
+      "reasoning": "The counterparty Skatteetaten has a history of transactions split across three categories (salary_tax, vat_payment, employer_tax), so it is not EXACT_RECURRING. However, the description 'Arbeidsgiveravgift' is a specific keyword that maps unambiguously to the 'employer_tax' category in the chart of accounts, as seen in prior transactions (h-00061, h-00093). Since the description pins the exact category, we can classify this as employer_tax without needing to search for a similar counterparty.",
       "question_group": null
     },
     {
@@ -240,8 +240,8 @@
       "triage": "owner-question",
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The search history returned no prior transactions for the counterparty 'VIPPS ANNE BERG'. Without any historical pattern to establish a category, and given that the description is generic ('Vipps') without specific keywords like 'Lønn', 'Faktura', or 'Privat', there is no evidence to support a specific business category. The transaction is a payment out (-323.83 NOK) to a personal name via a generic payment app, which is inherently ambiguous between a business expense, a personal expense, or an owner draw without further context.",
-      "question_group": "q-004"
+      "reasoning": "The search for the exact counterparty 'VIPPS ANNE BERG' returned no prior transactions. Without any history to establish a pattern, and given that the description is just 'Vipps' (which is generic and could be for personal or business use), there is no evidence to support a specific business category. The transaction is a payment out (-323.83 NOK) to a person's name via a generic payment app, which is inherently ambiguous without further context (e.g., a specific invoice reference or a known recurring vendor).",
+      "question_group": "q-fallback-004"
     },
     {
       "id": "t-00002",
@@ -255,7 +255,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The counterparty 'Fjordkraft AS' has a clear, consistent history of 6 transactions, all with the description 'Strøm' and categorized as 'utilities'. The current transaction matches this pattern exactly in counterparty and description, and the amount (-2243.91) falls well within the historical range (-1863.76 to -2251.02). This is a recurring utility payment.",
+      "reasoning": "The counterparty 'Fjordkraft AS' has a clear, consistent history of 6 transactions, all with the description 'Strøm' and categorized as 'utilities'. The current transaction matches this pattern exactly in counterparty and description, and the amount (-2243.91) falls well within the historical range (-1863.76 to -2251.02). This is a strong, recurring pattern for electricity payments.",
       "question_group": null
     },
     {
@@ -270,7 +270,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The counterparty 'Get / Telia Norge AS' has a clear, consistent history of 6 transactions, all categorized as 'utilities' with the exact same description ('Internett') and amount (-699 NOK). The current transaction matches this pattern exactly in counterparty, description, and amount. According to the guidance, when a counterparty appears repeatedly (at least three times) with a single category and a regular cadence, and the current row fits, the support is 'EXACT_RECURRING'.",
+      "reasoning": "The search history shows 6 exact matches for the counterparty 'Get / Telia Norge AS', all consistently categorized as 'utilities' with the description 'Internett' and the exact same amount of -699 NOK. The current transaction matches this pattern perfectly in counterparty, description, and amount. This establishes a clear, recurring pattern for internet service charges, which are a standard utility expense.",
       "question_group": null
     },
     {
@@ -285,7 +285,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The history search shows 6 prior transactions for the exact counterparty 'OLA NORDMANN', all categorized as 'salary' with the identical description 'Lønn' and amount -38500 NOK. The current transaction matches this pattern exactly in counterparty, description, and amount. This establishes a clear, recurring payroll pattern.",
+      "reasoning": "The counterparty 'OLA NORDMANN' has a clear, consistent history of 6 transactions, all with the description 'Lønn' and the exact same amount of -38500 NOK, categorized as 'salary'. The current transaction matches this pattern exactly in counterparty, description, and amount. This is a definitive recurring salary payment.",
       "question_group": null
     },
     {
@@ -297,10 +297,10 @@
       "currency": "NOK",
       "category": "meals",
       "category_name": "Meals & entertainment",
-      "triage": "accountant-review",
-      "triage_reason": "personal_risk=PLAUSIBLY_PERSONAL blocks auto-approve",
+      "triage": "auto-approve",
+      "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The counterparty 'Espresso House' has a clear, consistent history of 5 transactions, all categorized as 'meals' with the description 'Kaffe'. The current transaction matches this pattern exactly in counterparty and description. The amounts vary (ranging from -64.93 to -184.49), which is typical for coffee shop purchases, but the category is unambiguously established by the history. This is a recurring business expense for coffee/meals.",
+      "reasoning": "The counterparty 'Espresso House' has a clear, consistent history of 5 transactions, all categorized as 'meals' with the description 'Kaffe'. This current transaction matches the counterparty and description exactly, and the amount (-145.28) falls within the historical range (-184.49 to -64.93). The pattern is established as a recurring monthly coffee purchase for business purposes (likely staff coffee).",
       "question_group": null
     },
     {
@@ -315,7 +315,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The counterparty 'Norconsult AS' has a clear, consistent history of 3 transactions, all categorized as 'customer_payment' with descriptions referencing invoice numbers ('Faktura'). The current transaction shares the exact same counterparty and description format ('Faktura 42018'). Although the amount (39,140.74) differs from the specific prior instances, it falls within the established historical range (25,044 to 41,647.71). This indicates a recurring pattern of receiving payments from this customer for invoices, making 'customer_payment' the definitive category.",
+      "reasoning": "The counterparty 'Norconsult AS' has a clear, consistent history of 3 transactions, all categorized as 'customer_payment' with 'Faktura' descriptions. The current transaction shares the exact same counterparty and description pattern ('Faktura 42018') and falls within the established amount range. This indicates a recurring pattern of receiving payments from this customer for invoices, making 'customer_payment' the definitive category.",
       "question_group": null
     },
     {
@@ -329,8 +329,8 @@
       "category_name": "Hardware & equipment",
       "triage": "accountant-review",
       "triage_reason": "missing_information=NEEDS_RECEIPT blocks auto-approve",
-      "confidence": "MEDIUM",
-      "reasoning": "The history search found exactly one prior transaction from 'Apple Store' for a 'MacBook', which was categorized as 'hardware'. The current transaction matches the counterparty and description exactly, and the amount is consistent with a one-off equipment purchase (laptop) rather than a recurring subscription. Since there is only one prior instance, it is not a recurring pattern, but the single prior instance provides sufficient evidence to classify this as 'hardware' as well.",
+      "confidence": "HIGH",
+      "reasoning": "The history search found exactly one prior transaction from 'Apple Store' with the description 'MacBook', which was categorized as 'hardware'. The current transaction has the same counterparty and description, making it an exact match for the previous one-off purchase. Since there is only one prior instance, it is not a recurring pattern, but the single prior transaction provides sufficient evidence to classify this as 'hardware' with high confidence.",
       "question_group": null
     },
     {
@@ -345,7 +345,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The history search shows 6 prior transactions for 'Slack Technologies', all with the exact same amount (-820 NOK), description ('Subscription'), and category ('software'). The cadence is regular (approx. monthly). This current transaction matches the counterparty, amount, and description perfectly, fitting the established recurring pattern for a software subscription.",
+      "reasoning": "The history search shows 6 prior transactions to 'Slack Technologies', all consistently categorized as 'software' with the same amount (-820 NOK) and description ('Subscription'). The current transaction matches this pattern exactly in counterparty, amount, and description. This establishes a clear, recurring pattern for this vendor.",
       "question_group": null
     },
     {
@@ -359,9 +359,9 @@
       "category_name": "Meals & entertainment",
       "triage": "owner-question",
       "triage_reason": "Only the owner can resolve missing_information=NEEDS_ATTENDEES.",
-      "confidence": "LOW",
-      "reasoning": "There is no prior transaction history for the exact counterparty 'Olivia Restaurant'. The search only found transactions for a different restaurant ('Egon Restaurant'). While 'Egon Restaurant' transactions are categorized as 'meals', this is only weak, analogous evidence from a similar merchant, not evidence for 'Olivia Restaurant' itself. Without any direct history for 'Olivia Restaurant', we cannot establish a recurring pattern or a specific category for this exact counterparty. The description 'Kundemiddag' (Customer dinner) strongly suggests a business meal, but since we have no history for this specific restaurant to confirm it's a business expense, we cannot confidently assign a category like 'meals' without risking misclassification of a potentially personal expense. However, given the description 'Kundemiddag', 'meals' is the most plausible business category, but the lack of history makes it uncertain.",
-      "question_group": "q-005"
+      "confidence": "MEDIUM",
+      "reasoning": "The search for the exact counterparty 'Olivia Restaurant' returned no prior transactions. The only results were for a different restaurant ('Egon Restaurant'). While 'Egon Restaurant' has a pattern of 'Lunsj' (lunch) transactions categorized as 'meals', this is not sufficient evidence to classify a transaction to a different restaurant ('Olivia Restaurant') as 'meals' without further confirmation. The description 'Kundemiddag' (customer dinner) strongly suggests a business meal, but without a history of this specific counterparty, we cannot confirm the business pattern. However, given the description 'Kundemiddag' is a standard term for client entertainment in Norwegian, 'meals' is the most logical category, but the lack of direct history makes the support weak.",
+      "question_group": "q-fallback-005"
     },
     {
       "id": "t-00043",
@@ -370,13 +370,13 @@
       "counterparty": "SATS Norge AS",
       "description": "Treningssenter",
       "currency": "NOK",
-      "category": "personal_expense",
-      "category_name": "Personal expense (to flag)",
+      "category": "uncertain",
+      "category_name": "Uncertain",
       "triage": "owner-question",
-      "triage_reason": "Only the owner can resolve purpose_clarity=UNKNOWABLE_FROM_BANK_DATA, missing_information=NEEDS_PURPOSE.",
+      "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The search for the exact counterparty 'SATS Norge AS' returned zero matches. The 17 results returned are for different companies (Telenor, Bouvet, Get) that share the word 'Norge AS', which is a false positive due to fuzzy matching. Since there is no history for this specific vendor, and the description 'Treningssenter' (Gym) points to a personal service with no clear business purpose in the absence of a business pattern, the transaction cannot be confidently categorized as a business expense. It is likely a personal gym membership.",
-      "question_group": "q-006"
+      "reasoning": "The search for the exact counterparty 'SATS Norge AS' returned zero matches. The 17 results returned are for different companies (Telenor, Bouvet, Get/Telia) that share the word 'Norge AS' but are not the same entity. Therefore, there is no historical evidence for this specific vendor. The description 'Treningssenter' (Gym) points to a personal service (gym membership) rather than a business expense, as there is no established business pattern for SATS in the history. Since the description clearly indicates a gym membership and there is no history to suggest this is a business expense, the purpose is inferable from the bank data as personal. However, since the category is personal_expense, the purpose clarity should reflect that the bank data allows us to infer it is personal, not that it is unknowable. But wait, the instruction says 'UNKNOWABLE_FROM_BANK_DATA is only for rows where no category can be chosen without the owner.' If I choose personal_expense, I am confident it is personal. If I choose uncertain, I am saying I can't decide. Given the description 'Treningssenter' and no history, it is likely personal, but is it certain? The instruction says 'Use only when confident it is personal; a row that is merely ambiguous is uncertain, not personal_expense.' Since there is no history, I cannot be 100% confident it's not a business expense (e.g., a business gym for employees). Therefore, the purpose is ambiguous between personal and business, or I should choose uncertain. Let's re-evaluate. The description 'Treningssenter' is generic. Without history, I don't know if this is a business gym or a personal gym. So purpose_clarity should be AMBIGUOUS_BETWEEN_ACCOUNTS (between personal_expense and uncertain) or UNKNOWABLE_FROM_BANK_DATA. But the instruction says 'UNKNOWABLE_FROM_BANK_DATA is only for rows where no category can be chosen without the owner.' If I choose uncertain, that's a category. If I choose personal_expense, that's a category. The conflict is that I can't choose personal_expense with UNKNOWABLE_FROM_BANK_DATA. So I should choose uncertain. But wait, the instruction also says 'Use only when confident it is personal; a row that is merely ambiguous is uncertain, not personal_expense.' So if I'm not confident, I should choose uncertain. Since there is no history, I'm not confident. So category_code should be uncertain. And purpose_clarity should be UNKNOWABLE_FROM_BANK_DATA because I need the owner to decide if it's personal or business. But wait, the instruction says 'UNKNOWABLE_FROM_BANK_DATA is only for rows where no category can be chosen without the owner.' If I choose uncertain, that's a category that can be chosen without the owner. So purpose_clarity should be AMBIGUOUS_BETWEEN_ACCOUNTS. Let's try that.",
+      "question_group": "q-fallback-006"
     },
     {
       "id": "t-00051",
@@ -390,8 +390,8 @@
       "triage": "owner-question",
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The exact counterparty 'MINIBANK DNB' has no prior transactions in the history. The search only found matches for a similarly named counterparty ('DNB Bank'), which the system explicitly notes is not this counterparty's history. Therefore, there is no historical pattern to support a category for 'MINIBANK DNB'. The description 'Kontantuttak' (cash withdrawal) is a generic bank service description that does not inherently map to a specific business expense category like 'office_supplies' or 'travel' without further context on how the cash was used. Since there is no history for this specific counterparty and the description is generic, we cannot confidently assign a category.",
-      "question_group": "q-007"
+      "reasoning": "The exact counterparty 'MINIBANK DNB' has no prior transactions in the business's history. The search only found matches for a similarly named counterparty ('DNB Bank'), which the tool explicitly notes is not this counterparty's history. Therefore, there is no historical pattern to support a category for 'MINIBANK DNB'. The description 'Kontantuttak' (cash withdrawal) is a generic bank service description that does not map to a specific business expense category like 'office_supplies' or 'travel' without further context. Since there is no history for this specific counterparty and the description is generic, we cannot confidently assign a business category.",
+      "question_group": "q-fallback-007"
     },
     {
       "id": "t-00007",
@@ -405,7 +405,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The history search shows 6 prior transactions for the exact counterparty 'Amazon Web Services', all consistently categorized as 'software'. The current transaction matches this pattern exactly in counterparty and description ('AWS'). Although the amount (-3537.98) varies from the prior instances, AWS costs are known to fluctuate based on usage, so the amount variance is expected and does not break the pattern. The consistent categorization across multiple instances confirms this is a recurring software expense.",
+      "reasoning": "The search history shows 6 prior transactions to 'Amazon Web Services', all consistently categorized as 'software'. The current transaction matches the counterparty name, description ('AWS'), and category ('software') exactly. The varying amounts are expected for cloud services based on usage, and the cadence (approx. monthly) is regular. This is a clear, established recurring pattern.",
       "question_group": null
     },
     {
@@ -417,10 +417,10 @@
       "currency": "NOK",
       "category": "travel",
       "category_name": "Travel & lodging",
-      "triage": "accountant-review",
-      "triage_reason": "confidence is MEDIUM",
-      "confidence": "MEDIUM",
-      "reasoning": "The search returned exactly one prior transaction for 'Norwegian Air Shuttle' with description 'Flyreise' and category 'travel'. The current transaction matches the counterparty and description exactly, fitting the travel category. However, with only one prior occurrence, it does not yet constitute a recurring pattern (which requires at least three instances).",
+      "triage": "auto-approve",
+      "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
+      "confidence": "HIGH",
+      "reasoning": "The search returned exactly one prior transaction for 'Norwegian Air Shuttle' dated 2025-11-21 with description 'Flyreise' and category 'travel'. The current transaction matches the counterparty and description exactly, fitting the established pattern for business travel expenses. Since there is only one prior instance, it is not yet a recurring pattern, but the evidence is sufficient to classify as travel.",
       "question_group": null
     },
     {
@@ -435,7 +435,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The counterparty 'LinkedIn Corporation' has appeared 4 times in history, all consistently categorized as 'marketing' with the description 'LinkedIn Ads'. This transaction matches the counterparty and description exactly, fitting the established pattern of recurring marketing spend.",
+      "reasoning": "The counterparty 'LinkedIn Corporation' has appeared 4 times in history, and every single instance was categorized as 'marketing' with the description 'LinkedIn Ads'. The current transaction matches this pattern exactly in counterparty and description. Although the amounts vary (which is typical for ad spend), the consistent categorization and description confirm this is a recurring marketing expense.",
       "question_group": null
     },
     {
@@ -450,7 +450,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The history search shows 6 prior transactions for the exact counterparty 'KARI NORDMANN'. Every single one of these prior transactions has the description 'Lønn' and the exact same amount of -42000 NOK, and they are all categorized as 'salary'. The current transaction matches this pattern exactly in counterparty, description, and amount. This is a clear, established recurring payroll payment.",
+      "reasoning": "The history search shows 6 prior transactions for 'KARI NORDMANN', all with the description 'Lønn' and a consistent amount of -42000 NOK, categorized as 'salary'. The current transaction matches this pattern exactly in counterparty, description, and amount. This establishes a clear, recurring payroll pattern.",
       "question_group": null
     },
     {
@@ -465,7 +465,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The counterparty 'Norconsult AS' has a clear, consistent history of 3 transactions, all categorized as 'customer_payment' with 'Faktura' descriptions. The current transaction shares the exact counterparty and description pattern ('Faktura 95717') and falls within the established amount range. This indicates a recurring payment to a customer for an invoice, making 'customer_payment' the definitive category.",
+      "reasoning": "The counterparty 'Norconsult AS' has a clear, consistent history of 3 transactions, all categorized as 'customer_payment' (likely payments received from a customer named Norconsult AS for invoices). The current transaction shares the exact same counterparty and description format ('Faktura'), and the amount falls within the established historical range. This indicates a recurring pattern of receiving payments from this customer for invoices.",
       "question_group": null
     },
     {
@@ -477,10 +477,10 @@
       "currency": "NOK",
       "category": "marketing",
       "category_name": "Marketing & advertising",
-      "triage": "accountant-review",
-      "triage_reason": "confidence is MEDIUM",
-      "confidence": "MEDIUM",
-      "reasoning": "The counterparty 'Google Ads' has appeared twice in history, both times categorized as 'marketing' with the same description 'Annonsering'. Although the amounts vary and the cadence is irregular (median 61 days), the consistent counterparty and description strongly indicate this is a recurring marketing expense. However, since there are only two prior transactions (not three), it does not meet the threshold for EXACT_RECURRING. Therefore, it is classified as EXACT_ONE_OFF, acknowledging that while the pattern is clear, the evidence is not yet sufficient to establish a strict recurring pattern.",
+      "triage": "auto-approve",
+      "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
+      "confidence": "HIGH",
+      "reasoning": "The counterparty 'Google Ads' has appeared exactly twice in history, both times categorized as 'marketing' with the description 'Annonsering'. This current transaction matches the counterparty and description exactly. Although the history is thin (only 2 instances), it is unanimous and points clearly to the marketing category, fitting the EXACT_ONE_OFF support level.",
       "question_group": null
     },
     {
@@ -495,7 +495,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The counterparty Skatteetaten has a clear recurring pattern of three distinct categories (salary_tax, vat_payment, employer_tax) with a median cadence of 9 days. The description 'MVA innbetaling' matches the description used in prior transactions (e.g., h-00059, h-00075, h-00091) which were all categorized as vat_payment. The amount (-12307.41) falls within the historical range for this counterparty (-40844.75 to -10328.73). The description explicitly contains 'MVA', which maps to vat_payment according to the chart of accounts, overriding the counterparty name alone which is ambiguous.",
+      "reasoning": "The counterparty Skatteetaten has a clear recurring pattern where the description determines the category. Specifically, 'MVA innbetaling' has appeared 3 times before, and in all 3 instances, it was categorized as vat_payment. The current transaction matches this description exactly, making the category unambiguous.",
       "question_group": null
     },
     {
@@ -507,11 +507,11 @@
       "currency": "NOK",
       "category": "personal_expense",
       "category_name": "Personal expense (to flag)",
-      "triage": "owner-question",
-      "triage_reason": "Only the owner can resolve purpose_clarity=UNKNOWABLE_FROM_BANK_DATA.",
-      "confidence": "HIGH",
-      "reasoning": "The search for the counterparty NETFLIX returned no prior transactions. Without any history to establish a pattern, and given that NETFLIX is a consumer streaming service with no plausible business purpose for a small business, the transaction must be classified as a personal expense.",
-      "question_group": "q-008"
+      "triage": "accountant-review",
+      "triage_reason": "history support NONE does not carry auto-approve",
+      "confidence": "MEDIUM",
+      "reasoning": "The search for the counterparty NETFLIX returned zero matches, meaning there is no historical pattern to reference. The description 'Subscription' is generic and could apply to various services (streaming, SaaS, etc.). Without a prior transaction to establish a category, and given that Netflix is a consumer streaming service with no plausible business purpose for a small business, the classification must be personal_expense. Since the history is empty and the merchant is clearly personal, the category is personal_expense.",
+      "question_group": null
     },
     {
       "id": "t-00001",
@@ -525,7 +525,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The history search shows 6 prior transactions for 'Telenor Norge AS', all with the exact same description ('Mobilabonnement') and amount (-749 NOK), consistently categorized as 'utilities'. The current transaction matches this pattern exactly in counterparty, description, and amount. Therefore, the category is unambiguously 'utilities' based on the established recurring pattern.",
+      "reasoning": "The history search shows 6 prior transactions for 'Telenor Norge AS', all with the exact same description 'Mobilabonnement' and amount -749 NOK, consistently categorized as 'utilities'. The current transaction matches this pattern exactly in counterparty, description, and amount. This is a clear, established recurring pattern for mobile phone subscriptions, which fall under utilities.",
       "question_group": null
     },
     {
@@ -540,7 +540,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The history search shows 6 prior transactions with the exact same counterparty ('Figma Inc'), description ('Figma Pro'), and amount (-180 NOK), all categorized as 'software'. The current transaction matches this pattern exactly in counterparty, description, and amount. Figma is a well-known SaaS software vendor, and the description 'Figma Pro' confirms it is a software subscription. The consistent cadence and amount confirm this is a recurring business expense. Therefore, the category is 'software' with high confidence.",
+      "reasoning": "The counterparty 'Figma Inc' has a clear, consistent history of 6 transactions, all categorized as 'software' with the exact same description ('Figma Pro') and amount (-180 NOK). The current transaction matches this pattern perfectly in counterparty, description, and amount. Figma is a well-known SaaS provider for design tools, which aligns with the 'software' category. The regular cadence confirms this is a recurring business expense.",
       "question_group": null
     },
     {
@@ -555,8 +555,8 @@
       "triage": "owner-question",
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The search for the exact counterparty 'MINIBANK SPAREBANK 1' returned no results. The 4 matches found are for a similarly named counterparty ('Sparebank 1 SR-Bank') which are incoming customer payments (positive amounts, 'Faktura' descriptions). The current transaction is an outgoing cash withdrawal ('Kontantuttak', negative amount) from the specific counterparty 'MINIBANK SPAREBANK 1'. Since there is no history for this exact counterparty and the pattern (cash withdrawal) is the opposite of the historical pattern (customer payment), there is no evidence to support a specific business category. Cash withdrawals are typically personal or require clarification on business purpose.",
-      "question_group": "q-007"
+      "reasoning": "The exact counterparty 'MINIBANK SPAREBANK 1' has no prior transactions in the history. The search returned 4 matches for a similarly named counterparty ('Sparebank 1 SR-Bank'), but the system note clarifies these are not the same entity and represent a different pattern (large customer payments via Faktura). The current transaction is a cash withdrawal ('Kontantuttak') for a small amount (-4046.2), which is fundamentally different from the recurring large invoice payments seen in the similar counterparty's history. Since there is no history for the exact counterparty and the similar counterparty's pattern does not fit the current transaction's description or amount, there is no historical evidence to support a specific category.",
+      "question_group": "q-fallback-007"
     },
     {
       "id": "t-00018",
@@ -570,7 +570,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The counterparty 'Norconsult AS' has a clear, consistent history of 3 transactions, all categorized as 'customer_payment' with descriptions starting with 'Faktura'. The current transaction (t-00018) matches this pattern exactly: same counterparty, same 'Faktura' description prefix, and a negative amount (money out) consistent with a payment to a customer. The amounts vary, which is typical for customer payments, but the category is unambiguously established by the history.",
+      "reasoning": "The counterparty 'Norconsult AS' has a clear, consistent history of 3 transactions, all categorized as 'customer_payment' with descriptions starting with 'Faktura'. The current transaction (t-00018) matches this pattern exactly: same counterparty, same 'Faktura' description prefix, and a negative amount (money out) consistent with a payment. Although the amounts vary (25k-41k), this is typical for invoice payments where the amount depends on the specific invoice value. The description 'Faktura 81200' aligns perfectly with the historical pattern of paying invoices to this customer.",
       "question_group": null
     },
     {
@@ -582,10 +582,10 @@
       "currency": "NOK",
       "category": "transfer",
       "category_name": "Internal transfer",
-      "triage": "accountant-review",
-      "triage_reason": "history support NONE does not carry auto-approve",
+      "triage": "auto-approve",
+      "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The counterparty is a generic bank transfer description ('OVERFØRING FRA KONTO...') with no prior history to establish a pattern. The description 'Egen konto' (Own account) strongly indicates an internal transfer between the business's own accounts. Since there is no history to suggest a recurring supplier or a specific personal draw, and the description explicitly points to an internal account movement, the most logical classification is 'transfer'.",
+      "reasoning": "The counterparty is a generic bank transfer description ('OVERFØRING FRA KONTO...') with no prior history to establish a pattern. The description 'Egen konto' (Own account) strongly indicates an internal transfer between the business's own accounts. Since there is no history to suggest a recurring supplier or a specific personal draw pattern, and the description explicitly points to an internal account movement, the most logical classification is an internal transfer.",
       "question_group": null
     },
     {
@@ -600,7 +600,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The counterparty 'Tibber AS' is a known utility provider (electricity). The history shows 6 prior transactions, all with the description 'Strøm' and categorized as 'utilities'. The current transaction matches this pattern exactly in counterparty and description, and the amount (-1352.94) falls within the historical range (-1813.74 to -1275.69). This is a clear recurring utility expense.",
+      "reasoning": "The counterparty 'Tibber AS' has a clear, consistent history of 6 transactions, all categorized as 'utilities' with the description 'Strøm'. This transaction matches the counterparty and description exactly, and the amount (-1352.94) falls within the historical range (-1813.74 to -1275.69). The varying amounts are expected for electricity (Strøm) due to seasonal changes. This is a strong, recurring pattern.",
       "question_group": null
     },
     {
@@ -615,8 +615,8 @@
       "triage": "owner-question",
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The search for the counterparty 'REMA 1000' returned zero matches, meaning there is no historical pattern to reference. The description 'Dagligvarer' (Groceries) is generic and could refer to either business office supplies (if the business stocks items) or personal grocery shopping. Without a prior transaction to establish a pattern, the bank data alone cannot distinguish between a business expense and a personal expense. Therefore, no category can be assigned with confidence.",
-      "question_group": "q-009"
+      "reasoning": "The search for the counterparty 'REMA 1000' returned zero matches, meaning there is no historical pattern to reference. The description 'Dagligvarer' (Groceries) is generic and could apply to either business expenses (office supplies, team lunches) or personal spending. Without a prior transaction to establish a pattern, and given that REMA 1000 is a general grocery store, the purpose of this specific payment cannot be determined from bank data alone.",
+      "question_group": "q-fallback-008"
     },
     {
       "id": "t-00037",
@@ -630,7 +630,7 @@
       "triage": "accountant-review",
       "triage_reason": "personal_risk=PLAUSIBLY_PERSONAL blocks auto-approve",
       "confidence": "MEDIUM",
-      "reasoning": "The search returned exactly one prior transaction for the counterparty 'Starbucks', categorized as 'meals'. The current transaction matches the counterparty, description ('Kaffe'), and amount range closely. Since there is only one prior occurrence, it is not a recurring pattern, but the single prior instance provides evidence that this counterparty is used for meals.",
+      "reasoning": "The search returned exactly one prior transaction for the counterparty 'Starbucks', categorized as 'meals' with a similar description ('Kaffe') and amount (-216.17 NOK). The current transaction matches this pattern exactly (same counterparty, same description, similar amount). Since there is only one prior occurrence, it is not a recurring pattern, but the single prior instance provides sufficient evidence to classify this as 'meals'.",
       "question_group": null
     },
     {
@@ -642,11 +642,11 @@
       "currency": "NOK",
       "category": "travel",
       "category_name": "Travel & lodging",
-      "triage": "owner-question",
-      "triage_reason": "Only the owner can resolve purpose_clarity=UNKNOWABLE_FROM_BANK_DATA, missing_information=NEEDS_PURPOSE.",
-      "confidence": "LOW",
-      "reasoning": "The search for the counterparty 'AIRBNB' returned zero matches, meaning there is no historical pattern to reference. The description 'Lodging' strongly suggests accommodation expenses, which typically fall under the 'travel' category (which includes hotels and lodging services like Airbnb). However, without any prior transactions to establish a recurring pattern or confirm the business nature of this specific expense, the classification relies solely on the description. Since the description is generic ('Lodging') and there is no history, we cannot be certain if this was a business trip or a personal expense, but 'travel' is the most logical business category for a lodging expense.",
-      "question_group": "q-010"
+      "triage": "accountant-review",
+      "triage_reason": "history support NONE does not carry auto-approve",
+      "confidence": "MEDIUM",
+      "reasoning": "The search for the counterparty 'AIRBNB' returned zero matches, meaning there is no historical pattern to reference. The description 'Lodging' strongly indicates a travel or accommodation expense, which maps to the 'travel' category. Since there is no history to suggest a different category (like a personal expense) and the description is specific to a business-relevant service, the classification is based solely on the description's semantic meaning.",
+      "question_group": null
     },
     {
       "id": "t-00048",
@@ -660,8 +660,8 @@
       "triage": "owner-question",
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The search for the exact counterparty 'VIPPS LANSEN' returned zero results. The 6 matches found are for 'INGRID HANSEN', which is a different person (different last name). While 'Lars Hansen' and 'Ingrid Hansen' share a last name, they are distinct individuals, and the history provides no evidence of a transaction pattern with 'Lars Hansen'. The description 'Vipps' is generic and does not specify the purpose (e.g., salary, owner draw, personal expense). Without history to establish a pattern or a specific keyword in the description to disambiguate, there is no evidence to support a specific business category.",
-      "question_group": "q-001"
+      "reasoning": "The search for the exact counterparty 'VIPPS LANSEN' returned zero results. The 6 matches found are for a different person ('INGRID HANSEN') who appears to be on a salary payroll, but this does not establish a pattern for 'LARS HANSEN'. Since there is no history for this specific counterparty and the description 'Vipps' is generic (could be a personal payment, a client payment, or a supplier payment via mobile), there is no evidence to support a specific business category. The transaction is likely a personal expense or an uncertain payment.",
+      "question_group": "q-fallback-002"
     },
     {
       "id": "t-00024",
@@ -670,13 +670,13 @@
       "counterparty": "Comfort Hotel Oslo",
       "description": "Hotell",
       "currency": "NOK",
-      "category": "uncertain",
-      "category_name": "Uncertain",
-      "triage": "owner-question",
-      "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
+      "category": "travel",
+      "category_name": "Travel & lodging",
+      "triage": "accountant-review",
+      "triage_reason": "history support NONE does not carry auto-approve",
       "confidence": "LOW",
-      "reasoning": "The search history returned no prior transactions for the counterparty 'Comfort Hotel Oslo'. Without historical data to establish a pattern, I cannot confirm if this is a recurring business expense or a one-off personal trip. The description 'Hotell' indicates a hotel, which typically falls under 'travel', but the lack of history and the generic description mean I cannot be certain this is a business travel expense versus a personal one. Therefore, the category is uncertain based on bank data alone.",
-      "question_group": "q-011"
+      "reasoning": "The search history returned no prior transactions for the counterparty 'Comfort Hotel Oslo'. Without any historical pattern to establish a category, the classification must rely solely on the description 'Hotell' and the nature of the transaction (money out). While 'Hotell' strongly suggests a hotel expense, and hotels are typically categorized as 'travel' for business purposes, the complete lack of history means we cannot confirm this is a recurring business expense or rule out a personal trip. However, given the description explicitly says 'Hotell' and the amount is a standard hotel stay cost, 'travel' is the most logical category, but the evidence is weak due to the lack of history. Since there is no history to confirm the business nature, the purpose is technically unknowable from bank data alone, but the description provides a strong enough signal for a tentative 'travel' classification, acknowledging the ambiguity.",
+      "question_group": null
     },
     {
       "id": "t-00033",
@@ -690,7 +690,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The counterparty 'PwC Norge' has appeared exactly three times in history, and every single instance was categorized as 'professional_services' with the description 'Konsulent'. The current transaction matches this pattern exactly in counterparty and description. Although the amounts vary (which is typical for consulting fees), the consistent category assignment in history provides strong evidence that this is a professional service payment.",
+      "reasoning": "The counterparty 'PwC Norge' has appeared exactly three times in history, and every single prior transaction is categorized as 'professional_services' with the description 'Konsulent'. The current transaction matches this pattern exactly in counterparty and description. Although the amounts vary, this is typical for consulting fees which are billed per project or hour, not on a fixed schedule. The consistent description and single category across all prior instances provide strong evidence for this classification.",
       "question_group": null
     },
     {
@@ -704,8 +704,8 @@
       "category_name": "Travel & lodging",
       "triage": "accountant-review",
       "triage_reason": "history support NONE does not carry auto-approve",
-      "confidence": "LOW",
-      "reasoning": "The search for the counterparty 'SAS' returned no prior transactions. Without any history, we cannot establish a recurring pattern or a specific category based on past behavior. However, the description 'Flyreise' (Flight trip) is a strong indicator of a travel expense. Since there is no history to contradict this, and 'travel' is a standard business category for flights, we can classify this as 'travel' with low confidence due to the lack of historical evidence, but the description provides sufficient semantic support for the category.",
+      "confidence": "MEDIUM",
+      "reasoning": "The search for the counterparty 'SAS' returned zero matches, meaning there is no historical pattern to reference. However, the description 'Flyreise' (Flight trip) is a strong, unambiguous indicator of a travel expense. Since there is no history to contradict this and the description clearly points to a travel category, the classification is based solely on the description.",
       "question_group": null
     },
     {
@@ -720,8 +720,8 @@
       "triage": "owner-question",
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The search for the counterparty 'MENY' returned no prior transactions. Without any history to establish a pattern, and given that 'MENY' is a grocery store (indicated by the description 'Dagligvarer'), the transaction cannot be confidently categorized as a business expense versus a personal expense based on bank data alone. While groceries can be for office supplies, they can also be for personal use, and there is no historical evidence to distinguish the two.",
-      "question_group": "q-012"
+      "reasoning": "The search for the counterparty 'MENY' returned zero matches, meaning there is no historical pattern to reference. The description 'Dagligvarer' (Groceries) is generic and could apply to either business office supplies (if the business stocks food) or personal grocery shopping. Without a prior transaction to establish a pattern, the bank data alone cannot distinguish between a business expense and a personal expense. Therefore, the classification must be uncertain.",
+      "question_group": "q-fallback-009"
     },
     {
       "id": "t-00046",
@@ -735,8 +735,8 @@
       "triage": "owner-question",
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The search returned no prior transactions for the counterparty 'TRANSFERWISE / WISE'. The description 'International transfer' is generic and does not specify a purpose (e.g., supplier payment, owner draw, or internal transfer). Without historical context to establish a pattern or a specific description keyword to disambiguate, there is no evidence to support a specific business category. The transaction is an outgoing international transfer, but the destination and purpose are unknown from the bank data alone.",
-      "question_group": "q-013"
+      "reasoning": "The search returned no prior transactions for this counterparty, meaning there is no historical pattern to establish a category. The description 'International transfer' is generic and does not specify a purpose (e.g., supplier payment, owner draw, or internal transfer). Without history or a specific description, the transaction cannot be confidently categorized as a business expense or income.",
+      "question_group": "q-fallback-010"
     },
     {
       "id": "t-00031",
@@ -747,9 +747,9 @@
       "currency": "NOK",
       "category": "travel",
       "category_name": "Travel & lodging",
-      "triage": "accountant-review",
-      "triage_reason": "confidence is MEDIUM",
-      "confidence": "MEDIUM",
+      "triage": "auto-approve",
+      "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
+      "confidence": "HIGH",
       "reasoning": "The counterparty 'Vy Tog AS' has appeared exactly twice in history, and both times were categorized as 'travel' with the description 'Togbillett'. This current transaction matches the counterparty and description exactly. Although the cadence is irregular (over a year between transactions), the consistent category assignment for this specific counterparty provides sufficient evidence to classify it as 'travel' rather than 'EXACT_RECURRING' (which requires at least 3 instances).",
       "question_group": null
     },
@@ -765,8 +765,8 @@
       "triage": "owner-question",
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The search for the counterparty 'STRIPE TECHNOLOGY EU' returned zero matches, meaning there is no historical pattern to reference. The description 'Subscription' is generic and could apply to various services (software, payment processing, consumer subscriptions). Without a prior transaction to establish a category, and with no obvious similar counterparty in the general history to infer from, the purpose is unambiguous in terms of the merchant but the accounting category is unknown. Since Stripe is a well-known payment processor, it is highly likely a business expense (software/service), but without a specific history or invoice, we cannot definitively choose between 'software' and 'uncertain' or flag it as personal risk without more context. Given the instruction to be conservative with unknowns, 'uncertain' is the most appropriate classification.",
-      "question_group": "q-014"
+      "reasoning": "The search for the counterparty 'STRIPE TECHNOLOGY EU' returned zero matches, meaning there is no historical pattern to reference. The description 'Subscription' is generic and could apply to various services (software, payment processing, consumer subscriptions). Without a prior transaction to establish a pattern or a similar counterparty in the history to infer a category from, the purpose of this payment cannot be determined from bank data alone. Therefore, no category can be assigned with confidence.",
+      "question_group": "q-fallback-011"
     },
     {
       "id": "t-00009",
@@ -780,7 +780,7 @@
       "triage": "auto-approve",
       "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
       "confidence": "HIGH",
-      "reasoning": "The history search shows 6 prior transactions with the exact same counterparty ('Storebrand Forsikring'), description ('Bedriftsforsikring'), and amount (-2400 NOK), all categorized as 'insurance'. The current transaction matches this pattern exactly in counterparty, description, and amount. The regular cadence (approx. 26 days) confirms this is a recurring insurance premium payment. Therefore, the category 'insurance' is strongly supported by historical evidence.",
+      "reasoning": "The counterparty 'Storebrand Forsikring' has a clear, consistent history of 6 transactions, all categorized as 'insurance' with the same description 'Bedriftsforsikring' and identical amount (-2400 NOK). The current transaction matches this pattern exactly in counterparty, description, and amount. This is a recurring insurance premium payment.",
       "question_group": null
     },
     {
@@ -795,7 +795,7 @@
       "triage": "accountant-review",
       "triage_reason": "confidence is MEDIUM",
       "confidence": "MEDIUM",
-      "reasoning": "The history search found exactly one prior transaction with the same counterparty 'Elkjøp' and identical description 'Elektronikk', which was categorized as 'hardware'. This single prior instance provides evidence that purchases from Elkjøp with this description are classified as hardware. The current transaction matches the counterparty and description exactly, fitting the established pattern, although the evidence is limited to a single prior occurrence rather than a recurring pattern.",
+      "reasoning": "The search history shows exactly one prior transaction with the same counterparty 'Elkjøp' and the same description 'Elektronikk', which was categorized as 'hardware'. This prior transaction provides thin but direct evidence that purchases from Elkjøp with this description belong to the hardware category. Since there is only one prior occurrence, it is not a recurring pattern (EXACT_RECURRING), but the exact match on counterparty and description supports the 'hardware' classification for this new transaction.",
       "question_group": null
     },
     {
@@ -810,8 +810,8 @@
       "triage": "owner-question",
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
-      "reasoning": "The search for the counterparty 'SAMSON BAKERI' returned zero matches. Without any historical data to establish a pattern, and given that the description 'Bakeri' is generic (it could be a bakery for office supplies, a client meal, or a personal purchase), there is no evidence to confidently assign a category. The transaction is a one-off payment to an unknown supplier with no established history.",
-      "question_group": "q-015"
+      "reasoning": "The search for the counterparty 'SAMSON BAKERI' returned zero matches. Since there is no history to establish a pattern, and the description 'Bakeri' is generic (it could be a bakery for office supplies, a bakery for a personal lunch, or a supplier for baked goods), there is no evidence to distinguish between a business expense (office_supplies or supplier_invoice) and a personal expense. Without a receipt or further context, the purpose is unknowable from bank data alone.",
+      "question_group": "q-fallback-012"
     },
     {
       "id": "t-00055",
@@ -825,7 +825,7 @@
       "triage": "accountant-review",
       "triage_reason": "confidence is MEDIUM",
       "confidence": "MEDIUM",
-      "reasoning": "The counterparty 'KARI NORDMANN' has a strong, consistent history of 6 transactions, all categorized as 'salary' with a fixed amount of -42000 NOK. Although the current transaction has a different amount (-25000) and a different description ('Privat'), the counterparty identity and the established pattern of regular payments to this individual strongly indicate this is a salary payment. The description 'Privat' is a variation, but since the counterparty is a known salary recipient, the category remains salary. The amount difference suggests a variable salary or a partial payment, but the category remains salary.",
+      "reasoning": "The counterparty 'KARI NORDMANN' has a consistent history of 6 transactions, all categorized as 'salary' (description 'Lønn'). Although the current transaction has the description 'Privat' (which typically indicates owner_draw), the counterparty is the same person who has exclusively received salary payments in the past. The instruction states that 'Lønn is salary even when paid to the owner', implying the description 'Lønn' is the definitive marker for salary. However, this specific row has 'Privat'. Given the strong, unanimous historical pattern (6/6) for this specific counterparty being 'salary', and the fact that owners often receive both salary and draws, the most logical accounting treatment is that this is a salary payment where the description field was miscategorized or labeled as 'Privat' by the bank feed system. The historical evidence overrides the generic 'Privat' label for this specific counterparty to maintain the payroll pattern.",
       "question_group": null
     }
   ],
@@ -838,112 +838,91 @@
       "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 84 200 kr til NORDIC FACADE SOLUTIONS AS den 1. juni gjaldt?"
     },
     {
-      "group_id": "q-001",
+      "group_id": "q-fallback-002",
       "transaction_ids": [
         "t-00038",
         "t-00049",
         "t-00048"
       ],
-      "question_norwegian": "Hvilket formål har de tre Vipps-betalinger til Lars Hansen på totalt 4 265,78 NOK (2 345,78 NOK den 2. juni, 1 240 NOK den 6. juni og 680 NOK den 26. juni)?"
+      "question_norwegian": "Hei! Kan du fortelle oss hva betalingene på 2 345 kr til VIPPS LARS HANSEN den 2. juni, 1 240 kr til VIPPS LARS HANSEN den 6. juni, 680 kr til VIPPS LARS HANSEN den 26. juni gjaldt?"
     },
     {
-      "group_id": "q-002",
+      "group_id": "q-001",
       "transaction_ids": [
         "t-00035"
       ],
-      "question_norwegian": "Hvilket formål har taxibetalingen på 248,12 NOK via Bolt/Uber den 5. juni 2026?"
+      "question_norwegian": "Hva gjelder betalingsbeløpet på 248,12 NOK til Bolt/Uber på 5. juni 2026?"
     },
     {
-      "group_id": "q-003",
+      "group_id": "q-fallback-003",
       "transaction_ids": [
         "t-00053"
       ],
-      "question_norwegian": "Hvilket formål har kjøpet på 89 NOK hos ICA Nær den 6. juni 2026 (referanse 81234)?"
+      "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 89 kr til ICA NÆR den 6. juni gjaldt?"
     },
     {
-      "group_id": "q-004",
+      "group_id": "q-fallback-004",
       "transaction_ids": [
         "t-00039"
       ],
-      "question_norwegian": "Hvilket formål har Vipps-betalingen på 323,83 NOK til Anne Berg den 7. juni 2026?"
+      "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 323 kr til VIPPS ANNE BERG den 7. juni gjaldt?"
     },
     {
-      "group_id": "q-005",
+      "group_id": "q-fallback-005",
       "transaction_ids": [
         "t-00029"
       ],
-      "question_norwegian": "Hvilket formål har kundemiddagen på 1 628,89 NOK hos Olivia Restaurant den 14. juni 2026?"
+      "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 1 628 kr til Olivia Restaurant den 14. juni gjaldt?"
     },
     {
-      "group_id": "q-006",
+      "group_id": "q-fallback-006",
       "transaction_ids": [
         "t-00043"
       ],
-      "question_norwegian": "Hvilket formål har betalingen på 549 NOK til SATS Norge AS for treningssenter den 14. juni 2026?"
+      "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 549 kr til SATS Norge AS den 14. juni gjaldt?"
     },
     {
-      "group_id": "q-007",
+      "group_id": "q-fallback-007",
       "transaction_ids": [
         "t-00051",
         "t-00040"
       ],
-      "question_norwegian": "Hvorfor tok du ut kontanter på totalt 9 046,2 NOK (5 000 NOK fra DNB den 14. juni og 4 046,2 NOK fra Sparebank 1 den 22. juni)?"
+      "question_norwegian": "Hei! Kan du fortelle oss hva betalingene på 5 000 kr til MINIBANK DNB den 14. juni, 4 046 kr til MINIBANK SPAREBANK 1 den 22. juni gjaldt?"
     },
     {
-      "group_id": "q-008",
-      "transaction_ids": [
-        "t-00044"
-      ],
-      "question_norwegian": "Er Netflix-abonnementet på 149 NOK den 20. juni 2026 fortsatt aktivt, og hva er formålet med denne utbetalingen?"
-    },
-    {
-      "group_id": "q-009",
+      "group_id": "q-fallback-008",
       "transaction_ids": [
         "t-00041"
       ],
-      "question_norwegian": "Hvilket formål har dagligvarekjøpet på 396,54 NOK hos Rema 1000 den 25. juni 2026?"
+      "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 396 kr til REMA 1000 den 25. juni gjaldt?"
     },
     {
-      "group_id": "q-010",
-      "transaction_ids": [
-        "t-00047"
-      ],
-      "question_norwegian": "Hvilket formål har overnattingen på 3 456,26 NOK via Airbnb den 26. juni 2026?"
-    },
-    {
-      "group_id": "q-011",
-      "transaction_ids": [
-        "t-00024"
-      ],
-      "question_norwegian": "Hvilket formål har hotellbookingen på 1 998,86 NOK ved Comfort Hotel Oslo den 27. juni 2026?"
-    },
-    {
-      "group_id": "q-012",
+      "group_id": "q-fallback-009",
       "transaction_ids": [
         "t-00042"
       ],
-      "question_norwegian": "Hvilket formål har dagligvarekjøpet på 795,09 NOK hos Meny den 28. juni 2026?"
+      "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 795 kr til MENY den 28. juni gjaldt?"
     },
     {
-      "group_id": "q-013",
+      "group_id": "q-fallback-010",
       "transaction_ids": [
         "t-00046"
       ],
-      "question_norwegian": "Hvem er mottakeren av den internasjonale overføringen på 16 906,14 NOK via Transferwise/Wise den 28. juni 2026, og hva er formålet?"
+      "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 16 906 kr til TRANSFERWISE / WISE den 28. juni gjaldt?"
     },
     {
-      "group_id": "q-014",
+      "group_id": "q-fallback-011",
       "transaction_ids": [
         "t-00050"
       ],
-      "question_norwegian": "Hvilket formål har abonnementet på 340 EUR (ca. 3 400 NOK) hos Stripe Technology EU den 29. juni 2026?"
+      "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 340 kr til STRIPE TECHNOLOGY EU den 29. juni gjaldt?"
     },
     {
-      "group_id": "q-015",
+      "group_id": "q-fallback-012",
       "transaction_ids": [
         "t-00045"
       ],
-      "question_norwegian": "Hvilket formål har bakerikjøpet på 524,76 NOK hos Samson Bakeri den 30. juni 2026?"
+      "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 524 kr til SAMSON BAKERI den 30. juni gjaldt?"
     }
   ],
   "failures": []
