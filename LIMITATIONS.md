@@ -2,11 +2,12 @@
 
 What was cut under the time box, and what I would do differently.
 
-- **Amount anomalies can auto-approve.** A recurring counterparty at ten times its usual amount
-  (synthetic case s-90005) passes the recurring-history gate; nothing in code compares this row's
-  amount to the pattern's band. The fix is a code-side check in the triage derivation — the
-  cadence and amount range are already computed by `search_history`, so it is one more gate, not a
-  new subsystem. Highest-value next change.
+- **Amount anomalies are guarded in one direction only.** After the measurement caught a
+  recurring counterparty at ten times its usual amount auto-approving (synthetic s-90005), the
+  triage derivation gained AMOUNT_OUTSIDE_PATTERN: |amount| more than twice the counterparty's own
+  historical maximum floors at accountant-review. Amounts *below* the pattern (a 25k salary
+  against a 42k pattern, s-90003) still pass, and seasonal spreads (electricity) get no special
+  treatment — a proper band per counterparty needs more history than 6 rows.
 - **The Norwegian checks are heuristics, not language understanding.** An English-stopword list,
   an amount substring, a month name. A fluent but factually wrong question passes; a correct
   question phrased unusually can be sent back. A second model as language judge was cut as

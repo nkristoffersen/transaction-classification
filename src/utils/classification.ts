@@ -101,10 +101,27 @@ export const classifyOne = async (
     signal,
   );
 
+  // The largest amount this counterparty's own history carries, from the
+  // exact-tier search results. Fuzzy tiers vouch for nothing here either.
+  const ownRanges = result.toolCalls.flatMap((record) =>
+    record.result !== null &&
+    (record.result.match_quality === 'exact' || record.result.match_quality === 'contains') &&
+    record.result.amount_range !== null
+      ? [record.result.amount_range]
+      : [],
+  );
+  const largestKnown = Math.max(
+    0,
+    ...ownRanges.flatMap((range) => [Math.abs(range.min), Math.abs(range.max)]),
+  );
+  const amountOutsidePattern =
+    largestKnown > 0 && Math.abs(transaction.amount_nok) > 2 * largestKnown;
+
   const triage = decideTriage({
     classification: result.value,
     transaction,
     tool_call_missing: result.toolCallMissing,
+    amount_outside_pattern: amountOutsidePattern,
     unresolved_issue_count: result.unresolvedIssues.length,
     materiality_nok: env.MATERIALITY_NOK,
   });

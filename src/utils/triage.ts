@@ -125,6 +125,14 @@ export const decideTriage = (inputs: TriageInputs): TriageDecision => {
         'threshold without an exact recurring history.',
     );
   }
+  if (inputs.amount_outside_pattern) {
+    apply(
+      'AMOUNT_OUTSIDE_PATTERN',
+      'accountant-review',
+      `|${transaction.amount_nok}| NOK is more than twice this counterparty's largest prior ` +
+        'amount — the recurring pattern vouches for its amounts, not for this one.',
+    );
+  }
   if (transaction.currency !== 'NOK') {
     apply(
       'FOREIGN_CURRENCY',
@@ -207,9 +215,12 @@ export const explainTriage = (materialityNok: number): string => {
     `  5 MATERIALITY             -> at least accountant-review   (|amount| >= ${materialityNok} NOK` +
       ' without EXACT_RECURRING)',
   );
-  lines.push('  6 FOREIGN_CURRENCY        -> at least accountant-review');
   lines.push(
-    '  7 SYSTEM_DOUBT            -> at least accountant-review   (injected lookup or unresolved cross-check)',
+    '  6 AMOUNT_OUTSIDE_PATTERN  -> at least accountant-review   (|amount| > 2x largest own-history amount)',
+  );
+  lines.push('  7 FOREIGN_CURRENCY        -> at least accountant-review');
+  lines.push(
+    '  8 SYSTEM_DOUBT            -> at least accountant-review   (injected lookup or unresolved cross-check)',
   );
 
   return lines.join('\n');

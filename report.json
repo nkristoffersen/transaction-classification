@@ -1,0 +1,303 @@
+{
+  "generated_at": "2026-08-19T18:50:37.475Z",
+  "model": "qwen/qwen3.5-9b",
+  "transactions_classified": 63,
+  "failures": 0,
+  "headline": {
+    "automation_rate": 0.3968253968253968,
+    "auto_approve_precision": 0.84,
+    "dangerous_misses": [
+      {
+        "transaction_id": "t-00033",
+        "system_category": "professional_services",
+        "gold_category": "professional_services",
+        "gold_triage": "accountant-review",
+        "gold_reasoning": "PwC consulting, 3 prior professional_services rows, but 43k is far above materiality and consulting invoices are not a fixed pattern.",
+        "contested": true
+      },
+      {
+        "transaction_id": "t-00055",
+        "system_category": "salary",
+        "gold_category": "owner_draw",
+        "gold_triage": "accountant-review",
+        "gold_reasoning": "Owner transferring to a personal account. Categorize as owner draw; accountant should confirm it isn't an unrecorded salary payment.",
+        "contested": false
+      },
+      {
+        "transaction_id": "s-90003",
+        "system_category": "salary",
+        "gold_category": "salary",
+        "gold_triage": "accountant-review",
+        "gold_reasoning": "Lønn to Kari Nordmann — salary by description even though the same person also takes owner draws. Contested triage: 25k against her usual 42k breaks the pattern the auto-approve would rest on.",
+        "contested": true
+      },
+      {
+        "transaction_id": "s-90005",
+        "system_category": "utilities",
+        "gold_category": "utilities",
+        "gold_triage": "accountant-review",
+        "gold_reasoning": "Telenor at ten times its recurring amount. The category is safe; blind pattern-matching that auto-approves this is exactly the dangerous miss the report exists to catch.",
+        "contested": true
+      }
+    ]
+  },
+  "triage_matrix": [
+    {
+      "gold": "auto-approve",
+      "system": "auto-approve",
+      "count": 21,
+      "cost": "agreement"
+    },
+    {
+      "gold": "auto-approve",
+      "system": "accountant-review",
+      "count": 5,
+      "cost": "harmless-caution"
+    },
+    {
+      "gold": "accountant-review",
+      "system": "auto-approve",
+      "count": 4,
+      "cost": "silent-error"
+    },
+    {
+      "gold": "accountant-review",
+      "system": "accountant-review",
+      "count": 11,
+      "cost": "agreement"
+    },
+    {
+      "gold": "accountant-review",
+      "system": "owner-question",
+      "count": 8,
+      "cost": "wasted-owner-time"
+    },
+    {
+      "gold": "owner-question",
+      "system": "owner-question",
+      "count": 14,
+      "cost": "agreement"
+    }
+  ],
+  "category": {
+    "accuracy_overall": 0.9365079365079365,
+    "by_source": [
+      {
+        "source": "provided",
+        "rows": 10,
+        "category_accuracy": 0.8,
+        "triage_accuracy": 0.6
+      },
+      {
+        "source": "added",
+        "rows": 45,
+        "category_accuracy": 0.9555555555555556,
+        "triage_accuracy": 0.7777777777777778
+      },
+      {
+        "source": "synthetic",
+        "rows": 8,
+        "category_accuracy": 1,
+        "triage_accuracy": 0.625
+      }
+    ],
+    "confusion_pairs": [
+      {
+        "gold": "travel",
+        "system": "uncertain",
+        "count": 2,
+        "contested_only": false
+      },
+      {
+        "gold": "supplier_invoice",
+        "system": "uncertain",
+        "count": 1,
+        "contested_only": false
+      },
+      {
+        "gold": "owner_draw",
+        "system": "salary",
+        "count": 1,
+        "contested_only": false
+      }
+    ]
+  },
+  "confidence_calibration": [
+    {
+      "confidence": "HIGH",
+      "rows": 29,
+      "category_accuracy": 0.9655172413793104
+    },
+    {
+      "confidence": "MEDIUM",
+      "rows": 12,
+      "category_accuracy": 1
+    },
+    {
+      "confidence": "LOW",
+      "rows": 22,
+      "category_accuracy": 0.8636363636363636
+    }
+  ],
+  "questions": {
+    "owner_question_rows": 22,
+    "groups": 18,
+    "fallback_groups": 18,
+    "drafted": [
+      {
+        "group_id": "q-fallback-001",
+        "transaction_ids": [
+          "t-00052"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 84 200 kr til NORDIC FACADE SOLUTIONS AS den 1. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-002",
+        "transaction_ids": [
+          "t-00038",
+          "t-00049",
+          "t-00048"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingene på 2 345 kr til VIPPS LARS HANSEN den 2. juni, 1 240 kr til VIPPS LARS HANSEN den 6. juni, 680 kr til VIPPS LARS HANSEN den 26. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-003",
+        "transaction_ids": [
+          "t-00035"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 248 kr til Bolt / Uber den 5. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-004",
+        "transaction_ids": [
+          "t-00053"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 89 kr til ICA NÆR den 6. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-005",
+        "transaction_ids": [
+          "t-00039"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 323 kr til VIPPS ANNE BERG den 7. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-006",
+        "transaction_ids": [
+          "t-00029"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 1 628 kr til Olivia Restaurant den 14. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-007",
+        "transaction_ids": [
+          "t-00043"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 549 kr til SATS Norge AS den 14. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-008",
+        "transaction_ids": [
+          "t-00051",
+          "t-00040"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingene på 5 000 kr til MINIBANK DNB den 14. juni, 4 046 kr til MINIBANK SPAREBANK 1 den 22. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-009",
+        "transaction_ids": [
+          "t-00044"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 149 kr til NETFLIX den 20. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-010",
+        "transaction_ids": [
+          "t-00041"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 396 kr til REMA 1000 den 25. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-011",
+        "transaction_ids": [
+          "t-00047",
+          "t-00024"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingene på 3 456 kr til AIRBNB den 26. juni, 1 998 kr til Comfort Hotel Oslo den 27. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-012",
+        "transaction_ids": [
+          "t-00042"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 795 kr til MENY den 28. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-013",
+        "transaction_ids": [
+          "t-00046"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 16 906 kr til TRANSFERWISE / WISE den 28. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-014",
+        "transaction_ids": [
+          "t-00050"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 340 kr til STRIPE TECHNOLOGY EU den 29. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-015",
+        "transaction_ids": [
+          "t-00045"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 524 kr til SAMSON BAKERI den 30. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-016",
+        "transaction_ids": [
+          "s-90001"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 15 000 kr til Skatteetaten den 16. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-017",
+        "transaction_ids": [
+          "s-90004"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 30 000 kr til OVERFØRING KARI NORDMANN den 10. juni gjaldt?"
+      },
+      {
+        "group_id": "q-fallback-018",
+        "transaction_ids": [
+          "s-90006"
+        ],
+        "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 240 kr til VIPPS BAKERIET AS den 11. juni gjaldt?"
+      }
+    ]
+  },
+  "tool_health": {
+    "calls_total": 63,
+    "calls_per_transaction": 1,
+    "injected_lookups": 0,
+    "repair_round_counts": [
+      {
+        "rounds": 0,
+        "transactions": 57
+      },
+      {
+        "rounds": 1,
+        "transactions": 6
+      }
+    ],
+    "unresolved_after_budget": 0
+  },
+  "cost_latency": {
+    "tokens_in": 568895,
+    "tokens_out": 20579,
+    "estimated_cost_usd": null,
+    "latency_p50_ms": 58067,
+    "latency_p95_ms": 131039
+  },
+  "determinism": null
+}

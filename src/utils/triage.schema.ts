@@ -16,6 +16,12 @@ export const TriageInputsSchema = z.strictObject({
   transaction: TransactionSchema,
   /** Code executed the history lookup because the model would not. */
   tool_call_missing: z.boolean(),
+  /**
+   * |amount| exceeds twice the largest amount this counterparty's own history
+   * carries — computed in code from the exact-tier tool results. A recurring
+   * pattern vouches for the pattern's amounts, not for ten times them.
+   */
+  amount_outside_pattern: z.boolean(),
   /** Cross-check contradictions still standing after the repair budget. */
   unresolved_issue_count: z.number().int().min(0),
   /** From env MATERIALITY_NOK. */

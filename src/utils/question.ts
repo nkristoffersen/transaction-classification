@@ -88,10 +88,12 @@ const NORWEGIAN_MONTHS = [
 
 /**
  * English function words that should not survive into a Norwegian question.
- * Whole words only — "og" inside "dialog" is not a hit, and shared words like
- * "under" are deliberately absent.
+ * Whole words only — "og" inside "dialog" is not a hit — and words Norwegian
+ * shares with English are deliberately absent: a measured run flagged every
+ * drafted question as English because "for" was on this list, and "for" is
+ * one of the most common Norwegian words there is.
  */
-const ENGLISH_STOPWORDS = /\b(the|and|this|that|please|what|which|was|were|with|for|from|your)\b/i;
+const ENGLISH_STOPWORDS = /\b(the|and|this|that|please|what|which|was|were|with|from|your)\b/i;
 
 /** Formats an amount the ways a question might legitimately write it. */
 const amountVariants = (amount: number): string[] => {
@@ -308,6 +310,12 @@ export const draftOwnerQuestions = async (
     for (const row of members) covered.add(row.id);
 
     if (disputedGroups.has(index)) {
+      // The rejected draft would otherwise vanish; keep it diagnosable.
+      const firstIssue = finalIssues.find((entry) => entry.path.startsWith(`groups.${index}.`));
+      process.stderr.write(
+        `  owner-question draft replaced by template (${firstIssue?.message ?? 'partition issue'}):\n` +
+          `    ${group.question_norwegian}\n`,
+      );
       fallbackIndex++;
       groups.push({
         group_id: `q-fallback-${String(fallbackIndex).padStart(3, '0')}`,

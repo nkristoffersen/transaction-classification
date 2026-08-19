@@ -153,6 +153,35 @@ export const checkClassification = (
     );
   }
 
+  // The description cue decides between salary and owner draw — the guidance
+  // states it, and code makes it binding. Measured: "OVERFØRING KARI NORDMANN
+  // / Privat" auto-approved as salary because her six Lønn rows matched on
+  // the name; the description said otherwise the whole time.
+  if (value.category_code === 'salary' && /\bprivat\b/i.test(transaction.description)) {
+    issues.push(
+      issue(
+        'category_code',
+        prose`
+          The description says Privat, and Privat is owner_draw even when the person is on
+          payroll — Lønn is what marks a salary. Reclassify or state why this Privat transfer is
+          nonetheless salary.
+        `,
+      ),
+    );
+  }
+  if (value.category_code === 'owner_draw' && /\bl\u00f8nn\b/i.test(transaction.description)) {
+    issues.push(
+      issue(
+        'category_code',
+        prose`
+          The description says L\u00f8nn, and L\u00f8nn is salary even when paid to the owner — Privat is
+          what marks an owner draw. Reclassify or state why this L\u00f8nn payment is nonetheless a
+          draw.
+        `,
+      ),
+    );
+  }
+
   // The chart of accounts pairs uncertain with asking the owner; a confident
   // uncertainty is a contradiction in terms.
   if (value.category_code === 'uncertain' && value.confidence === 'HIGH') {

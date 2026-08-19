@@ -31,11 +31,13 @@ const inputs = (overrides: {
   classification?: Partial<Classification>;
   transaction?: Partial<Transaction>;
   tool_call_missing?: boolean;
+  amount_outside_pattern?: boolean;
   unresolved_issue_count?: number;
 }): TriageInputs => ({
   classification: classification(overrides.classification ?? {}),
   transaction: transaction(overrides.transaction ?? {}),
   tool_call_missing: overrides.tool_call_missing ?? false,
+  amount_outside_pattern: overrides.amount_outside_pattern ?? false,
   unresolved_issue_count: overrides.unresolved_issue_count ?? 0,
   materiality_nok: 20_000,
 });
@@ -125,6 +127,16 @@ describe('decideTriage', () => {
       }),
     );
     expect(decision.triage).toBe('auto-approve');
+  });
+
+  // The Telenor-at-7490 case: a recurring pattern must not vouch for ten
+  // times its own amounts.
+  it('floors an amount outside the counterparty pattern, even with recurring history', () => {
+    const decision = decideTriage(
+      inputs({ transaction: { amount_nok: -7490 }, amount_outside_pattern: true }),
+    );
+    expect(decision.triage).toBe('accountant-review');
+    expect(decision.rules).toContain('AMOUNT_OUTSIDE_PATTERN');
   });
 
   it('floors foreign currency at accountant-review', () => {
