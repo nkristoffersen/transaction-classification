@@ -32,11 +32,18 @@ import { formatZodError } from './zod.ts';
 
 const evalsConfigured = (source: NodeJS.ProcessEnv = process.env): boolean => {
   if (source['EVAL'] === 'false') return false;
-  const hasKey = (source['LLM_API_KEY'] ?? '').trim() !== '';
-  const base = (source['LLM_BASE_URL'] ?? '').trim();
-  // A local endpoint needs no key; a hosted one does.
-  const isLocal = /localhost|127\.0\.0\.1|0\.0\.0\.0|host\.docker\.internal/.test(base);
-  return hasKey || (isLocal && base !== '');
+  try {
+    // Judge the RESOLVED configuration, defaults and loopback rewrite
+    // included — the shipped default points at a local server, and an empty
+    // environment must mean "try localhost", not "skip silently".
+    const env = loadEnv(source);
+    const isLocal = /localhost|127\.0\.0\.1|0\.0\.0\.0|host\.docker\.internal/.test(
+      env.LLM_BASE_URL,
+    );
+    return env.LLM_API_KEY.trim() !== '' || isLocal;
+  } catch {
+    return false;
+  }
 };
 
 const percentile = (values: number[], fraction: number): number => {

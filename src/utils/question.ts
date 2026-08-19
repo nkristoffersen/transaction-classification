@@ -273,35 +273,67 @@ export const draftOwnerQuestions = async (
       },
       signal,
     );
-    // Groups referencing only real ids survive, even from a disputed response.
-    drafted = result.value.groups.filter((group) =>
-      group.transaction_ids.every((id) => byId.has(id)),
-    );
+    drafted = result.value.groups;
   } catch {
     // Structural failure after the budget: every row falls back below.
     drafted = [];
   }
 
-  const groups: OwnerQuestionGroup[] = drafted.map((group, index) => ({
-    group_id: `q-${String(index + 1).padStart(3, '0')}`,
-    transaction_ids: [...new Set(group.transaction_ids)],
-    question_norwegian: group.question_norwegian,
-  }));
+  // A question that still fails validation after the repair budget must NOT
+  // reach the owner: it is owner-facing text whose facts code could not
+  // verify — a measured run shipped a question quoting a neighbouring group's
+  // amount exactly this way. Those groups keep their grouping but get the
+  // deterministic template instead, visible by the q-fallback- prefix.
+  const finalIssues =
+    drafted.length === 0 ? [] : validateQuestions({ reasoning: 'final', groups: drafted }, rows);
+  const disputedGroups = new Set(
+    finalIssues
+      .map((issue) => /^groups\.(\d+)\./.exec(issue.path)?.[1])
+      .filter((match): match is string => match !== undefined)
+      .map(Number),
+  );
 
-  // Coverage repair: whatever the partition missed gets the code-authored
-  // question, grouped by the same candidate key the model was hinted with.
-  const covered = new Set(groups.flatMap((group) => group.transaction_ids));
-  const uncovered = rows.filter((row) => !covered.has(row.id));
-  if (uncovered.length > 0) {
-    let fallbackIndex = 0;
-    for (const [, members] of proposeCandidateGroups(uncovered)) {
+  const groups: OwnerQuestionGroup[] = [];
+  const covered = new Set<string>();
+  let normalIndex = 0;
+  let fallbackIndex = 0;
+
+  drafted.forEach((group, index) => {
+    // Real ids only, first group wins a duplicated id.
+    const members = [...new Set(group.transaction_ids)]
+      .filter((id) => byId.has(id) && !covered.has(id))
+      .map((id) => byId.get(id))
+      .filter((row): row is Transaction => row !== undefined);
+    if (members.length === 0) return;
+    for (const row of members) covered.add(row.id);
+
+    if (disputedGroups.has(index)) {
       fallbackIndex++;
       groups.push({
         group_id: `q-fallback-${String(fallbackIndex).padStart(3, '0')}`,
         transaction_ids: members.map((row) => row.id),
         question_norwegian: buildFallbackQuestion(members),
       });
+    } else {
+      normalIndex++;
+      groups.push({
+        group_id: `q-${String(normalIndex).padStart(3, '0')}`,
+        transaction_ids: members.map((row) => row.id),
+        question_norwegian: group.question_norwegian,
+      });
     }
+  });
+
+  // Coverage repair: whatever the partition missed gets the code-authored
+  // question, grouped by the same candidate key the model was hinted with.
+  const uncovered = rows.filter((row) => !covered.has(row.id));
+  for (const [, members] of proposeCandidateGroups(uncovered)) {
+    fallbackIndex++;
+    groups.push({
+      group_id: `q-fallback-${String(fallbackIndex).padStart(3, '0')}`,
+      transaction_ids: members.map((row) => row.id),
+      question_norwegian: buildFallbackQuestion(members),
+    });
   }
 
   return groups;

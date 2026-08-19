@@ -1,0 +1,56 @@
+id,date,amount_nok,counterparty,description,currency,category,triage,confidence,question_group,triage_reason
+t-00025,2026-06-01,-10567.99,Power AS,Datautstyr,NOK,hardware,accountant-review,MEDIUM,,history support NONE does not carry auto-approve
+t-00052,2026-06-01,-84200,NORDIC FACADE SOLUTIONS AS,Faktura 2026-1142,NOK,supplier_invoice,owner-question,MEDIUM,q-001,Only the owner can resolve purpose_clarity=UNKNOWABLE_FROM_BANK_DATA.
+t-00038,2026-06-02,-2345.78,VIPPS LARS HANSEN,Vipps,NOK,uncertain,owner-question,LOW,q-002,The chart of accounts pairs uncertain with asking the owner.
+t-00010,2026-06-03,-18500,Bjørvika Eiendom AS,Husleie kontor,NOK,rent,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00023,2026-06-03,-3999.87,Scandic Hotels,Hotellovernatting,NOK,travel,accountant-review,MEDIUM,,confidence is MEDIUM
+t-00012,2026-06-04,-41958.27,Skatteetaten,Forskuddstrekk,NOK,salary_tax,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00030,2026-06-04,-5518.98,Meta Platforms Inc,Facebook Ads,NOK,marketing,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00005,2026-06-05,-440,GitHub Inc,GitHub Team,NOK,software,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00016,2026-06-05,-46000,INGRID HANSEN,Lønn,NOK,salary,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00026,2026-06-05,-24008.04,Advokatfirma Selmer,Advokattjenester,NOK,professional_services,accountant-review,MEDIUM,,confidence is MEDIUM
+t-00032,2026-06-05,-179.75,DNB Bank,Kortgebyr,NOK,bank_fees,accountant-review,MEDIUM,,history support SIMILAR_COUNTERPARTY does not carry auto-approve
+t-00035,2026-06-05,-248.12,Bolt / Uber,Taxi,NOK,uncertain,owner-question,LOW,q-003,The chart of accounts pairs uncertain with asking the owner.
+t-00049,2026-06-06,-1240,VIPPS LARS HANSEN,Vipps,NOK,uncertain,owner-question,LOW,q-002,The chart of accounts pairs uncertain with asking the owner.
+t-00053,2026-06-06,-89,ICA NÆR,REF 81234,NOK,uncertain,owner-question,LOW,q-004,The chart of accounts pairs uncertain with asking the owner.
+t-00013,2026-06-07,-9952.39,Skatteetaten,Arbeidsgiveravgift,NOK,employer_tax,accountant-review,HIGH,,history support CATEGORY_PATTERN_ONLY does not carry auto-approve
+t-00039,2026-06-07,-323.83,VIPPS ANNE BERG,Vipps,NOK,uncertain,owner-question,LOW,q-005,The chart of accounts pairs uncertain with asking the owner.
+t-00002,2026-06-08,-2243.91,Fjordkraft AS,Strøm,NOK,utilities,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00003,2026-06-09,-699,Get / Telia Norge AS,Internett,NOK,utilities,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00015,2026-06-09,-38500,OLA NORDMANN,Lønn,NOK,salary,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00027,2026-06-09,-145.28,Espresso House,Kaffe,NOK,meals,accountant-review,HIGH,,personal_risk=PLAUSIBLY_PERSONAL blocks auto-approve
+t-00017,2026-06-12,39140.74,Norconsult AS,Faktura 42018,NOK,customer_payment,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00036,2026-06-12,-15742.92,Apple Store,MacBook,NOK,hardware,accountant-review,MEDIUM,,missing_information=NEEDS_RECEIPT blocks auto-approve
+t-00004,2026-06-13,-820,Slack Technologies,Subscription,NOK,software,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00029,2026-06-14,-1628.89,Olivia Restaurant,Kundemiddag,NOK,meals,owner-question,LOW,q-006,Only the owner can resolve missing_information=NEEDS_PURPOSE.
+t-00043,2026-06-14,-549,SATS Norge AS,Treningssenter,NOK,uncertain,owner-question,LOW,q-007,The chart of accounts pairs uncertain with asking the owner.
+t-00051,2026-06-14,-5000,MINIBANK DNB,Kontantuttak,NOK,owner_draw,owner-question,LOW,q-008,"Only the owner can resolve purpose_clarity=UNKNOWABLE_FROM_BANK_DATA, missing_information=NEEDS_PURPOSE."
+t-00007,2026-06-15,-3537.98,Amazon Web Services,AWS,NOK,software,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00028,2026-06-15,-2465.54,Norwegian Air Shuttle,Flyreise,NOK,travel,accountant-review,MEDIUM,,confidence is MEDIUM
+t-00021,2026-06-16,-5670.26,LinkedIn Corporation,LinkedIn Ads,NOK,marketing,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00014,2026-06-17,-42000,KARI NORDMANN,Lønn,NOK,salary,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00019,2026-06-17,32680.27,Norconsult AS,Faktura 95717,NOK,customer_payment,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00034,2026-06-18,-8159.77,Google Ads,Annonsering,NOK,marketing,accountant-review,MEDIUM,,confidence is MEDIUM
+t-00011,2026-06-20,-12307.41,Skatteetaten,MVA innbetaling,NOK,vat_payment,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00044,2026-06-20,-149,NETFLIX,Subscription,NOK,personal_expense,owner-question,HIGH,q-009,Only the owner can resolve purpose_clarity=UNKNOWABLE_FROM_BANK_DATA.
+t-00001,2026-06-22,-749,Telenor Norge AS,Mobilabonnement,NOK,utilities,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00006,2026-06-22,-180,Figma Inc,Figma Pro,NOK,software,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00040,2026-06-22,-4046.2,MINIBANK SPAREBANK 1,Kontantuttak,NOK,uncertain,owner-question,LOW,q-008,The chart of accounts pairs uncertain with asking the owner.
+t-00018,2026-06-23,21785.92,Norconsult AS,Faktura 81200,NOK,uncertain,owner-question,LOW,q-010,The chart of accounts pairs uncertain with asking the owner.
+t-00054,2026-06-24,50000,OVERFØRING FRA KONTO 1234.56.78901,Egen konto,NOK,transfer,accountant-review,HIGH,,history support NONE does not carry auto-approve
+t-00008,2026-06-25,-1352.94,Tibber AS,Strøm,NOK,utilities,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00041,2026-06-25,-396.54,REMA 1000,Dagligvarer,NOK,uncertain,owner-question,LOW,q-011,The chart of accounts pairs uncertain with asking the owner.
+t-00037,2026-06-26,-222.32,Starbucks,Kaffe,NOK,meals,accountant-review,MEDIUM,,personal_risk=PLAUSIBLY_PERSONAL blocks auto-approve
+t-00047,2026-06-26,-3456.26,AIRBNB,Lodging,NOK,travel,owner-question,LOW,q-012,"Only the owner can resolve purpose_clarity=UNKNOWABLE_FROM_BANK_DATA, missing_information=NEEDS_PURPOSE."
+t-00048,2026-06-26,-680,VIPPS LARS HANSEN,Vipps,NOK,uncertain,owner-question,LOW,q-002,The chart of accounts pairs uncertain with asking the owner.
+t-00024,2026-06-27,-1998.86,Comfort Hotel Oslo,Hotell,NOK,travel,owner-question,LOW,q-012,"Only the owner can resolve purpose_clarity=UNKNOWABLE_FROM_BANK_DATA, missing_information=NEEDS_PURPOSE."
+t-00033,2026-06-27,-43097.15,PwC Norge,Konsulent,NOK,professional_services,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00020,2026-06-28,-6868.73,SAS,Flyreise,NOK,travel,accountant-review,MEDIUM,,history support NONE does not carry auto-approve
+t-00042,2026-06-28,-795.09,MENY,Dagligvarer,NOK,uncertain,owner-question,LOW,q-013,The chart of accounts pairs uncertain with asking the owner.
+t-00046,2026-06-28,-16906.14,TRANSFERWISE / WISE,International transfer,NOK,uncertain,owner-question,LOW,q-014,The chart of accounts pairs uncertain with asking the owner.
+t-00031,2026-06-29,-633.42,Vy Tog AS,Togbillett,NOK,travel,accountant-review,MEDIUM,,confidence is MEDIUM
+t-00050,2026-06-29,-340,STRIPE TECHNOLOGY EU,Subscription EUR,EUR,uncertain,owner-question,LOW,q-015,The chart of accounts pairs uncertain with asking the owner.
+t-00009,2026-06-30,-2400,Storebrand Forsikring,Bedriftsforsikring,NOK,insurance,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
+t-00022,2026-06-30,-7321.98,Elkjøp,Elektronikk,NOK,hardware,accountant-review,MEDIUM,,confidence is MEDIUM
+t-00045,2026-06-30,-524.76,SAMSON BAKERI,Bakeri,NOK,uncertain,owner-question,LOW,q-016,The chart of accounts pairs uncertain with asking the owner.
+t-00055,2026-06-30,-25000,OVERFØRING KARI NORDMANN,Privat,NOK,owner_draw,accountant-review,MEDIUM,,confidence is MEDIUM
