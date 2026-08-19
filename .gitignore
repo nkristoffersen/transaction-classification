@@ -15,6 +15,7 @@ coverage/
 # behind does get ignored — variants written by --out during evals and smoke
 # tests, and any scratch directory pointed at by OUTPUT_PATH.
 results-*.json
+results-*.csv
 *.results.json
 
 # The audit artifact, written beside the deliverable on every run. Named from

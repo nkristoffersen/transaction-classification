@@ -1,4 +1,0 @@
-id,date,amount_nok,counterparty,description,currency,category,triage,confidence,question_group,triage_reason
-t-00038,2026-06-02,-2345.78,VIPPS LARS HANSEN,Vipps,NOK,uncertain,owner-question,LOW,q-001,The chart of accounts pairs uncertain with asking the owner.
-t-00012,2026-06-04,-41958.27,Skatteetaten,Forskuddstrekk,NOK,salary_tax,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
-t-00001,2026-06-22,-749,Telenor Norge AS,Mobilabonnement,NOK,utilities,auto-approve,HIGH,,"Recurring history, clear purpose, nothing missing, high confidence."
