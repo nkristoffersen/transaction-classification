@@ -30,6 +30,16 @@ const issue = (path: string, message: string): RepairIssue => ({
 const successfulResults = (toolCalls: ToolCallRecord[]): HistorySearchResult[] =>
   toolCalls.flatMap((record) => (record.result === null ? [] : [record.result]));
 
+/**
+ * Only exact and containment matches are THIS counterparty's own history.
+ * A token-overlap match (a shared surname, a shared "Norge") must never bind
+ * a cross-check: a measured run rejected a correct `uncertain` on a Vipps row
+ * for three repair rounds because "VIPPS LARS HANSEN" fuzzy-matched INGRID
+ * HANSEN's six salary rows. The model held its ground; the check was wrong.
+ */
+const isOwnHistory = (result: HistorySearchResult): boolean =>
+  result.match_quality === 'exact' || result.match_quality === 'contains';
+
 export const checkClassification = (
   value: Classification,
   transaction: Transaction,
@@ -37,7 +47,8 @@ export const checkClassification = (
 ): RepairIssue[] => {
   const issues: RepairIssue[] = [];
   const results = successfulResults(toolCalls);
-  const anyMatches = results.some((result) => result.match_count > 0);
+  const ownResults = results.filter(isOwnHistory);
+  const anyOwnMatches = ownResults.some((result) => result.match_count > 0);
 
   // Defence in depth: the llm loop demands a tool call, but an answer that
   // somehow arrives without one is still not acceptable evidence.
@@ -52,7 +63,9 @@ export const checkClassification = (
 
   // Claimed support the tool results do not carry.
   if (value.history_support === 'EXACT_RECURRING') {
-    const recurring = results.some((result) => (result.category_distribution[0]?.count ?? 0) >= 3);
+    const recurring = ownResults.some(
+      (result) => (result.category_distribution[0]?.count ?? 0) >= 3,
+    );
     if (!recurring) {
       issues.push(
         issue(
@@ -66,7 +79,7 @@ export const checkClassification = (
       );
     }
   }
-  if (value.history_support === 'EXACT_ONE_OFF' && !anyMatches) {
+  if (value.history_support === 'EXACT_ONE_OFF' && !anyOwnMatches) {
     issues.push(
       issue(
         'history_support',
@@ -75,8 +88,10 @@ export const checkClassification = (
     );
   }
 
-  // The evidence text claims emptiness the results contradict.
-  if (/no prior|ingen tidligere/i.test(value.history_evidence) && anyMatches) {
+  // The evidence text claims emptiness the results contradict. Fuzzy-tier
+  // matches do not contradict it: "no prior transactions" is a fair statement
+  // when only similarly named counterparties matched.
+  if (/no prior|ingen tidligere/i.test(value.history_evidence) && anyOwnMatches) {
     issues.push(
       issue(
         'history_evidence',
@@ -85,8 +100,9 @@ export const checkClassification = (
     );
   }
 
-  // An unambiguous history majority, contradicted without being named.
-  const representative = results.reduce<HistorySearchResult | null>(
+  // An unambiguous history majority, contradicted without being named. Only
+  // this counterparty's own history can constitute a majority.
+  const representative = ownResults.reduce<HistorySearchResult | null>(
     (best, result) => (result.match_count > (best?.match_count ?? 0) ? result : best),
     null,
   );

@@ -241,6 +241,17 @@ drivers are enums rather than prose:
 - `category = uncertain` paired with `confidence = HIGH`
 - zero tool calls
 
+**Measured: a cross-check can be wrong, and the design must survive that.** On the first full
+run, the fuzzy history matcher token-matched "VIPPS LARS HANSEN" to INGRID HANSEN's six salary rows
+and "MINIBANK SPAREBANK 1" to the customer Sparebank 1 SR-Bank — and the majority cross-check then
+spent three repair rounds demanding the model abandon a correct `uncertain`. The model held its
+ground and the rows shipped flagged, which is the designed failure mode working: a disputed answer
+is published for a human, not forced. The fix is structural, not a reworded message: the search
+result now carries its match tier (`exact` / `contains` / `token_overlap` / `none`), the model is
+told a fuzzy tier is "similarly named, not this counterparty's own history", and the binding
+cross-checks (claimed support, emptiness, majority) only fire on the own-history tiers. Regression
+tests pin both the tiering and the non-binding.
+
 **When a result cannot be produced** — two outcomes, deliberately different. Schema-valid but still
 disputed after the budget: published, forced to accountant-review, carrying the contradiction — a
 usable draft that conflicts with a computed fact is exactly what a reviewer exists to settle.

@@ -48,9 +48,9 @@ export const buildHistoryIndex = (rows: HistoricalTransaction[]): HistoryIndex =
 const matchCounterparty = (
   index: HistoryIndex,
   normalisedQuery: string,
-): HistoricalTransaction[] => {
+): { rows: HistoricalTransaction[]; quality: HistorySearchResult['match_quality'] } => {
   const exact = index.byNormalisedCounterparty.get(normalisedQuery);
-  if (exact !== undefined) return exact;
+  if (exact !== undefined) return { rows: exact, quality: 'exact' };
 
   const containment: HistoricalTransaction[] = [];
   for (const [key, rows] of index.byNormalisedCounterparty) {
@@ -58,10 +58,10 @@ const matchCounterparty = (
       containment.push(...rows);
     }
   }
-  if (containment.length > 0) return containment;
+  if (containment.length > 0) return { rows: containment, quality: 'contains' };
 
   const queryTokens = new Set(normalisedQuery.split(' ').filter((token) => token.length > 2));
-  if (queryTokens.size === 0) return [];
+  if (queryTokens.size === 0) return { rows: [], quality: 'none' };
 
   const overlapping: HistoricalTransaction[] = [];
   for (const [key, rows] of index.byNormalisedCounterparty) {
@@ -70,7 +70,7 @@ const matchCounterparty = (
       overlapping.push(...rows);
     }
   }
-  return overlapping;
+  return { rows: overlapping, quality: overlapping.length > 0 ? 'token_overlap' : 'none' };
 };
 
 const median = (values: number[]): number | null => {
@@ -91,7 +91,8 @@ export const searchHistory = (
   query: { counterparty: string; description_keyword: string | null; limit: number },
 ): HistorySearchResult => {
   const normalisedQuery = normaliseCounterparty(query.counterparty);
-  let matches = matchCounterparty(index, normalisedQuery);
+  const matched = matchCounterparty(index, normalisedQuery);
+  let matches = matched.rows;
 
   if (query.description_keyword !== null) {
     const keyword = query.description_keyword.toLowerCase();
@@ -115,12 +116,15 @@ export const searchHistory = (
 
   const amounts = matches.map((row) => row.amount_nok);
 
+  const quality = matches.length === 0 ? 'none' : matched.quality;
+
   return {
     query: {
       counterparty: query.counterparty,
       description_keyword: query.description_keyword,
     },
     match_count: matches.length,
+    match_quality: quality,
     category_distribution: [...counts.entries()]
       .sort((a, b) => b[1] - a[1])
       .map(([category, count]) => ({ category, count })),
@@ -132,6 +136,10 @@ export const searchHistory = (
       matches.length === 0
         ? 'NO PRIOR TRANSACTIONS for this counterparty or keyword. That is a fact, not a gap: ' +
           'accounts like transfers, owner draws and one-off suppliers have no history by nature.'
-        : `${matches.length} prior transaction(s) found.`,
+        : quality === 'token_overlap'
+          ? `${matches.length} transaction(s) from SIMILARLY NAMED counterparties (shared word ` +
+            "only). This is NOT this counterparty's own history — at most comparable-merchant " +
+            'evidence.'
+          : `${matches.length} prior transaction(s) found.`,
   };
 };

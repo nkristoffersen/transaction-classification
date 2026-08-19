@@ -31,6 +31,7 @@ const classification = (overrides: Partial<Classification> = {}): Classification
 const searchResult = (overrides: Partial<HistorySearchResult> = {}): HistorySearchResult => ({
   query: { counterparty: 'Telenor Norge AS', description_keyword: null },
   match_count: 6,
+  match_quality: 'exact',
   category_distribution: [{ category: 'utilities', count: 6 }],
   matches: [],
   amount_range: { min: -749, max: -749 },
@@ -131,6 +132,39 @@ describe('checkClassification', () => {
       [call(searchResult({ match_count: 0, category_distribution: [] }))],
     );
     expect(issues.some((issue) => issue.message.includes('negative'))).toBe(true);
+  });
+
+  // Regression: "VIPPS LARS HANSEN" once token-matched INGRID HANSEN's six
+  // salary rows, and the cross-checks spent three repair rounds rejecting a
+  // correct `uncertain`. Fuzzy-tier matches must bind nothing.
+  it('lets fuzzy-tier matches bind nothing: no majority, no emptiness contradiction', () => {
+    const fuzzy = searchResult({
+      query: { counterparty: 'VIPPS LARS HANSEN', description_keyword: null },
+      match_quality: 'token_overlap',
+      category_distribution: [{ category: 'salary', count: 6 }],
+    });
+    const issues = checkClassification(
+      classification({
+        category_code: 'uncertain',
+        history_support: 'NONE',
+        history_evidence: 'No prior transactions for this counterparty; only similar names.',
+        purpose_clarity: 'UNKNOWABLE_FROM_BANK_DATA',
+        confidence: 'LOW',
+      }),
+      transaction({ counterparty: 'VIPPS LARS HANSEN', description: 'Vipps' }),
+      [call(fuzzy)],
+    );
+    expect(issues).toEqual([]);
+  });
+
+  it('rejects EXACT_RECURRING resting on a fuzzy-tier match', () => {
+    const fuzzy = searchResult({ match_quality: 'token_overlap' });
+    const issues = checkClassification(
+      classification({ category_code: 'salary', history_support: 'EXACT_RECURRING' }),
+      transaction({ counterparty: 'VIPPS LARS HANSEN' }),
+      [call(fuzzy)],
+    );
+    expect(issues.some((entry) => entry.path === 'history_support')).toBe(true);
   });
 
   it('flags uncertain paired with HIGH confidence', () => {

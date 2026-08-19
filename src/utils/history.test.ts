@@ -67,7 +67,30 @@ describe('history against the real data', () => {
       limit: 10,
     });
     expect(result.match_count).toBeGreaterThan(0);
+    expect(result.match_quality).toBe('contains');
     expect(result.matches.every((match) => /telia/i.test(match.counterparty))).toBe(true);
+  });
+
+  it("labels exact matches as this counterparty's own history", () => {
+    const result = searchHistory(index, {
+      counterparty: 'Telenor Norge AS',
+      description_keyword: null,
+      limit: 10,
+    });
+    expect(result.match_quality).toBe('exact');
+  });
+
+  // Regression: this shared-surname overlap masqueraded as a 6/6 salary
+  // history for a Vipps payment and derailed three repair rounds.
+  it('marks shared-word matches as token_overlap and says so in the note', () => {
+    const result = searchHistory(index, {
+      counterparty: 'VIPPS LARS HANSEN',
+      description_keyword: null,
+      limit: 10,
+    });
+    expect(result.match_quality).toBe('token_overlap');
+    expect(result.match_count).toBeGreaterThan(0); // INGRID HANSEN, via 'hansen'
+    expect(result.note).toContain('SIMILARLY NAMED');
   });
 
   it('caps returned matches at the limit while counting all of them', () => {

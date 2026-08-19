@@ -33,6 +33,15 @@ export const HistorySearchResultSchema = z.strictObject({
   }),
   match_count: z.number().int().min(0),
   /**
+   * How the matches were found. Only `exact` and `contains` are THIS
+   * counterparty's own history; `token_overlap` means merely similar names
+   * (a shared word like a surname or "Norge"), which is comparable-merchant
+   * evidence at best. The consistency cross-checks bind only on the first
+   * two tiers — a measured run had a fuzzy surname match ("VIPPS LARS
+   * HANSEN" → "INGRID HANSEN") masquerading as a 6/6 salary history.
+   */
+  match_quality: z.enum(['exact', 'contains', 'token_overlap', 'none']),
+  /**
    * The categories the matches carry, with counts. The distribution IS the
    * answer for most rows — a single dominant category is support, a split
    * (like Skatteetaten's three-way) is a warning that the description must
