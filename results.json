@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-08-19T18:27:41.002Z",
+  "generated_at": "2026-08-19T19:11:00.508Z",
   "model": "qwen/qwen3.5-9b",
   "transactions_classified": 55,
   "results": [
@@ -211,7 +211,7 @@
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
       "reasoning": "The search history returned no prior transactions for the counterparty 'ICA NÆR'. Without any historical pattern to establish a category, and given that 'ICA NÆR' is a grocery store (a merchant that serves both business and personal needs), there is no evidence to classify this transaction. The description 'REF 81234' is generic and provides no context. Therefore, the classification cannot be determined from bank data alone.",
-      "question_group": "q-fallback-002"
+      "question_group": "q-003"
     },
     {
       "id": "t-00013",
@@ -241,7 +241,7 @@
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
       "reasoning": "The search history returned no prior transactions for the counterparty 'VIPPS ANNE BERG'. Without any historical pattern to establish a category, and given that the description is generic ('Vipps') without specific keywords like 'Lønn', 'Faktura', or 'Privat', there is no evidence to support a specific business category. The transaction is a payment out (-323.83 NOK) to a personal name via a generic payment app, which is inherently ambiguous between a business expense, a personal expense, or an owner draw without further context.",
-      "question_group": "q-003"
+      "question_group": "q-004"
     },
     {
       "id": "t-00002",
@@ -361,7 +361,7 @@
       "triage_reason": "Only the owner can resolve missing_information=NEEDS_ATTENDEES.",
       "confidence": "LOW",
       "reasoning": "There is no prior transaction history for the exact counterparty 'Olivia Restaurant'. The search only found transactions for a different restaurant ('Egon Restaurant'). While 'Egon Restaurant' transactions are categorized as 'meals', this is only weak, analogous evidence from a similar merchant, not evidence for 'Olivia Restaurant' itself. Without any direct history for 'Olivia Restaurant', we cannot establish a recurring pattern or a specific category for this exact counterparty. The description 'Kundemiddag' (Customer dinner) strongly suggests a business meal, but since we have no history for this specific restaurant to confirm it's a business expense, we cannot confidently assign a category like 'meals' without risking misclassification of a potentially personal expense. However, given the description 'Kundemiddag', 'meals' is the most plausible business category, but the lack of history makes it uncertain.",
-      "question_group": "q-fallback-003"
+      "question_group": "q-005"
     },
     {
       "id": "t-00043",
@@ -376,7 +376,7 @@
       "triage_reason": "Only the owner can resolve purpose_clarity=UNKNOWABLE_FROM_BANK_DATA, missing_information=NEEDS_PURPOSE.",
       "confidence": "LOW",
       "reasoning": "The search for the exact counterparty 'SATS Norge AS' returned zero matches. The 17 results returned are for different companies (Telenor, Bouvet, Get) that share the word 'Norge AS', which is a false positive due to fuzzy matching. Since there is no history for this specific vendor, and the description 'Treningssenter' (Gym) points to a personal service with no clear business purpose in the absence of a business pattern, the transaction cannot be confidently categorized as a business expense. It is likely a personal gym membership.",
-      "question_group": "q-fallback-003"
+      "question_group": "q-006"
     },
     {
       "id": "t-00051",
@@ -391,7 +391,7 @@
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
       "reasoning": "The exact counterparty 'MINIBANK DNB' has no prior transactions in the history. The search only found matches for a similarly named counterparty ('DNB Bank'), which the system explicitly notes is not this counterparty's history. Therefore, there is no historical pattern to support a category for 'MINIBANK DNB'. The description 'Kontantuttak' (cash withdrawal) is a generic bank service description that does not inherently map to a specific business expense category like 'office_supplies' or 'travel' without further context on how the cash was used. Since there is no history for this specific counterparty and the description is generic, we cannot confidently assign a category.",
-      "question_group": "q-004"
+      "question_group": "q-007"
     },
     {
       "id": "t-00007",
@@ -511,7 +511,7 @@
       "triage_reason": "Only the owner can resolve purpose_clarity=UNKNOWABLE_FROM_BANK_DATA.",
       "confidence": "HIGH",
       "reasoning": "The search for the counterparty NETFLIX returned no prior transactions. Without any history to establish a pattern, and given that NETFLIX is a consumer streaming service with no plausible business purpose for a small business, the transaction must be classified as a personal expense.",
-      "question_group": "q-005"
+      "question_group": "q-008"
     },
     {
       "id": "t-00001",
@@ -556,7 +556,7 @@
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
       "reasoning": "The search for the exact counterparty 'MINIBANK SPAREBANK 1' returned no results. The 4 matches found are for a similarly named counterparty ('Sparebank 1 SR-Bank') which are incoming customer payments (positive amounts, 'Faktura' descriptions). The current transaction is an outgoing cash withdrawal ('Kontantuttak', negative amount) from the specific counterparty 'MINIBANK SPAREBANK 1'. Since there is no history for this exact counterparty and the pattern (cash withdrawal) is the opposite of the historical pattern (customer payment), there is no evidence to support a specific business category. Cash withdrawals are typically personal or require clarification on business purpose.",
-      "question_group": "q-004"
+      "question_group": "q-007"
     },
     {
       "id": "t-00018",
@@ -616,7 +616,7 @@
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
       "reasoning": "The search for the counterparty 'REMA 1000' returned zero matches, meaning there is no historical pattern to reference. The description 'Dagligvarer' (Groceries) is generic and could refer to either business office supplies (if the business stocks items) or personal grocery shopping. Without a prior transaction to establish a pattern, the bank data alone cannot distinguish between a business expense and a personal expense. Therefore, no category can be assigned with confidence.",
-      "question_group": "q-006"
+      "question_group": "q-009"
     },
     {
       "id": "t-00037",
@@ -646,7 +646,7 @@
       "triage_reason": "Only the owner can resolve purpose_clarity=UNKNOWABLE_FROM_BANK_DATA, missing_information=NEEDS_PURPOSE.",
       "confidence": "LOW",
       "reasoning": "The search for the counterparty 'AIRBNB' returned zero matches, meaning there is no historical pattern to reference. The description 'Lodging' strongly suggests accommodation expenses, which typically fall under the 'travel' category (which includes hotels and lodging services like Airbnb). However, without any prior transactions to establish a recurring pattern or confirm the business nature of this specific expense, the classification relies solely on the description. Since the description is generic ('Lodging') and there is no history, we cannot be certain if this was a business trip or a personal expense, but 'travel' is the most logical business category for a lodging expense.",
-      "question_group": "q-fallback-004"
+      "question_group": "q-010"
     },
     {
       "id": "t-00048",
@@ -676,7 +676,7 @@
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
       "reasoning": "The search history returned no prior transactions for the counterparty 'Comfort Hotel Oslo'. Without historical data to establish a pattern, I cannot confirm if this is a recurring business expense or a one-off personal trip. The description 'Hotell' indicates a hotel, which typically falls under 'travel', but the lack of history and the generic description mean I cannot be certain this is a business travel expense versus a personal one. Therefore, the category is uncertain based on bank data alone.",
-      "question_group": "q-fallback-004"
+      "question_group": "q-011"
     },
     {
       "id": "t-00033",
@@ -721,7 +721,7 @@
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
       "reasoning": "The search for the counterparty 'MENY' returned no prior transactions. Without any history to establish a pattern, and given that 'MENY' is a grocery store (indicated by the description 'Dagligvarer'), the transaction cannot be confidently categorized as a business expense versus a personal expense based on bank data alone. While groceries can be for office supplies, they can also be for personal use, and there is no historical evidence to distinguish the two.",
-      "question_group": "q-006"
+      "question_group": "q-012"
     },
     {
       "id": "t-00046",
@@ -736,7 +736,7 @@
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
       "reasoning": "The search returned no prior transactions for the counterparty 'TRANSFERWISE / WISE'. The description 'International transfer' is generic and does not specify a purpose (e.g., supplier payment, owner draw, or internal transfer). Without historical context to establish a pattern or a specific description keyword to disambiguate, there is no evidence to support a specific business category. The transaction is an outgoing international transfer, but the destination and purpose are unknown from the bank data alone.",
-      "question_group": "q-007"
+      "question_group": "q-013"
     },
     {
       "id": "t-00031",
@@ -766,7 +766,7 @@
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
       "reasoning": "The search for the counterparty 'STRIPE TECHNOLOGY EU' returned zero matches, meaning there is no historical pattern to reference. The description 'Subscription' is generic and could apply to various services (software, payment processing, consumer subscriptions). Without a prior transaction to establish a category, and with no obvious similar counterparty in the general history to infer from, the purpose is unambiguous in terms of the merchant but the accounting category is unknown. Since Stripe is a well-known payment processor, it is highly likely a business expense (software/service), but without a specific history or invoice, we cannot definitively choose between 'software' and 'uncertain' or flag it as personal risk without more context. Given the instruction to be conservative with unknowns, 'uncertain' is the most appropriate classification.",
-      "question_group": "q-008"
+      "question_group": "q-014"
     },
     {
       "id": "t-00009",
@@ -811,7 +811,7 @@
       "triage_reason": "The chart of accounts pairs uncertain with asking the owner.",
       "confidence": "LOW",
       "reasoning": "The search for the counterparty 'SAMSON BAKERI' returned zero matches. Without any historical data to establish a pattern, and given that the description 'Bakeri' is generic (it could be a bakery for office supplies, a client meal, or a personal purchase), there is no evidence to confidently assign a category. The transaction is a one-off payment to an unknown supplier with no established history.",
-      "question_group": "q-006"
+      "question_group": "q-015"
     },
     {
       "id": "t-00055",
@@ -822,10 +822,10 @@
       "currency": "NOK",
       "category": "salary",
       "category_name": "Salary",
-      "triage": "auto-approve",
-      "triage_reason": "Recurring history, clear purpose, nothing missing, high confidence.",
-      "confidence": "HIGH",
-      "reasoning": "The counterparty 'KARI NORDMANN' has a strong, consistent history of 6 transactions, all categorized as 'salary' with a fixed amount of -42000 NOK. Although the current transaction has a different amount (-25000) and a different description ('Privat'), the counterparty identity and the established pattern of regular payments to this individual strongly indicate this is a salary payment. The description 'Privat' is likely a variation or error in the bank's description field, but the counterparty's history as a salary recipient overrides this ambiguity. The amount difference suggests a variable salary or a partial payment, but the category remains salary.",
+      "triage": "accountant-review",
+      "triage_reason": "confidence is MEDIUM",
+      "confidence": "MEDIUM",
+      "reasoning": "The counterparty 'KARI NORDMANN' has a strong, consistent history of 6 transactions, all categorized as 'salary' with a fixed amount of -42000 NOK. Although the current transaction has a different amount (-25000) and a different description ('Privat'), the counterparty identity and the established pattern of regular payments to this individual strongly indicate this is a salary payment. The description 'Privat' is a variation, but since the counterparty is a known salary recipient, the category remains salary. The amount difference suggests a variable salary or a partial payment, but the category remains salary.",
       "question_group": null
     }
   ],
@@ -844,82 +844,106 @@
         "t-00049",
         "t-00048"
       ],
-      "question_norwegian": "Er Vipps-betalinger på 2 345,78 NOK (2. juni), 1 240 NOK (6. juni) og 680 NOK (26. juni) alle til Lars Hansen, og hva var formålet med hver av disse?"
+      "question_norwegian": "Hvilket formål har de tre Vipps-betalinger til Lars Hansen på totalt 4 265,78 NOK (2 345,78 NOK den 2. juni, 1 240 NOK den 6. juni og 680 NOK den 26. juni)?"
     },
     {
       "group_id": "q-002",
       "transaction_ids": [
         "t-00035"
       ],
-      "question_norwegian": "Hva var formålet med taxibetalingen på 248,12 NOK via Bolt/Uber den 5. juni 2026?"
-    },
-    {
-      "group_id": "q-fallback-002",
-      "transaction_ids": [
-        "t-00053"
-      ],
-      "question_norwegian": "Hei! Kan du fortelle oss hva betalingen på 89 kr til ICA NÆR den 6. juni gjaldt?"
+      "question_norwegian": "Hvilket formål har taxibetalingen på 248,12 NOK via Bolt/Uber den 5. juni 2026?"
     },
     {
       "group_id": "q-003",
       "transaction_ids": [
-        "t-00039"
+        "t-00053"
       ],
-      "question_norwegian": "Hva var formålet med Vipps-betalingen på 323,83 NOK til Anne Berg den 7. juni 2026?"
-    },
-    {
-      "group_id": "q-fallback-003",
-      "transaction_ids": [
-        "t-00029",
-        "t-00043"
-      ],
-      "question_norwegian": "Hei! Kan du fortelle oss hva betalingene på 1 628 kr til Olivia Restaurant den 14. juni, 549 kr til SATS Norge AS den 14. juni gjaldt?"
+      "question_norwegian": "Hvilket formål har kjøpet på 89 NOK hos ICA Nær den 6. juni 2026 (referanse 81234)?"
     },
     {
       "group_id": "q-004",
       "transaction_ids": [
-        "t-00051",
-        "t-00040"
+        "t-00039"
       ],
-      "question_norwegian": "Hvorfor tok dere ut kontanter på 5 000 NOK fra DNB den 14. juni og 4 046,20 NOK fra Sparebank 1 den 22. juni, og skal disse føres som likviditetsbehov eller er det til en spesifikk formål?"
+      "question_norwegian": "Hvilket formål har Vipps-betalingen på 323,83 NOK til Anne Berg den 7. juni 2026?"
     },
     {
       "group_id": "q-005",
       "transaction_ids": [
-        "t-00044"
+        "t-00029"
       ],
-      "question_norwegian": "Er Netflix-abonnementet på 149 NOK den 20. juni en personlig utgift, eller skal det føres som en bedriftsutgift?"
+      "question_norwegian": "Hvilket formål har kundemiddagen på 1 628,89 NOK hos Olivia Restaurant den 14. juni 2026?"
     },
     {
       "group_id": "q-006",
       "transaction_ids": [
-        "t-00041",
-        "t-00042",
-        "t-00045"
+        "t-00043"
       ],
-      "question_norwegian": "Er dagligvarekjøpene på 396,54 NOK (Rema 1000), 795,09 NOK (Meny) og bakeriet på 524,76 NOK (Samson) alle den 25.-30. juni, og skal de føres som bedriftsmat eller personlige utgifter?"
-    },
-    {
-      "group_id": "q-fallback-004",
-      "transaction_ids": [
-        "t-00047",
-        "t-00024"
-      ],
-      "question_norwegian": "Hei! Kan du fortelle oss hva betalingene på 3 456 kr til AIRBNB den 26. juni, 1 998 kr til Comfort Hotel Oslo den 27. juni gjaldt?"
+      "question_norwegian": "Hvilket formål har betalingen på 549 NOK til SATS Norge AS for treningssenter den 14. juni 2026?"
     },
     {
       "group_id": "q-007",
       "transaction_ids": [
-        "t-00046"
+        "t-00051",
+        "t-00040"
       ],
-      "question_norwegian": "Hva var formålet med den internasjonale overføringen på 16 906,14 NOK via Transferwise/Wise den 28. juni?"
+      "question_norwegian": "Hvorfor tok du ut kontanter på totalt 9 046,2 NOK (5 000 NOK fra DNB den 14. juni og 4 046,2 NOK fra Sparebank 1 den 22. juni)?"
     },
     {
       "group_id": "q-008",
       "transaction_ids": [
+        "t-00044"
+      ],
+      "question_norwegian": "Er Netflix-abonnementet på 149 NOK den 20. juni 2026 fortsatt aktivt, og hva er formålet med denne utbetalingen?"
+    },
+    {
+      "group_id": "q-009",
+      "transaction_ids": [
+        "t-00041"
+      ],
+      "question_norwegian": "Hvilket formål har dagligvarekjøpet på 396,54 NOK hos Rema 1000 den 25. juni 2026?"
+    },
+    {
+      "group_id": "q-010",
+      "transaction_ids": [
+        "t-00047"
+      ],
+      "question_norwegian": "Hvilket formål har overnattingen på 3 456,26 NOK via Airbnb den 26. juni 2026?"
+    },
+    {
+      "group_id": "q-011",
+      "transaction_ids": [
+        "t-00024"
+      ],
+      "question_norwegian": "Hvilket formål har hotellbookingen på 1 998,86 NOK ved Comfort Hotel Oslo den 27. juni 2026?"
+    },
+    {
+      "group_id": "q-012",
+      "transaction_ids": [
+        "t-00042"
+      ],
+      "question_norwegian": "Hvilket formål har dagligvarekjøpet på 795,09 NOK hos Meny den 28. juni 2026?"
+    },
+    {
+      "group_id": "q-013",
+      "transaction_ids": [
+        "t-00046"
+      ],
+      "question_norwegian": "Hvem er mottakeren av den internasjonale overføringen på 16 906,14 NOK via Transferwise/Wise den 28. juni 2026, og hva er formålet?"
+    },
+    {
+      "group_id": "q-014",
+      "transaction_ids": [
         "t-00050"
       ],
-      "question_norwegian": "Er Stripe Technology EU-abonnementet på 340 NOK (EUR) den 29. juni en personlig utgift, eller skal det føres som en bedriftsutgift?"
+      "question_norwegian": "Hvilket formål har abonnementet på 340 EUR (ca. 3 400 NOK) hos Stripe Technology EU den 29. juni 2026?"
+    },
+    {
+      "group_id": "q-015",
+      "transaction_ids": [
+        "t-00045"
+      ],
+      "question_norwegian": "Hvilket formål har bakerikjøpet på 524,76 NOK hos Samson Bakeri den 30. juni 2026?"
     }
   ],
   "failures": []
