@@ -1,0 +1,37 @@
+{
+  "name": "transaction-classification",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Classifies and triages Norwegian bank transactions into draft accounting entries.",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env src/app.ts",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "eval": "vitest run --config vitest.eval.config.ts"
+  },
+  "dependencies": {
+    "@ai-sdk/openai-compatible": "3.0.23",
+    "ai": "7.0.52",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "24.0.0",
+    "@vitest/coverage-v8": "4.1.10",
+    "eslint": "10.8.0",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-prettier": "5.5.6",
+    "prettier": "3.9.6",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.65.0",
+    "vitest": "4.1.10"
+  }
+}

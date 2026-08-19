@@ -1,0 +1,12 @@
+node_modules
+.git
+coverage
+.env
+.env.local
+.DS_Store
+*.log
+results.json
+results.csv
+results-raw.json
+report.md
+report.json

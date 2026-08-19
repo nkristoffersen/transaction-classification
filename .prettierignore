@@ -1,0 +1,12 @@
+coverage/
+node_modules/
+package-lock.json
+
+# Supplied material — kept byte-for-byte as received.
+ai-engineer/
+
+# Generated output.
+results.json
+results.csv
+report.md
+report.json

@@ -1,1 +1,25 @@
+# Secrets. .env.example is committed; .env never is.
 .env
+.env.local
+
+node_modules/
+.DS_Store
+*.log
+coverage/
+
+# Generated output.
+#
+# `results.json` is deliberately NOT ignored: the brief lists an output file
+# showing the system's results as a deliverable, so the artifact the system
+# produced has to travel with the repository. Everything else a run can leave
+# behind does get ignored — variants written by --out during evals and smoke
+# tests, and any scratch directory pointed at by OUTPUT_PATH.
+results-*.json
+*.results.json
+
+# The audit artifact, written beside the deliverable on every run. Named from
+# whatever --out was pointed at, so the rule is on the suffix rather than on
+# `results-`. It is a working file for comparing runs, not a deliverable.
+*-raw.json
+out/
+tmp/

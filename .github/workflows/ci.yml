@@ -1,0 +1,74 @@
+# The two gates that cost nothing: types/lint/formatting, then the offline
+# suite. Both run the same `./lint.sh` and `./test.sh` a developer runs, rather
+# than reimplementing them as raw npm invocations. A CI job that drifts from the
+# documented command is a job that passes while the command is broken.
+#
+# Deliberately absent: the eval. It calls a real model, costs money per run,
+# and does not give identical answers every time — none of which belongs in a
+# gate that fires on every push. Run it with ./eval.sh when a change could
+# plausibly move classification quality.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# A second push to the same ref makes the first run's answer irrelevant before
+# it finishes, so stop paying for it.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+# Neither gate writes anything back, and neither reads a secret: ./lint.sh and
+# ./test.sh never call require_env, so there is no endpoint to configure and
+# nothing for a token to reach.
+permissions:
+  contents: read
+
+env:
+  # The scripts default to Docker so that a developer's machine needs nothing
+  # but Docker. A runner already has Node, and going through Docker here would
+  # mean building an image in order to run a linter.
+  USE_DOCKER: '0'
+
+jobs:
+  lint:
+    name: types, lint and formatting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          # The sources are TypeScript run directly by Node's type stripping,
+          # which is why package.json requires >=24. An older Node does not
+          # fail informatively here — it fails on the first .ts import.
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # Runs tsc --noEmit and then eslint, reporting both before it exits.
+      - run: ./lint.sh
+
+  test:
+    name: offline test suite
+    # Second, as the gate order implies: a type error makes the test failures it
+    # causes uninformative, so there is nothing to learn from running both.
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      # No .env, no network: the suite drives a local stub on an ephemeral port.
+      - run: ./test.sh

@@ -1,0 +1,106 @@
+# Environment-agnostic entry points for the three things this repo does:
+# produce results.json, prove the machinery with offline tests, and evaluate a
+# real model.
+#
+#   docker compose run --rm classify    generate results.json
+#   docker compose run --rm test        the offline suite (no .env, no network)
+#   docker compose run --rm eval        the measurement report, against the model in .env
+#
+# The source is bind-mounted so edits take effect without a rebuild and so
+# results.json lands on the host, where the deliverable is expected.
+
+# The read-only source mounts every service needs. Kept as its own anchor
+# because YAML merges mappings but not sequences: a service that adds one mount
+# has to restate the list, and this is the copy it restates from.
+x-mounts: &mounts
+  - ./src:/app/src
+  - ./ai-engineer/data:/app/ai-engineer/data:ro
+  - ./data:/app/data:ro
+  - ./tsconfig.json:/app/tsconfig.json:ro
+  - ./vitest.config.ts:/app/vitest.config.ts:ro
+  - ./vitest.eval.config.ts:/app/vitest.eval.config.ts:ro
+  # node_modules deliberately stays unmounted, so it comes from the image and
+  # tracks package-lock.json. A named volume here would be populated once and
+  # then shadow every later install: adding a dependency would rebuild the
+  # image and still leave the container running the old tree.
+
+x-app: &app
+  build:
+    context: .
+  image: transaction-classification:local
+  working_dir: /app
+  volumes: *mounts
+  # Lets a model server running on the host (LM Studio, Ollama, vLLM) be
+  # reached as http://host.docker.internal:1234/v1 from inside the container.
+  extra_hosts:
+    - 'host.docker.internal:host-gateway'
+
+# Everything a service needs to reach a real endpoint. Applied only to the
+# services that are meant to spend money, so the offline suite cannot acquire
+# credentials by accident.
+x-llm: &llm
+  env_file:
+    - .env
+  environment:
+    # A .env written for the host points at loopback, which inside a container
+    # is the container. Redirect it back to the host.
+    REWRITE_LOOPBACK_HOST: 'true'
+
+services:
+  # The deliverable. Writes results.json to the repo root on the host.
+  classify:
+    <<: [*app, *llm]
+    volumes:
+      - ./src:/app/src
+      - ./ai-engineer/data:/app/ai-engineer/data:ro
+      - ./data:/app/data:ro
+      - ./tsconfig.json:/app/tsconfig.json:ro
+      - ./vitest.config.ts:/app/vitest.config.ts:ro
+      - ./vitest.eval.config.ts:/app/vitest.eval.config.ts:ro
+      # results.json lands on the host, where the deliverable is expected.
+      - ./:/app/out
+    command: ['npm', 'start', '--', '--out', '/app/out/results.json']
+
+  # Deliberately no env_file: the offline suite must not be able to reach a
+  # real endpoint, or it stops being a trustworthy gate.
+  test:
+    <<: *app
+    command: ['npm', 'test']
+
+  typecheck:
+    <<: *app
+    command: ['npm', 'run', 'typecheck']
+
+  coverage:
+    <<: *app
+    command: ['npm', 'run', 'test:coverage']
+
+  # Real model, real cost. Reads .env exactly as the CLI does, and writes the
+  # report beside results.json on the host.
+  eval:
+    <<: [*app, *llm]
+    volumes:
+      - ./src:/app/src
+      - ./ai-engineer/data:/app/ai-engineer/data:ro
+      - ./data:/app/data:ro
+      - ./tsconfig.json:/app/tsconfig.json:ro
+      - ./vitest.config.ts:/app/vitest.config.ts:ro
+      - ./vitest.eval.config.ts:/app/vitest.eval.config.ts:ro
+      - ./:/app/out
+    command: ['npm', 'run', 'eval']
+
+  # eslint and prettier. The only service whose mounts are writable at the root,
+  # because --fix and --write have to reach the host to be of any use.
+  lint:
+    <<: *app
+    volumes:
+      - ./src:/app/src
+      - ./ai-engineer/data:/app/ai-engineer/data:ro
+      - ./data:/app/data:ro
+      - ./tsconfig.json:/app/tsconfig.json
+      - ./vitest.config.ts:/app/vitest.config.ts
+      - ./vitest.eval.config.ts:/app/vitest.eval.config.ts
+      - ./eslint.config.js:/app/eslint.config.js
+      - ./.prettierrc.json:/app/.prettierrc.json
+      - ./.prettierignore:/app/.prettierignore
+    command: ['npm', 'run', 'lint']
