@@ -17,6 +17,11 @@ docker compose build    # install: builds the image, npm ci inside it
 ./eval.sh               # measure it: the report against a real model -> report.md / report.json
 ```
 
+Strictly, the install step is optional the first time — compose builds the image on first
+`./run.sh` automatically. It stops being optional after a dependency change: the image bakes in
+`node_modules` (deliberately, so it tracks `package-lock.json`), and compose does not rebuild a
+stale image on its own.
+
 Prefer running without Docker? `USE_DOCKER=0 ./run.sh` (and the other scripts) run on a host with
 Node 24 and install dependencies automatically on first use. There is also `./test.sh` — the
 offline suite: free, fast, no network, no `.env`.
