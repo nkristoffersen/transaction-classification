@@ -26,6 +26,11 @@ What was cut under the time box, and what I would do differently.
   that feedback loop.
 - **Duplicate-payment detection is out of scope.** Two identical invoices in one batch would both
   classify cleanly.
+- **Reproducibility is measured for decisions, not prose.** Category and triage are byte-identical
+  across runs (measured twice, including across server sessions). The one owner-question drafting
+  call can word its questions differently between LM Studio sessions even at temperature 0 —
+  server-side batching, not sampling — so question text and group numbering may vary while the
+  validated facts in them (amounts, coverage) do not.
 - **The gold labels were authored by the builder.** Mitigated — not eliminated — by keeping the 10
   shipped labels verbatim, reporting every rate split by label source, and marking genuinely
   arguable rows `contested` so divergences there read as data points rather than defects.
