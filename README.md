@@ -9,14 +9,17 @@ Architecture and design decisions: [DESIGN.md](DESIGN.md). What was cut: [LIMITA
 
 ## The three commands
 
-Needs Docker (Compose v2). Set `USE_DOCKER=0` to run on the host with Node 24 instead —
-installation then happens automatically on first run (`npm ci`).
+Needs Docker (Compose v2); nothing else is required on the host.
 
 ```sh
-./run.sh        # install (first run builds the image) + classify -> results.json / results.csv
-./test.sh       # the offline suite: free, fast, no network, no .env
-./eval.sh       # the measurement report against a real model -> report.md / report.json
+docker compose build    # install: builds the image, npm ci inside it
+./run.sh                # run the system: classify -> results.json / results.csv
+./eval.sh               # measure it: the report against a real model -> report.md / report.json
 ```
+
+Prefer running without Docker? `USE_DOCKER=0 ./run.sh` (and the other scripts) run on a host with
+Node 24 and install dependencies automatically on first use. There is also `./test.sh` — the
+offline suite: free, fast, no network, no `.env`.
 
 `./run.sh` and `./eval.sh` need an endpoint: copy `.env.example` to `.env` (the scripts offer to)
 and point `LLM_BASE_URL` at any OpenAI-compatible server. The shipped defaults target LM Studio
